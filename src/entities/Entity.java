@@ -3,7 +3,7 @@ package entities;
 public class Entity {
 	private int xPosition;
 	private int yPosition;
-	private enum Direction{
+	public enum Direction{
 		NORTH,
 		NORTHEAST,
 		EAST,
@@ -27,7 +27,10 @@ public class Entity {
 	public int getY() {
 		return yPosition;
 	}
-
+	/**
+	 * Moves the entity in the specified direction
+	 * @param direction the direction to move in
+	 */
 	public void move(Direction direction) {
 		switch(direction) {
 		case NORTH: 

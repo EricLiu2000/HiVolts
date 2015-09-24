@@ -13,34 +13,30 @@ public class Mho extends Entity {
 		super(xPosition, yPosition);
 		this.player = player;
 	}
-	
-	public void move() {
+	/**
+	 * Move the Mho towards the player
+	 */
+	public void moveMho() {
 		//If the mho is in the same column as the player
 		if(this.getX() == player.getX()) {
 			if(this.getY() < player.getY()) {
-				moveDistance(0, 1);
+				move(Direction.SOUTH);
 			}
 			if(this.getY() > player.getY()) {
-				moveDistance(0, -1);
+				move(Direction.NORTH);
 			}
 		}
 		
 		//If the mho is in the same row as the player
 		if(this.getY() == player.getY()) {
 			if(this.getX() < player.getX()) {
-				moveDistance(0, 1);
+				move(Direction.EAST);
 			}
 			if(this.getX() > player.getX()) {
-				moveDistance(0, -1);
+				move(Direction.WEST);
 			}
 		}
 		
 		
 	}
-	
-	public void moveDistance(int xDistance, int yDistance) {
-		xPosition += xDistance;
-		yPosition += yDistance;
-	}
-	
 }
