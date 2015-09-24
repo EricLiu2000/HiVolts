@@ -22,7 +22,7 @@ public class Game extends JFrame {
 	
 	private ArrayList<Fence> boundingFences;
 	
-	private int[] [] grid;
+	private double freeEntities;
 
 	public boolean playerTurn;
 	
@@ -34,17 +34,21 @@ public class Game extends JFrame {
 		setSize(500, 500);
 		
 		setBackground(Color.WHITE);
-		
-		grid = new int[11] [11];
-
+	
 		player = new Player(10, 10);
 		
 		playerTurn = true;
 		
 		entities.add(player);
+		
+		freeEntities = 33.0;
+		
 		for (int i = 0; i < 10 ; i++) {
 			for (int j = 0; j < 10 ; j++) {
-				
+				double r = Math.random();
+				if(r < (freeEntities /(100 - i * 10 + j))) {
+					//entities.add();
+				}
 			}
 		}
 		

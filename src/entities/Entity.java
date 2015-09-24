@@ -2,7 +2,7 @@ package entities;
 
 import java.awt.Graphics;
 
-public abstract class Entity {
+public class Entity {
 	
 	private int xPosition;
 	private int yPosition;
@@ -24,8 +24,7 @@ public abstract class Entity {
 		this.yPosition = yPosition;
 	}
 	
-	
-	public abstract void draw(Graphics g);
+	public void draw(Graphics g){}
 	
 	public int getX() {
 		return xPosition;
