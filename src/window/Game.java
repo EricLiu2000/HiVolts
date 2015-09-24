@@ -29,6 +29,8 @@ public class Game extends JFrame {
 	public Game() {
 		entities = new ArrayList<Entity>();
 		
+		boundingFences = new ArrayList<Fence>();
+		
 		setSize(500, 500);
 		
 		setBackground(Color.WHITE);

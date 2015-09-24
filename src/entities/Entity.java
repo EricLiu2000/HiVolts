@@ -1,6 +1,7 @@
 package entities;
 
 public class Entity {
+	
 	private int xPosition;
 	private int yPosition;
 	public enum Direction{
