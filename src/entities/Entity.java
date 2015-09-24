@@ -28,7 +28,7 @@ public class Entity {
 		return yPosition;
 	}
 
-	public void walk(Direction direction) {
+	public void move(Direction direction) {
 		switch(direction) {
 		case NORTH: 
 			yPosition --;
