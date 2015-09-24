@@ -1,9 +1,12 @@
 package entities;
 
-public class Entity {
+import java.awt.Graphics;
+
+public abstract class Entity {
 	
 	private int xPosition;
 	private int yPosition;
+	
 	public enum Direction{
 		NORTH,
 		NORTHEAST,
@@ -20,6 +23,9 @@ public class Entity {
 		this.xPosition = xPosition;
 		this.yPosition = yPosition;
 	}
+	
+	
+	public abstract void draw(Graphics g);
 	
 	public int getX() {
 		return xPosition;
