@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+import entities.Entity;
 import entities.Fence;
 import entities.Mho;
 import entities.Player;
@@ -17,15 +18,17 @@ public class Game extends JFrame {
 
 	private Player player;
 	
-	private ArrayList<Mho> mhos;
+	private ArrayList<Entity> entities;
 	
-	private ArrayList<Fence> fences;
+	private ArrayList<Fence> boundingFences;
 	
 	private int[] [] grid;
 
 	public boolean playerTurn;
 	
 	public Game() {
+		entities = new ArrayList<Entity>();
+		
 		setSize(500, 500);
 		
 		setBackground(Color.WHITE);
@@ -36,9 +39,13 @@ public class Game extends JFrame {
 		
 		playerTurn = true;
 		
+		entities.add(player);
+		
 		for(int i = 1; i <= 12; i++) {
-			mhos.add(new Mho((int) (10 * Math.random()) + 1, (int) (10 * Math.random()) + 1, player));
+			entities.add(new Mho((int) (10 * Math.random()) + 1, (int) (10 * Math.random()) + 1, player));
 		}
+		
+		
 		
 		repaint();
 	}
