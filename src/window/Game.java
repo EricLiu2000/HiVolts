@@ -42,12 +42,11 @@ public class Game extends JFrame {
 		playerTurn = true;
 		
 		entities.add(player);
-		
-		for(int i = 1; i <= 12; i++) {
-			entities.add(new Mho((int) (10 * Math.random()) + 1, (int) (10 * Math.random()) + 1, player));
+		for (int i = 0; i < 10 ; i++) {
+			for (int j = 0; j < 10 ; j++) {
+				
+			}
 		}
-		
-		
 		
 		repaint();
 	}
