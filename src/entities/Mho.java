@@ -5,10 +5,6 @@ import java.awt.Graphics;
 public class Mho extends Entity {
 	private Player player;
 	
-	private int xPosition;
-	
-	private int yPosition;
-	
 	public Mho(int xPosition, int yPosition, Player player) {
 		super(xPosition, yPosition);
 		this.player = player;

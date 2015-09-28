@@ -35,7 +35,7 @@ public class Game extends JFrame {
 		
 		//The number of entities still to be created
 		freeEntities = 33.0;
-		
+
 		//Creates the entities on the board randomly
 		for (int i = 0; i < 10 ; i++) {
 			for (int j = 0; j < 10 ; j++) {
