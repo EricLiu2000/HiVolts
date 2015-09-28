@@ -43,13 +43,22 @@ public class Game extends JFrame {
 		
 		freeEntities = 33.0;
 		
+		//Creates the entities on the board randomly
 		for (int i = 0; i < 10 ; i++) {
 			for (int j = 0; j < 10 ; j++) {
 				double r = Math.random();
-				if(r < (freeEntities /(100 - i * 10 + j))) {
-					//entities.add();
+				double threshold = (freeEntities /(100 - (i * 10) + j));
+				//Creates threshold for creation of entity
+				if(r < threshold) {
+					entities.add(new Entity(i, j));
+					System.out.print("+");
+					freeEntities--;
+				}
+				else {
+					System.out.print("-");
 				}
 			}
+			System.out.println("");
 		}
 		
 		repaint();
@@ -61,7 +70,7 @@ public class Game extends JFrame {
 	
 	public void update() {
 		while(true) {
-			//update stuff here
+			
 		}
 	}
 	
