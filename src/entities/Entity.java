@@ -8,6 +8,9 @@ public class Entity {
 	private int xPosition;
 	private int yPosition;
 	
+	//Variable to represent if the entity is alive or not
+	private boolean isAlive;
+	
 	//An enum for the direction of movement
 	public enum Direction{
 		NORTH,
@@ -32,7 +35,6 @@ public class Entity {
 		this.yPosition = yPosition;
 	}
 	
-
 	/**
 	 * Draws the Entity. This method is meant to be overridden.
 	 * 
@@ -58,6 +60,11 @@ public class Entity {
 	 */
 	public int getY() {
 		return yPosition;
+	}
+	
+	//Kills the Entity
+	public void kill() {
+		isAlive = false;
 	}
 	
 	/**
