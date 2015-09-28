@@ -22,7 +22,7 @@ public class Game extends JFrame {
 	
 	private ArrayList<Fence> boundingFences;
 	
-	private int[] [] grid;
+	private double freeEntities;
 
 	public boolean playerTurn;
 	
@@ -34,18 +34,31 @@ public class Game extends JFrame {
 		setSize(500, 500);
 		
 		setBackground(Color.WHITE);
-		
-		grid = new int[11] [11];
-
+	
 		player = new Player(10, 10);
 		
 		playerTurn = true;
 		
 		entities.add(player);
+		
+		freeEntities = 33.0;
+		
+		//Creates the entities on the board randomly
 		for (int i = 0; i < 10 ; i++) {
 			for (int j = 0; j < 10 ; j++) {
-				
+				double r = Math.random();
+				double threshold = (freeEntities /(100 - (i * 10) + j));
+				//Creates threshold for creation of entity
+				if(r < threshold) {
+					entities.add(new Entity(i, j));
+					System.out.print("+");
+					freeEntities--;
+				}
+				else {
+					System.out.print("-");
+				}
 			}
+			System.out.println("");
 		}
 		
 		repaint();
@@ -57,7 +70,7 @@ public class Game extends JFrame {
 	
 	public void update() {
 		while(true) {
-			//update stuff here
+			
 		}
 	}
 	

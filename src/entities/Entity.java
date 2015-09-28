@@ -2,7 +2,7 @@ package entities;
 
 import java.awt.Graphics;
 
-public abstract class Entity {
+public class Entity {
 	
 	//The values representing the position of the Entity
 	private int xPosition;
@@ -32,12 +32,14 @@ public abstract class Entity {
 		this.yPosition = yPosition;
 	}
 	
+
 	/**
 	 * Draws the Entity
 	 * 
 	 * @param g the graphics object to be used
 	 */
-	public abstract void draw(Graphics g);
+
+	public void draw(Graphics g){}
 	
 	/**
 	 * 
