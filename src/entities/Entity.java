@@ -34,14 +34,16 @@ public class Entity {
 	
 
 	/**
-	 * Draws the Entity
+	 * Draws the Entity. This method is meant to be overridden.
 	 * 
 	 * @param g the graphics object to be used
 	 */
-
-	public void draw(Graphics g){}
+	public void draw(Graphics g){
+		
+	}
 	
 	/**
+	 * Gets the x-coordinate of the Entity.
 	 * 
 	 * @return the x-position of the entity
 	 */
@@ -50,50 +52,51 @@ public class Entity {
 	}
 	
 	/**
-	 * Gets the 
+	 * Gets the y-coordinate of the Entity.
 	 * 
 	 * @return the y-position of the entity
 	 */
 	public int getY() {
 		return yPosition;
 	}
+	
 	/**
 	 * Moves the entity in the specified direction
 	 * @param direction the direction to move in
 	 */
 	public void move(Direction direction) {
 		switch(direction) {
-		case NORTH: 
-			yPosition --;
-			break;
-		case NORTHEAST:
-			yPosition --;
-			xPosition ++;
-			break;
-		case EAST:
-			xPosition ++;
-			break;
-		case SOUTHEAST:
-			yPosition ++;
-			xPosition ++;
-			break;
-		case SOUTH:
-			yPosition ++;
-			break;
-		case SOUTHWEST:
-			yPosition ++;
-			xPosition --;
-			break;
-		case WEST:
-			xPosition --;
-			break;
-		case NORTHWEST:
-			yPosition --;
-			xPosition --;
-			break;
-		default: 
-			System.out.println("Error: Invalid direction");
-			break;
+			case NORTH: 
+				yPosition --;
+				break;
+			case NORTHEAST:
+				yPosition --;
+				xPosition ++;
+				break;
+			case EAST:
+				xPosition ++;
+				break;
+			case SOUTHEAST:
+				yPosition ++;
+				xPosition ++;
+				break;
+			case SOUTH:
+				yPosition ++;
+				break;
+			case SOUTHWEST:
+				yPosition ++;
+				xPosition --;
+				break;
+			case WEST:
+				xPosition --;
+				break;
+			case NORTHWEST:
+				yPosition --;
+				xPosition --;
+				break;
+			default: 
+				System.out.println("Error: Invalid direction");
+				break;
 		
 		}
 	}
