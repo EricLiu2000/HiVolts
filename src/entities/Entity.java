@@ -2,7 +2,7 @@ package entities;
 
 import java.awt.Graphics;
 
-public class Entity {
+public abstract class Entity {
 	
 	//The values representing the position of the Entity
 	private int xPosition;
@@ -33,6 +33,7 @@ public class Entity {
 	public Entity(int xPosition, int yPosition) {
 		this.xPosition = xPosition;
 		this.yPosition = yPosition;
+		isAlive = true;
 	}
 	
 	/**
@@ -43,6 +44,12 @@ public class Entity {
 	public void draw(Graphics g){
 		
 	}
+	
+	/**
+	 * This method will be called continuously.
+	 * It should be overridden by the subclasses.
+	 */
+	public abstract void update();
 	
 	/**
 	 * Gets the x-coordinate of the Entity.
@@ -104,7 +111,6 @@ public class Entity {
 			default: 
 				System.out.println("Error: Invalid direction");
 				break;
-		
 		}
 	}
 }
