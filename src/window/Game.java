@@ -21,7 +21,7 @@ public class Game extends JFrame {
 	
 	private ArrayList<Fence> boundingFences;
 	
-	private int[] entityType;
+	private ArrayList<Integer> entityType;
 	
 	private double freeEntities;
 	
@@ -37,22 +37,26 @@ public class Game extends JFrame {
 		setBackground(Color.WHITE);
 		freeEntities = 33.0;
 		
-		entityType = new int[33];
-		entityType[0] = 0;
+		entityType = new ArrayList<Integer>(33);
+		entityType.add(0,0);
 		for(int i = 1; i < 13; i++) {
-			entityType[i] = 1;
-		}
+			entityType.add(i,1);
+			}
 		for(int i = 13; i < 33; i++) {
-			entityType[i] = 2;
-		}
-		for(int i = 32; i > 0; i--) { 
-			int j = (int) Math.random() * i;
-			int x = entityType[i];
-			entityType[i] = entityType[j];
-			entityType[j] = x;
-		}
+			entityType.add(i,2);
+			}
+		Collections.shuffle(entityType);
 
-		//Creates the entities on the board randomly
+		init(entities, entityType);
+		
+		repaint();
+	}
+	/**
+	 * Creates the entities on the board randomly
+	 * @param entities
+	 * @param entityType
+	 */
+	public void init(ArrayList<Entity> entities, ArrayList<Integer> entityType) {
 		for (int i = 0; i < 10 ; i++) {
 			for (int j = 0; j < 10 ; j++) {
 				double r = Math.random();
@@ -60,12 +64,15 @@ public class Game extends JFrame {
 				double threshold = (freeEntities /(100 - (i * 10) + j));
 				//Determines if random number is within threshold
 				if(r < threshold) {
-					if(entityType[(int)(33-freeEntities)] == 0) {
+					//Creates a player
+					if(entityType.get((int) (33 - freeEntities)) == 0) {
 						entities.add(new Player(i, j));
 					}
-					else if(entityType[(int)(33-freeEntities)] == 1) {
+					//creates a Mho
+					else if(entityType.get((int) (33 - freeEntities)) == 1) {
 						entities.add(new Mho(i, j));
 					}
+					//Creates a fence
 					else {
 						entities.add(new Fence(i, j));
 					}
@@ -77,10 +84,7 @@ public class Game extends JFrame {
 				break;
 			}
 		}
-		
-		repaint();
 	}
-	
 	public void paint(Graphics g) {
 		
 	}
