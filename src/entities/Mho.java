@@ -3,16 +3,13 @@ package entities;
 import java.awt.Graphics;
 
 public class Mho extends Entity {
-	private Player player;
-	
-	public Mho(int xPosition, int yPosition, Player player) {
+	public Mho(int xPosition, int yPosition) {
 		super(xPosition, yPosition);
-		this.player = player;
 	}
 	/**
 	 * Move the Mho towards the player
 	 */
-	public void moveMho() {
+	public void moveMho(Player player) {
 		//If the mho is in the same column as the player
 		if(this.getX() == player.getX()) {
 			if(this.getY() < player.getY()) {
@@ -32,7 +29,6 @@ public class Mho extends Entity {
 				move(Direction.WEST);
 			}
 		}
-		
 		
 	}
 	@Override
