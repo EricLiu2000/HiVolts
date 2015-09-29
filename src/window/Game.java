@@ -21,6 +21,8 @@ public class Game extends JFrame {
 	
 	private ArrayList<Fence> boundingFences;
 	
+	private int[] entityType;
+	
 	private double freeEntities;
 	
 	public Game() {
@@ -33,10 +35,22 @@ public class Game extends JFrame {
 		setSize(500, 500);
 		
 		setBackground(Color.WHITE);
-		
-		//The number of entities still to be created
 		freeEntities = 33.0;
 		
+		entityType = new int[33];
+		entityType[0] = 0;
+		for(int i = 1; i < 13; i++) {
+			entityType[i] = 1;
+		}
+		for(int i = 13; i < 33; i++) {
+			entityType[i] = 2;
+		}
+		for(int i = 32; i > 0; i--) { 
+			int j = (int) Math.random() * i;
+			int x = entityType[i];
+			entityType[i] = entityType[j];
+			entityType[j] = x;
+		}
 
 		//Creates the entities on the board randomly
 		for (int i = 0; i < 10 ; i++) {
@@ -46,8 +60,15 @@ public class Game extends JFrame {
 				double threshold = (freeEntities /(100 - (i * 10) + j));
 				//Determines if random number is within threshold
 				if(r < threshold) {
-					//Creates new entity
-					entities.add(new Entity(i, j));
+					if(entityType[(int)(33-freeEntities)] == 0) {
+						entities.add(new Player(i, j));
+					}
+					else if(entityType[(int)(33-freeEntities)] == 1) {
+						entities.add(new Mho(i, j));
+					}
+					else {
+						entities.add(new Fence(i, j));
+					}
 					freeEntities--;
 				}
 			}
