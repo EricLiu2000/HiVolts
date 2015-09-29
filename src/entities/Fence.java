@@ -2,7 +2,7 @@ package entities;
 
 import java.awt.Graphics;
 
-public class Fence extends Entity{
+public class Fence extends Entity {
 
 	public Fence(int xPosition, int yPosition) {
 		super(xPosition, yPosition);
@@ -16,7 +16,9 @@ public class Fence extends Entity{
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
+		if(getAlive()) {
+			//update stuff here
+		}
 		
 	}
 }

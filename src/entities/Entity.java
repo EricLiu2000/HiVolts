@@ -69,6 +69,15 @@ public abstract class Entity {
 		return yPosition;
 	}
 	
+	/**
+	 * Gets whether or not the Entity is alive or not
+	 * 
+	 * @return if the Entity is alive or not
+	 */
+	public boolean getAlive() {
+		return isAlive;
+	}
+	
 	//Kills the Entity
 	public void kill() {
 		isAlive = false;

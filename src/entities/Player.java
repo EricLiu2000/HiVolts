@@ -2,7 +2,7 @@ package entities;
 
 import java.awt.Graphics;
 
-public class Player extends Entity{
+public class Player extends Entity {
 
 	public boolean playerTurn;
 	
@@ -19,7 +19,9 @@ public class Player extends Entity{
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
+		if(getAlive() == true) {
+			//update stuff here
+		}
 		
 	}
 
