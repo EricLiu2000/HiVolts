@@ -3,6 +3,7 @@ package window;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.swing.JFrame;
 
@@ -35,6 +36,7 @@ public class Game extends JFrame {
 		
 		//The number of entities still to be created
 		freeEntities = 33.0;
+		
 
 		//Creates the entities on the board randomly
 		for (int i = 0; i < 10 ; i++) {
