@@ -21,43 +21,51 @@ public class Game extends JFrame {
 	
 	private ArrayList<Fence> boundingFences;
 	
-	private ArrayList<Integer> entityType;
+	private ArrayList<Type> entityType;
 	
 	private double freeEntities;
+	
+	public enum Type{
+		FENCE,
+		MHO,
+		PLAYER
+	}
+	Type type;
 	
 	public Game() {
 		//ArrayList of entities on the board
 		entities = new ArrayList<Entity>();
 		
 		//ArrayList of the outer fences
-		boundingFences = new ArrayList<Fence>();
+		boundingFences = new ArrayList<Fence>(44);
 		
 		setSize(500, 500);
 		
 		setBackground(Color.WHITE);
 		freeEntities = 33.0;
 		
-		entityType = new ArrayList<Integer>(33);
-		entityType.add(0,0);
+		entityType = new ArrayList<Type>(33);
+		entityType.add(0, Type.PLAYER);
 		for(int i = 1; i < 13; i++) {
-			entityType.add(i,1);
+			entityType.add(i, Type.MHO);
 			}
 		for(int i = 13; i < 33; i++) {
-			entityType.add(i,2);
+			entityType.add(i, Type.FENCE);
 			}
 		Collections.shuffle(entityType);
 
 		createInternalEntities(entities, entityType);
 		
+		createBoundingFences(boundingFences);
 		
 		repaint();
 	}
 	/**
 	 * Creates the entities on the board randomly
-	 * @param entities
-	 * @param entityType
+	 * @param entities arrayList of all entities on the inside of the board
+	 * @param entityType arrayList storing the type of entity to be created at each position
 	 */
-	public void createInternalEntities(ArrayList<Entity> entities, ArrayList<Integer> entityType) {
+	public void createInternalEntities(ArrayList<Entity> entities, ArrayList<Type> entityType) {
 		for (int i = 0; i < 10 ; i++) {
 			for (int j = 0; j < 10 ; j++) {
 				double r = Math.random();
@@ -66,11 +74,11 @@ public class Game extends JFrame {
 				//Determines if random number is within threshold
 				if(r < threshold) {
 					//Creates a player
-					if(entityType.get((int) (33 - freeEntities)) == 0) {
+					if(entityType.get((int) (33 - freeEntities)) == Type.PLAYER) {
 						entities.add(new Player(i, j));
 					}
 					//creates a Mho
-					else if(entityType.get((int) (33 - freeEntities)) == 1) {
+					else if(entityType.get((int) (33 - freeEntities)) == Type.MHO) {
 						entities.add(new Mho(i, j));
 					}
 					//Creates a fence
@@ -86,9 +94,13 @@ public class Game extends JFrame {
 			}
 		}
 	}
-	
-	public void createBoundingFences() {
-		
+	/**
+	 * creates the bounding fences that appear in every game
+	 * @param boundingFences an arrayList of fences
+	 */
+	public void createBoundingFences(ArrayList boundingFences) {
+		for(int i = 0; i < boundingFences.size(); i++) {
+		}
 	}
 	public void paint(Graphics g) {
 		
