@@ -25,6 +25,7 @@ public class Game extends JFrame {
 	
 	private double freeEntities;
 	
+	//Enum that represents the type of entity to be created
 	public enum Type{
 		FENCE,
 		MHO,
@@ -32,6 +33,10 @@ public class Game extends JFrame {
 	}
 	Type type;
 	
+	/**
+	 * Game constructor
+	 * Creates the entities
+	 */
 	public Game() {
 		//ArrayList of entities on the board
 		entities = new ArrayList<Entity>();
@@ -44,6 +49,7 @@ public class Game extends JFrame {
 		setBackground(Color.WHITE);
 		freeEntities = 33.0;
 		
+		//Randomly creates the types of entities
 		entityType = new ArrayList<Type>(33);
 		entityType.add(0, Type.PLAYER);
 		for(int i = 1; i < 13; i++) {
@@ -53,9 +59,11 @@ public class Game extends JFrame {
 			entityType.add(i, Type.FENCE);
 			}
 		Collections.shuffle(entityType);
-
+		
+		//Creates the internal entities
 		createInternalEntities(entities, entityType);
 		
+		//Creates the bounding fences
 		createBoundingFences(boundingFences);
 		
 		repaint();
@@ -102,10 +110,17 @@ public class Game extends JFrame {
 		for(int i = 0; i < boundingFences.size(); i++) {
 		}
 	}
+	
+	/**
+	 * Draws the current state of the game on the screen
+	 */
 	public void paint(Graphics g) {
 		
 	}
 	
+	/**
+	 * Update method
+	 */
 	public void update() {
 		while(true) {
 			

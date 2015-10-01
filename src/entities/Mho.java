@@ -3,9 +3,11 @@ package entities;
 import java.awt.Graphics;
 
 public class Mho extends Entity {
+	
 	public Mho(int xPosition, int yPosition) {
 		super(xPosition, yPosition);
 	}
+	
 	/**
 	 * Move the Mho towards the player
 	 */
@@ -23,10 +25,10 @@ public class Mho extends Entity {
 			move(Direction.EAST);
 		}
 	}
+	
 	@Override
 	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
-		
 	}
 	
 	@Override
@@ -34,6 +36,5 @@ public class Mho extends Entity {
 		if(getAlive()) {
 			//update stuff here
 		}
-		
 	}
 }
