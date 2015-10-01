@@ -10,26 +10,12 @@ public class Mho extends Entity {
 	 * Move the Mho towards the player
 	 */
 	public void moveMho(Player player) {
-		//If the mho is in the same column as the player
-		if(this.getX() == player.getX()) {
-			if(this.getY() < player.getY()) {
-				move(Direction.SOUTH);
-			}
-			if(this.getY() > player.getY()) {
-				move(Direction.NORTH);
-			}
+		if(this.getX() == player.getX() || (this.getY() == player.getY())) {
+			
 		}
-		
-		//If the mho is in the same row as the player
-		if(this.getY() == player.getY()) {
-			if(this.getX() < player.getX()) {
-				move(Direction.EAST);
-			}
-			if(this.getX() > player.getX()) {
-				move(Direction.WEST);
-			}
+		else {
+			
 		}
-		
 	}
 	@Override
 	public void draw(Graphics g) {

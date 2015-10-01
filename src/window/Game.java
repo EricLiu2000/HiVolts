@@ -47,7 +47,8 @@ public class Game extends JFrame {
 			}
 		Collections.shuffle(entityType);
 
-		init(entities, entityType);
+		createInternalEntities(entities, entityType);
+		
 		
 		repaint();
 	}
@@ -56,7 +57,7 @@ public class Game extends JFrame {
 	 * @param entities
 	 * @param entityType
 	 */
-	public void init(ArrayList<Entity> entities, ArrayList<Integer> entityType) {
+	public void createInternalEntities(ArrayList<Entity> entities, ArrayList<Integer> entityType) {
 		for (int i = 0; i < 10 ; i++) {
 			for (int j = 0; j < 10 ; j++) {
 				double r = Math.random();
@@ -84,6 +85,10 @@ public class Game extends JFrame {
 				break;
 			}
 		}
+	}
+	
+	public void createBoundingFences() {
+		
 	}
 	public void paint(Graphics g) {
 		
