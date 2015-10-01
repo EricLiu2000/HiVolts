@@ -98,7 +98,7 @@ public class Game extends JFrame {
 	 * creates the bounding fences that appear in every game
 	 * @param boundingFences an arrayList of fences
 	 */
-	public void createBoundingFences(ArrayList boundingFences) {
+	public void createBoundingFences(ArrayList<Fence> boundingFences) {
 		for(int i = 0; i < boundingFences.size(); i++) {
 		}
 	}

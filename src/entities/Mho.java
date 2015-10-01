@@ -10,11 +10,17 @@ public class Mho extends Entity {
 	 * Move the Mho towards the player
 	 */
 	public void moveMho(Player player) {
-		if(this.getX() == player.getX() || (this.getY() == player.getY())) {
-			
+		if(getX() == player.getX() && getY() > player.getY()) {
+			move(Direction.NORTH);
 		}
-		else {
-			
+		else if(getX() == player.getX() && getY() < player.getY()) {
+			move(Direction.SOUTH);
+		}
+		else if(getY() == player.getY() && getX() > player.getX()) {
+			move(Direction.WEST);
+		}
+		else if(getY() == player.getY() && getX() < player.getX()) {
+			move(Direction.EAST);
 		}
 	}
 	@Override
