@@ -17,12 +17,13 @@ public class Player extends Entity {
 		super(xPosition, yPosition);
 		playerTurn = true;
 		
+		//Accesses the image and displays an error message if it is not found
 		try{
 			sprite = ImageIO.read(new File("images/smily.jpg"));
 		} 
 		
 		catch(IOException e) {
-			
+			System.out.println("Error: System not found");
 		}
 		
 	}
