@@ -23,7 +23,7 @@ public class Mho extends Entity {
 		}
 		else if(getY() == player.getY() && getX() < player.getX()) {
 			move(Direction.EAST);
-		}
+		} 
 	}
 	
 	@Override
