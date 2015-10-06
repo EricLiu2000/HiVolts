@@ -34,13 +34,8 @@ public class Player extends Entity {
 		
 	}
 
-	@Override
-	public void update() {
-		if(getAlive() == true) {
-			//update stuff here
-		}
-		
-		
+	public boolean update() {
+		return getAlive();
 	}
 	
 	/**

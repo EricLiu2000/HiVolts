@@ -45,6 +45,8 @@ public abstract class Entity {
 		
 	}
 	
+	public abstract boolean update();
+	
 	/**
 	 * Gets the x-coordinate of the Entity.
 	 * 

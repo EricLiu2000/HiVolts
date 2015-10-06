@@ -36,9 +36,10 @@ public class Mho extends Entity {
 	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
 	}
-	
-	public boolean update(Player player) {
-		moveMho(player);
+
+	@Override
+	public boolean update() {
+		// TODO Auto-generated method stub
 		return getAlive();
 	}
 }
