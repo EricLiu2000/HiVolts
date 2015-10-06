@@ -23,18 +23,22 @@ public class Mho extends Entity {
 		}
 		else if(getY() == player.getY() && getX() < player.getX()) {
 			move(Direction.EAST);
-		} 
+		}
+		else {
+			moveDiagonal();
+		}
 	}
 	
+	private void moveDiagonal() {
+		
+	}
 	@Override
 	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
 	}
 	
-	@Override
-	public void update() {
-		if(getAlive()) {
-			//update stuff here
-		}
+	public boolean update(Player player) {
+		moveMho(player);
+		return getAlive();
 	}
 }

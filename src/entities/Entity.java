@@ -46,12 +46,6 @@ public abstract class Entity {
 	}
 	
 	/**
-	 * This method will be called continuously.
-	 * It should be overridden by the subclasses.
-	 */
-	public abstract void update();
-	
-	/**
 	 * Gets the x-coordinate of the Entity.
 	 * 
 	 * @return the x-position of the entity

@@ -13,12 +13,4 @@ public class Fence extends Entity {
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public void update() {
-		if(getAlive()) {
-			//update stuff here
-		}
-		
-	}
 }
