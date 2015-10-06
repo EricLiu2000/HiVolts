@@ -8,9 +8,11 @@ import java.util.Collections;
 import javax.swing.JFrame;
 
 import entities.Entity;
+import entities.Entity.Direction;
 import entities.Fence;
 import entities.Mho;
 import entities.Player;
+import input.Keyboard;
 
 public class Game extends JFrame {
 	
@@ -29,6 +31,8 @@ public class Game extends JFrame {
 	
 	private Player player;
 	
+	private Keyboard keyboard;
+	
 	//Enum that represents the type of entity to be created
 	public enum Type{
 		FENCE,
@@ -42,6 +46,9 @@ public class Game extends JFrame {
 	 * Creates the entities
 	 */
 	public Game() {
+		//The object used for keyboard input
+		keyboard = new Keyboard();
+		
 		//ArrayList of entities on the board
 		entities = new ArrayList<Entity>();
 		
@@ -134,12 +141,45 @@ public class Game extends JFrame {
 	 */
 	public void update() {
 		while(true) {
-			if(player.getPlayerTurn() == true) {
+			if(player.playerTurn == true) {
+				//Sets wasTyped to false so that the game wait for player input
+				keyboard.wasTyped = false;
 				
+				//This block is run when a key is typed
+				if(keyboard.getKeyTyped()) {
+					if(keyboard.key == "q") {
+						player.move(Direction.NORTHWEST);
+					}
+					if(keyboard.key == "w") {
+						player.move(Direction.NORTH);
+					}
+					if(keyboard.key == "e") {
+						player.move(Direction.NORTHEAST);
+					}
+					if(keyboard.key == "a") {
+						player.move(Direction.WEST);
+					}
+					if(keyboard.key == "s") {
+						//jump
+					}
+					if(keyboard.key == "d") {
+						player.move(Direction.EAST);
+					}
+					if(keyboard.key == "z") {
+						player.move(Direction.SOUTHWEST);
+					}
+					if(keyboard.key == "x") {
+						player.move(Direction.SOUTH);
+					}
+					if(keyboard.key == "c") {
+						player.move(Direction.SOUTHEAST);
+					}
+					player.playerTurn = false;
+				}
 			}
 			
+			//If not the turn of the player
 			else {
-				
 				for(Entity entity : entities) {
 					if(entity instanceof Player) {
 						break;
@@ -150,6 +190,7 @@ public class Game extends JFrame {
 						entity.update();
 					}
 				}
+				player.playerTurn = true;
 			}
 		}
 	}
