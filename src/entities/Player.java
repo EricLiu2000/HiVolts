@@ -40,6 +40,16 @@ public class Player extends Entity {
 			//update stuff here
 		}
 		
+		
+	}
+	
+	/**
+	 * Gets whether or not it is the player's turn
+	 * 
+	 * @return if it is the turn of the player
+	 */
+	public boolean getPlayerTurn() {
+		return playerTurn;
 	}
 
 }

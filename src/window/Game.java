@@ -25,6 +25,8 @@ public class Game extends JFrame {
 	
 	private double freeEntities;
 	
+	private Player player;
+	
 	//Enum that represents the type of entity to be created
 	public enum Type{
 		FENCE,
@@ -83,7 +85,8 @@ public class Game extends JFrame {
 				if(r < threshold) {
 					//Creates a player
 					if(entityType.get((int) (33 - freeEntities)) == Type.PLAYER) {
-						entities.add(new Player(i, j));
+						player = new Player(i, j);
+						entities.add(player);
 					}
 					//creates a Mho
 					else if(entityType.get((int) (33 - freeEntities)) == Type.MHO) {
@@ -123,7 +126,23 @@ public class Game extends JFrame {
 	 */
 	public void update() {
 		while(true) {
+			if(player.getPlayerTurn() == true) {
+				
+			}
 			
+			else {
+				
+				for(Entity entity : entities) {
+					if(entity instanceof Player) {
+						break;
+					}
+					
+					//Updates all entities that are not Players
+					else {
+						entity.update();
+					}
+				}
+			}
 		}
 	}
 	
