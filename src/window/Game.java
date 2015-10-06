@@ -23,6 +23,8 @@ public class Game extends JFrame {
 	
 	private ArrayList<Type> entityType;
 	
+	private Entity[][] grid;
+	
 	private double freeEntities;
 	
 	private Player player;
@@ -49,7 +51,11 @@ public class Game extends JFrame {
 		setSize(500, 500);
 		
 		setBackground(Color.WHITE);
+		//Sets the number of internal entities that still need to be created
 		freeEntities = 33.0;
+		
+		//Creates the 2D array
+		grid = new Entity[12][12];
 		
 		//Randomly creates the types of entities
 		entityType = new ArrayList<Type>(33);
@@ -76,8 +82,8 @@ public class Game extends JFrame {
 	 * @param entityType arrayList storing the type of entity to be created at each position
 	 */
 	public void createInternalEntities(ArrayList<Entity> entities, ArrayList<Type> entityType) {
-		for (int i = 0; i < 10 ; i++) {
-			for (int j = 0; j < 10 ; j++) {
+		for (int i = 1; i < 11 ; i++) {
+			for (int j = 1; j < 11 ; j++) {
 				double r = Math.random();
 				//Creates threshold for creation of entity
 				double threshold = (freeEntities /(100 - (i * 10) + j));
@@ -97,6 +103,7 @@ public class Game extends JFrame {
 						entities.add(new Fence(i, j));
 					}
 					freeEntities--;
+					grid[i][j] = entities.get((int) (33-freeEntities));
 				}
 			}
 			//If finished creating entities, break
@@ -111,6 +118,7 @@ public class Game extends JFrame {
 	 */
 	public void createBoundingFences(ArrayList<Fence> boundingFences) {
 		for(int i = 0; i < boundingFences.size(); i++) {
+			
 		}
 	}
 	
