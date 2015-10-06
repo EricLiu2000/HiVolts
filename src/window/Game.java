@@ -139,7 +139,7 @@ public class Game extends JFrame {
 	/**
 	 * Update method
 	 */
-	public void update() {
+	public void run() {
 		while(true) {
 			if(player.playerTurn == true) {
 				//Sets wasTyped to false so that the game wait for player input
@@ -181,14 +181,11 @@ public class Game extends JFrame {
 			//If not the turn of the player
 			else {
 				for(Entity entity : entities) {
-					if(entity instanceof Player) {
-						break;
+					if(!(entity instanceof Player)) {
+						entity.update();
 					}
 					
 					//Updates all entities that are not Players
-					else {
-						entity.update();
-					}
 				}
 				player.playerTurn = true;
 			}

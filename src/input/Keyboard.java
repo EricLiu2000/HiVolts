@@ -18,6 +18,7 @@ public class Keyboard implements KeyListener {
 	}
 	
 	//This method is called when a key is pressed
+	@Override
 	public void keyTyped(KeyEvent e) {
 		wasTyped = true;
 		
