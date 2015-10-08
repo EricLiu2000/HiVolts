@@ -41,9 +41,7 @@ public abstract class Entity {
 	 * 
 	 * @param g the graphics object to be used
 	 */
-	public void draw(Graphics g){
-		
-	}
+	public abstract void draw(Graphics g);
 	
 	public abstract boolean update();
 	
