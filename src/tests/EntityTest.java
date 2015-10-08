@@ -10,5 +10,5 @@ public abstract class EntityTest {
 	public abstract void testUpdate();
 	
 	@Test
-	public abstract void testIsAlive();
+	public abstract void testGetAlive();
 }
