@@ -7,6 +7,9 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import entities.Entity.Direction;
+import window.Game;
+
 public class Player extends Entity {
 
 	public boolean playerTurn;
@@ -19,7 +22,7 @@ public class Player extends Entity {
 		
 		//Accesses the image and displays an error message if it is not found
 		try{
-			sprite = ImageIO.read(new File("images/smily.jpg"));
+			sprite = ImageIO.read(new File("images/Player.jpg"));
 		} 
 		
 		catch(IOException e) {
@@ -35,6 +38,36 @@ public class Player extends Entity {
 	}
 
 	public boolean update() {
+		if(Game.keyboard.getKeyTyped()) {
+			if(Game.keyboard.key == "q") {
+				move(Direction.NORTHWEST);
+			}
+			if(Game.keyboard.key == "w") {
+				move(Direction.NORTH);
+			}
+			if(Game.keyboard.key == "e") {
+				move(Direction.NORTHEAST);
+			}
+			if(Game.keyboard.key == "a") {
+				move(Direction.WEST);
+			}
+			if(Game.keyboard.key == "s") {
+				//jump
+			}
+			if(Game.keyboard.key == "d") {
+				move(Direction.EAST);
+			}
+			if(Game.keyboard.key == "z") {
+				move(Direction.SOUTHWEST);
+			}
+			if(Game.keyboard.key == "x") {
+				move(Direction.SOUTH);
+			}
+			if(Game.keyboard.key == "c") {
+				move(Direction.SOUTHEAST);
+			}
+			playerTurn = false;
+		}
 		return getAlive();
 	}
 	

@@ -31,7 +31,7 @@ public class Game extends JFrame {
 	
 	private Player player;
 	
-	private Keyboard keyboard;
+	public static Keyboard keyboard;
 	
 	//Enum that represents the type of entity to be created
 	public enum Type{
@@ -142,55 +142,22 @@ public class Game extends JFrame {
 	public void run() {
 		while(true) {
 			if(player.playerTurn == true) {
-				//Sets wasTyped to false so that the game wait for player input
+				player.update();
+				//Sets wasTyped to false so that the game waits for player input
 				keyboard.wasTyped = false;
-				
-				//This block is run when a key is typed
-				if(keyboard.getKeyTyped()) {
-					if(keyboard.key == "q") {
-						player.move(Direction.NORTHWEST);
-					}
-					if(keyboard.key == "w") {
-						player.move(Direction.NORTH);
-					}
-					if(keyboard.key == "e") {
-						player.move(Direction.NORTHEAST);
-					}
-					if(keyboard.key == "a") {
-						player.move(Direction.WEST);
-					}
-					if(keyboard.key == "s") {
-						//jump
-					}
-					if(keyboard.key == "d") {
-						player.move(Direction.EAST);
-					}
-					if(keyboard.key == "z") {
-						player.move(Direction.SOUTHWEST);
-					}
-					if(keyboard.key == "x") {
-						player.move(Direction.SOUTH);
-					}
-					if(keyboard.key == "c") {
-						player.move(Direction.SOUTHEAST);
-					}
-					player.playerTurn = false;
-				}
 			}
 			
 			//If not the turn of the player
 			else {
 				for(Entity entity : entities) {
+					//Updates all non-player entities
 					if(!(entity instanceof Player)) {
 						entity.update();
-					}
-					
-					//Updates all entities that are not Players
+					}	
 				}
+				//After updating all non-player entities, the player takes their turn
 				player.playerTurn = true;
 			}
 		}
-	}
-	
-	
+	}	
 }
