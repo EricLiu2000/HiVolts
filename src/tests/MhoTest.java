@@ -28,11 +28,4 @@ public class MhoTest extends EntityTest {
 		Mho m1 = new Mho(1,1);
 		assertTrue("Mho is alive", m1.getAlive());
 	}
-	
-	@Test
-	public void testGetAliveNeg() {
-		Mho m1 = new Mho(1,1);
-		m1.kill();
-		assertTrue("Mho is alive", m1.getAlive());
-	}
 }
