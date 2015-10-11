@@ -1,6 +1,7 @@
 package window;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,6 +34,12 @@ public class Game extends JFrame {
 	
 	public static Keyboard keyboard;
 	
+	private int width;
+	
+	private int height;
+	
+	public static int WINDOWBAR = 22;
+	
 	//Enum that represents the type of entity to be created
 	public enum Type{
 		FENCE,
@@ -46,6 +53,11 @@ public class Game extends JFrame {
 	 * Creates the entities
 	 */
 	public Game() {
+		width = 12 * Entity.SCALE;
+		height = 12 * Entity.SCALE;
+		//WINDOWBAR = 10;
+		setSize(width, height + WINDOWBAR);
+		setBackground(Color.WHITE);
 		//The object used for keyboard input
 		keyboard = new Keyboard();
 		
@@ -55,9 +67,8 @@ public class Game extends JFrame {
 		//ArrayList of the outer fences
 		boundingFences = new ArrayList<Fence>(44);
 		
-		setSize(500, 500);
 		
-		setBackground(Color.WHITE);
+		
 		//Sets the number of internal entities that still need to be created
 		freeEntities = 33.0;
 		
@@ -110,7 +121,7 @@ public class Game extends JFrame {
 						entities.add(new Fence(i, j));
 					}
 					freeEntities--;
-					grid[i][j] = entities.get((int) (33-freeEntities));
+					grid[i][j] = entities.get((int) (32-freeEntities));
 				}
 			}
 			//If finished creating entities, break
@@ -133,7 +144,7 @@ public class Game extends JFrame {
 	 * Draws the current state of the game on the screen
 	 */
 	public void paint(Graphics g) {
-		
+		player.draw(g);
 	}
 	
 	/**

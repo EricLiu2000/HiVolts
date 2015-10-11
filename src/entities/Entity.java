@@ -11,6 +11,8 @@ public abstract class Entity {
 	//Variable to represent if the entity is alive or not
 	private boolean isAlive;
 	
+	public static int SCALE = 50;
+	
 	//An enum for the direction of movement
 	public enum Direction{
 		NORTH,

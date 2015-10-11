@@ -1,12 +1,13 @@
 package entities;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
-
+import images.*;
 import entities.Entity.Direction;
 import window.Game;
 
@@ -14,27 +15,34 @@ public class Player extends Entity {
 
 	public boolean playerTurn;
 	
+	private File imageFile;
+	
 	BufferedImage sprite = null;
 	
 	public Player(int xPosition, int yPosition) {
 		super(xPosition, yPosition);
+		
 		playerTurn = true;
+		
+		imageFile = new File("images/Player.jpg");
 		
 		//Accesses the image and displays an error message if it is not found
 		try{
-			sprite = ImageIO.read(new File("images/Player.jpg"));
+			sprite = ImageIO.read(imageFile);
 		} 
 		
 		catch(IOException e) {
-			System.out.println("Error: System not found");
+			System.out.println("Image not found");
 		}
+		
+		sprite = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
 		
 	}
 
 	@Override
 	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
-		
+		g.setColor(Color.BLACK);
+		g.fillRect(getX()*Entity.SCALE, getY()*Entity.SCALE + Game.WINDOWBAR, Entity.SCALE, Entity.SCALE);
 	}
 
 	public boolean update() {
