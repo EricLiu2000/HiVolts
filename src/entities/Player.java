@@ -41,7 +41,7 @@ public class Player extends Entity {
 
 	@Override
 	public void draw(Graphics g) {
-		g.setColor(Color.BLACK);
+		g.setColor(Color.GREEN);
 		g.fillRect(getX()*Entity.SCALE, getY()*Entity.SCALE + Game.WINDOWBAR, Entity.SCALE, Entity.SCALE);
 	}
 

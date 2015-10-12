@@ -144,7 +144,9 @@ public class Game extends JFrame {
 	 * Draws the current state of the game on the screen
 	 */
 	public void paint(Graphics g) {
-		player.draw(g);
+		for(Entity entity : entities) {
+			entity.draw(g);
+		}
 	}
 	
 	/**

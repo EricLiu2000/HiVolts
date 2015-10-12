@@ -1,6 +1,9 @@
 package entities;
 
+import java.awt.Color;
 import java.awt.Graphics;
+
+import window.Game;
 
 public class Mho extends Entity {
 	
@@ -34,7 +37,8 @@ public class Mho extends Entity {
 	}
 	@Override
 	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
+		g.setColor(Color.RED);
+		g.fillRect(getX()*Entity.SCALE, getY()*Entity.SCALE + Game.WINDOWBAR, Entity.SCALE, Entity.SCALE);
 	}
 
 	@Override
