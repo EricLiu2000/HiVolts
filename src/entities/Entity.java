@@ -10,9 +10,7 @@ public abstract class Entity {
 	
 	//Variable to represent if the entity is alive or not
 	private boolean isAlive;
-	
-	public static int SCALE = 50;
-	
+
 	//An enum for the direction of movement
 	public enum Direction{
 		NORTH,
@@ -27,10 +25,9 @@ public abstract class Entity {
 	Direction direction;
 	
 	/**
-	 * The constructor for Entity. Sets the position of the Entity to the given values.
-	 * 
-	 * @param xPosition the desired x-position of the Entity
-	 * @param yPosition the desired y-position of the Entity
+	 * Creates an Entity with the given coordinates
+	 * @param xPosition the x coordinate of the Entity
+	 * @param yPosition the x coordinate of the Entity
 	 */
 	public Entity(int xPosition, int yPosition) {
 		this.xPosition = xPosition;
@@ -39,27 +36,28 @@ public abstract class Entity {
 	}
 	
 	/**
-	 * Draws the Entity. This method is meant to be overridden.
-	 * 
+	 * Draws the Entity. Meant to be overridden.
 	 * @param g the graphics object to be used
 	 */
 	public abstract void draw(Graphics g);
 	
+	/**
+	 * Updates the Entity. Meant to be overridden.
+	 * @return if the Entity is alive
+	 */
 	public abstract boolean update();
 	
 	/**
-	 * Gets the x-coordinate of the Entity.
-	 * 
-	 * @return the x-position of the entity
+	 * Gets the x coordinate of the Entity.
+	 * @return the x coordinate of the entity
 	 */
 	public int getX() {
 		return xPosition;
 	}
 	
 	/**
-	 * Gets the y-coordinate of the Entity.
-	 * 
-	 * @return the y-position of the entity
+	 * Gets the y coordinate of the Entity.
+	 * @return the y coordinate of the entity
 	 */
 	public int getY() {
 		return yPosition;
@@ -74,7 +72,9 @@ public abstract class Entity {
 		return isAlive;
 	}
 	
-	//Kills the Entity
+	/**
+	 * Kills the entity
+	 */
 	public void kill() {
 		isAlive = false;
 	}

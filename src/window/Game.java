@@ -40,6 +40,8 @@ public class Game extends JFrame {
 	
 	public static int WINDOWBAR = 22;
 	
+	public static int SCALE = 50;
+	
 	//Enum that represents the type of entity to be created
 	public enum Type{
 		FENCE,
@@ -53,8 +55,8 @@ public class Game extends JFrame {
 	 * Creates the entities
 	 */
 	public Game() {
-		width = 12 * Entity.SCALE;
-		height = 12 * Entity.SCALE;
+		width = 12 * Game.SCALE;
+		height = 12 * Game.SCALE;
 		//WINDOWBAR = 10;
 		setSize(width, height + WINDOWBAR);
 		setBackground(Color.WHITE);
@@ -76,12 +78,18 @@ public class Game extends JFrame {
 		//Randomly creates the types of entities
 		entityType = new ArrayList<Type>(33);
 		entityType.add(0, Type.PLAYER);
+		
+		//Adds the Mhos
 		for(int i = 1; i < 13; i++) {
 			entityType.add(i, Type.MHO);
 			}
+		
+		//Adds the fences
 		for(int i = 13; i < 33; i++) {
 			entityType.add(i, Type.FENCE);
 			}
+		
+		//Shuffles the collection to prepare for random generation
 		Collections.shuffle(entityType);
 		
 		//Creates the bounding fences
@@ -131,8 +139,8 @@ public class Game extends JFrame {
 		}
 	}
 	/**
-	 * creates the bounding fences that appear in every game
-	 * @param boundingFences an arrayList of fences
+	 * Creates the bounding fences on the edges
+	 * @param boundingFences The arraylist of fences
 	 */
 	public void createBoundingFences(ArrayList<Entity> boundingFences) {
 		//Creates top row
@@ -154,24 +162,34 @@ public class Game extends JFrame {
 		for(int i = 1; i < 11; i++) {
 			boundingFences.add(new Fence(11, i));
 		}
-		entities.addAll(boundingFences);
 		
+		//Adds these bounding fences to the list of entities
+		entities.addAll(boundingFences);
 	}
 	
 	/**
 	 * Draws the current state of the game on the screen
 	 */
 	public void paint(Graphics g) {
+		//Draws all entities
 		for(Entity entity : entities) {
 			entity.draw(g);
+		}
+		
+		//Draws the lines 
+		for(int i = 1; i <= 11; i++) {
+			g.setColor(Color.BLACK);
+			g.drawLine(i*Game.SCALE, 0 + Game.WINDOWBAR, i*Game.SCALE, 12*Game.SCALE + Game.WINDOWBAR);
+			g.drawLine(0, i*Game.SCALE + Game.WINDOWBAR, 12*Game.SCALE, i*Game.SCALE + Game.WINDOWBAR);
 		}
 	}
 	
 	/**
-	 * Update method
+	 * Runs the game
 	 */
 	public void run() {
 		while(true) {
+			//Player turn
 			if(player.playerTurn == true) {
 				System.out.println("player turn");
 				player.update();

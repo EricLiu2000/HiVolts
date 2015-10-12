@@ -36,13 +36,12 @@ public class Player extends Entity {
 		}
 		
 		sprite = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
-		
 	}
 
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(Color.GREEN);
-		g.fillRect(getX()*Entity.SCALE, getY()*Entity.SCALE + Game.WINDOWBAR, Entity.SCALE, Entity.SCALE);
+		g.fillRect(getX()*Game.SCALE, getY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
 	}
 
 	public boolean update() {

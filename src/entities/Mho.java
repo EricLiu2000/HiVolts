@@ -7,6 +7,11 @@ import window.Game;
 
 public class Mho extends Entity {
 	
+	/**
+	 * Creates a Mho and sets its position to the given coordinates
+	 * @param xPosition the x coordinate of the Mho
+	 * @param yPosition the y coordinate of the Mho
+	 */
 	public Mho(int xPosition, int yPosition) {
 		super(xPosition, yPosition);
 	}
@@ -35,10 +40,11 @@ public class Mho extends Entity {
 	private void moveDiagonal() {
 		
 	}
+	
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(Color.RED);
-		g.fillRect(getX()*Entity.SCALE, getY()*Entity.SCALE + Game.WINDOWBAR, Entity.SCALE, Entity.SCALE);
+		g.fillRect(getX()*Game.SCALE, getY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
 	}
 
 	@Override
