@@ -129,7 +129,7 @@ public class Game extends JFrame {
 						entities.add(new Fence(i, j));
 					}
 					freeEntities--;
-					grid[i][j] = entities.get((int) (32-freeEntities));
+					grid[i][j] = entities.get((int) (33-freeEntities));
 				}
 			}
 			//If finished creating entities, break
