@@ -22,7 +22,7 @@ public class Game extends JFrame {
 	
 	private ArrayList<Entity> entities;
 	
-	private ArrayList<Fence> boundingFences;
+	private ArrayList<Entity> boundingFences;
 	
 	private ArrayList<Type> entityType;
 	
@@ -65,9 +65,7 @@ public class Game extends JFrame {
 		entities = new ArrayList<Entity>();
 		
 		//ArrayList of the outer fences
-		boundingFences = new ArrayList<Fence>(44);
-		
-		
+		boundingFences = new ArrayList<Entity>(44);
 		
 		//Sets the number of internal entities that still need to be created
 		freeEntities = 33.0;
@@ -86,13 +84,15 @@ public class Game extends JFrame {
 			}
 		Collections.shuffle(entityType);
 		
-		//Creates the internal entities
-		createInternalEntities(entities, entityType);
-		
 		//Creates the bounding fences
 		createBoundingFences(boundingFences);
 		
+		//Creates the internal entities
+		createInternalEntities(entities, entityType);
+		
 		repaint();
+
+		//run();
 	}
 	/**
 	 * Creates the entities on the board randomly
@@ -134,10 +134,28 @@ public class Game extends JFrame {
 	 * creates the bounding fences that appear in every game
 	 * @param boundingFences an arrayList of fences
 	 */
-	public void createBoundingFences(ArrayList<Fence> boundingFences) {
-		for(int i = 0; i < boundingFences.size(); i++) {
-			
+	public void createBoundingFences(ArrayList<Entity> boundingFences) {
+		//Creates top row
+		for(int i = 0; i < 12; i++) {
+			boundingFences.add(new Fence(i, 0));
 		}
+		
+		//Creates bottom row
+		for(int i = 0; i < 12; i++) {
+			boundingFences.add(new Fence(i, 11));
+		}
+		
+		//Creates left column
+		for(int i = 1; i < 11; i++) {
+			boundingFences.add(new Fence(0, i));
+		}
+		
+		//Creates right column
+		for(int i = 1; i < 11; i++) {
+			boundingFences.add(new Fence(11, i));
+		}
+		entities.addAll(boundingFences);
+		
 	}
 	
 	/**
@@ -155,6 +173,7 @@ public class Game extends JFrame {
 	public void run() {
 		while(true) {
 			if(player.playerTurn == true) {
+				System.out.println("player turn");
 				player.update();
 				//Sets wasTyped to false so that the game waits for player input
 				keyboard.wasTyped = false;
@@ -162,6 +181,7 @@ public class Game extends JFrame {
 			
 			//If not the turn of the player
 			else {
+				System.out.println("not player turn");
 				for(Entity entity : entities) {
 					//Updates all non-player entities
 					if(!(entity instanceof Player)) {

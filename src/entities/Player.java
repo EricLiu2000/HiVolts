@@ -46,7 +46,9 @@ public class Player extends Entity {
 	}
 
 	public boolean update() {
+		
 		if(Game.keyboard.getKeyTyped()) {
+			System.out.println("called");
 			if(Game.keyboard.key == "q") {
 				move(Direction.NORTHWEST);
 			}
