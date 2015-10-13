@@ -193,11 +193,19 @@ public class Game extends JFrame {
 	 * Runs the game
 	 */
 	public void update() {
-		player.update(grid);
+		boolean pLive = player.update(grid);
+		if(pLive == false) {
+			entities.remove(player);
+			grid[player.getX()][player.getY()] = null;
+		}
 		for(Entity entity : entities) {
 			if(entity instanceof Mho) {
-				entity.update();
+				boolean mLive = entity.update();
 				((Mho) entity).moveMho(player, grid);
+				if(mLive == false) {
+					entities.remove(entity);
+					grid[entity.getX()][entity.getY()] = null;
+				}
 			}
 		}
 		repaint();
