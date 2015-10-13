@@ -48,8 +48,6 @@ public class Player extends Entity {
 	}
 
 	public boolean update() {
-			System.out.println("called");
-			
 			if(Game.keyboard.key == "q") {
 				move(Direction.NORTHWEST);
 			}
@@ -77,7 +75,6 @@ public class Player extends Entity {
 			if(Game.keyboard.key == "c") {
 				move(Direction.SOUTHEAST);
 			}
-			System.out.println("X Position: " + getX());
 			playerTurn = false;
 		
 		return getAlive();
