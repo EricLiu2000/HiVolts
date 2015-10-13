@@ -32,7 +32,6 @@ public class Mho extends Entity {
 	}
 
 	public boolean update() {
-		// TODO Auto-generated method stub
 		return getAlive();
 	}
 }

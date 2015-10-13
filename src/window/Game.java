@@ -195,8 +195,9 @@ public class Game extends JFrame {
 	public void update() {
 		player.update(grid);
 		for(Entity entity : entities) {
-			if(!(entity instanceof Player)) {
+			if(entity instanceof Mho) {
 				entity.update();
+				((Mho) entity).moveMho(player, grid);
 			}
 		}
 		repaint();
