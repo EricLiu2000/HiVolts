@@ -82,27 +82,31 @@ public class Player extends Entity {
 	
 	/**
 	 * Gets whether or not it is the player's turn
-	 * 
 	 * @return if it is the turn of the player
 	 */
 	public boolean getPlayerTurn() {
 		return playerTurn;
 	}
 
+	/**
+	 * jumps the player to a random empty space or mho on the board
+	 * @param x the array of game spaces
+	 * @return is alive
+	 */
 	public boolean jump(Entity[][] x) {
 		while(true) {
-			int foo = (int) (1 + ((int)(x.length - 2) * Math.random()));
-			int bar = (int) (1 + ((int)(x[0].length - 2) * Math.random()));
-			if(x[foo][bar] instanceof Fence) {
+			int validJumpX = (int) (1 + ((int)(x.length - 2) * Math.random()));
+			int validJumpY = (int) (1 + ((int)(x[0].length - 2) * Math.random()));
+			if(x[validJumpX][validJumpY] instanceof Fence) {
 				setAlive(false);
 				break;
 			}
-			else if(x[foo][bar] instanceof Mho || x[foo][bar] instanceof Player) {
+			else if(x[validJumpX][validJumpY] instanceof Mho || x[validJumpX][validJumpY] instanceof Player) {
 				continue;
 			}
 			else {
-				setxPosition(foo);
-				setyPosition(bar);
+				setxPosition(validJumpX);
+				setyPosition(validJumpY);
 			}
 		}
 		return getAlive();
