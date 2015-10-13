@@ -193,7 +193,7 @@ public class Game extends JFrame {
 	 * Runs the game
 	 */
 	public void update() {
-		player.update();
+		player.update(grid);
 		for(Entity entity : entities) {
 			if(!(entity instanceof Player)) {
 				entity.update();

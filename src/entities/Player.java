@@ -47,7 +47,7 @@ public class Player extends Entity {
 		g.fillRect(getX()*Game.SCALE, getY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
 	}
 
-	public boolean update() {
+	public boolean update(Entity[][] x) {
 			if(Game.keyboard.key == "q") {
 				move(Direction.NORTHWEST);
 			}
@@ -61,7 +61,7 @@ public class Player extends Entity {
 				move(Direction.WEST);
 			}
 			if(Game.keyboard.key == "s") {
-				//jump
+				this.jump(x);
 			}
 			if(Game.keyboard.key == "d") {
 				move(Direction.EAST);
@@ -91,8 +91,8 @@ public class Player extends Entity {
 
 	public boolean jump(Entity[][] x) {
 		while(true) {
-			int foo = (int)((int)x.length * Math.random());
-			int bar = (int)((int)x.length * Math.random());
+			int foo = (int) (1 + ((int)(x.length - 2) * Math.random()));
+			int bar = (int) (1 + ((int)(x[0].length - 2) * Math.random()));
 			if(x[foo][bar] instanceof Fence) {
 				setAlive(false);
 				break;
@@ -106,5 +106,14 @@ public class Player extends Entity {
 			}
 		}
 		return getAlive();
+	}
+	
+	/**
+	 * unused update method
+	 */
+	@Override
+	public boolean update() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

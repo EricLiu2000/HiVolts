@@ -31,7 +31,6 @@ public class Mho extends Entity {
 		g.fillRect(getX()*Game.SCALE, getY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
 	}
 
-	@Override
 	public boolean update() {
 		// TODO Auto-generated method stub
 		return getAlive();
