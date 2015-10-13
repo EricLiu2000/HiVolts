@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import images.*;
+import input.Keyboard;
 import entities.Entity.Direction;
 import window.Game;
 
@@ -21,7 +22,7 @@ public class Player extends Entity {
 	
 	public Player(int xPosition, int yPosition) {
 		super(xPosition, yPosition);
-		
+	
 		playerTurn = true;
 		
 		imageFile = new File("images/Player.jpg");
@@ -45,7 +46,6 @@ public class Player extends Entity {
 	}
 
 	public boolean update() {
-		
 		if(Game.keyboard.getKeyTyped()) {
 			System.out.println("called");
 			if(Game.keyboard.key == "q") {

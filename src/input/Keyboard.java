@@ -17,9 +17,19 @@ public class Keyboard implements KeyListener {
 		wasTyped = false;
 	}
 	
+	public boolean keyWasTyped() {
+		if(wasTyped == true) {
+			wasTyped = false;
+			return true;
+		}
+		
+		else return false;
+	}
+	
 	//This method is called when a key is pressed
 	@Override
 	public void keyTyped(KeyEvent e) {
+		System.out.println("key typed");
 		wasTyped = true;
 		
 		if(e.getKeyCode() == KeyEvent.VK_Q) {
@@ -53,7 +63,6 @@ public class Keyboard implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 

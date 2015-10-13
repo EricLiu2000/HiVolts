@@ -3,10 +3,12 @@ package window;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import entities.Entity;
 import entities.Entity.Direction;
@@ -16,8 +18,7 @@ import entities.Player;
 import input.Keyboard;
 
 public class Game extends JFrame {
-	
-	//Default serialVersionUID
+
 	private static final long serialVersionUID = 1L;
 	
 	private ArrayList<Entity> entities;
@@ -31,9 +32,7 @@ public class Game extends JFrame {
 	private double freeEntities;
 	
 	private Player player;
-	
-	public static Keyboard keyboard;
-	
+
 	private int width;
 	
 	private int height;
@@ -41,6 +40,8 @@ public class Game extends JFrame {
 	public static int WINDOWBAR = 22;
 	
 	public static int SCALE = 50;
+	
+	public static Keyboard keyboard;
 	
 	//Enum that represents the type of entity to be created
 	public enum Type{
@@ -55,13 +56,17 @@ public class Game extends JFrame {
 	 * Creates the entities
 	 */
 	public Game() {
+		keyboard = new Keyboard();
+		
 		width = 12 * Game.SCALE;
 		height = 12 * Game.SCALE;
-		//WINDOWBAR = 10;
+
 		setSize(width, height + WINDOWBAR);
 		setBackground(Color.WHITE);
-		//The object used for keyboard input
-		keyboard = new Keyboard();
+
+		this.getContentPane().setFocusable(true);
+		
+		this.getContentPane().addKeyListener(keyboard);
 		
 		//ArrayList of entities on the board
 		entities = new ArrayList<Entity>();
@@ -191,7 +196,6 @@ public class Game extends JFrame {
 		while(true) {
 			//Player turn
 			if(player.playerTurn == true) {
-				System.out.println("player turn");
 				player.update();
 				//Sets wasTyped to false so that the game waits for player input
 				keyboard.wasTyped = false;
