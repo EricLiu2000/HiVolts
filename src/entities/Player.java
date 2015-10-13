@@ -43,11 +43,18 @@ public class Player extends Entity {
 
 	@Override
 	public void draw(Graphics g) {
+		
+//		if(Keyboard.updateCycle > 0) {
+//			g.setColor(Color.WHITE);
+//			g.fillRect(getLastX()*Game.SCALE, getLastY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
+//		}
+		
 		g.setColor(Color.GREEN);
 		g.fillRect(getX()*Game.SCALE, getY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
 	}
 
 	public boolean update(Entity[][] x) {
+		
 			if(Game.keyboard.key == "q") {
 				move(Direction.NORTHWEST);
 			}
@@ -75,6 +82,9 @@ public class Player extends Entity {
 			if(Game.keyboard.key == "c") {
 				move(Direction.SOUTHEAST);
 			}
+			
+			System.out.println("X Position: " + getX());
+			System.out.println("Y Position: " + getY());
 			playerTurn = false;
 		
 		return getAlive();
@@ -105,8 +115,8 @@ public class Player extends Entity {
 				continue;
 			}
 			else {
-				setxPosition(validJumpX);
-				setyPosition(validJumpY);
+				setXPosition(validJumpX);
+				setYPosition(validJumpY);
 			}
 		}
 		return getAlive();

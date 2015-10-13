@@ -13,9 +13,12 @@ public class Keyboard implements KeyListener {
 	
 	public Game game;
 	
+	public static int updateCycle;
+	
 	public Keyboard(Game game) {
 		wasTyped = false;
 		this.game = game;
+		updateCycle = 0;
 	}
 	public boolean getKeyTyped() {
 		return wasTyped;
@@ -27,6 +30,8 @@ public class Keyboard implements KeyListener {
 	@Override
 	public void keyTyped(KeyEvent e) {
 		wasTyped = true;
+		
+		updateCycle ++;
 		
 		if(e.getKeyChar() == 'q') {
 			key = "q";

@@ -8,6 +8,9 @@ public abstract class Entity {
 	private int xPosition;
 	private int yPosition;
 	
+	private int lastXPosition;
+	private int lastYPosition;
+	
 	//Variable to represent if the entity is alive or not
 	private boolean isAlive;
 
@@ -30,8 +33,10 @@ public abstract class Entity {
 	 * @param yPosition the x coordinate of the Entity
 	 */
 	public Entity(int xPosition, int yPosition) {
-		this.setxPosition(xPosition);
-		this.setyPosition(yPosition);
+		this.setXPosition(xPosition);
+		this.setYPosition(yPosition);
+		lastXPosition = xPosition;
+		lastYPosition = yPosition;
 		setAlive(true);
 	}
 	
@@ -52,7 +57,7 @@ public abstract class Entity {
 	 * @return the x coordinate of the entity
 	 */
 	public int getX() {
-		return getxPosition();
+		return xPosition;
 	}
 	
 	/**
@@ -60,7 +65,23 @@ public abstract class Entity {
 	 * @return the y coordinate of the entity
 	 */
 	public int getY() {
-		return getyPosition();
+		return yPosition;
+	}
+	
+	/**
+	 * Gets the last x coordinate of the Entity.
+	 * @return the last x coordinate of the entity
+	 */
+	public int getLastX() {
+		return lastXPosition;
+	}
+	
+	/**
+	 * Gets the last y coordinate of the Entity
+	 * @return the last y coordinate of the entity
+	 */
+	public int getLastY() {
+		return lastYPosition;
 	}
 	
 	/**
@@ -86,32 +107,44 @@ public abstract class Entity {
 	public void move(Direction direction) {
 		switch(direction) {
 			case NORTH: 
-				setyPosition(getyPosition() - 1);
+				lastYPosition = getY();
+				setYPosition(getY() - 1);
 				break;
 			case NORTHEAST:
-				setyPosition(getyPosition() - 1);
-				setxPosition(getxPosition() + 1);
+				lastXPosition = getX();
+				lastYPosition = getY();
+				setYPosition(getY() - 1);
+				setXPosition(getX() + 1);
 				break;
 			case EAST:
-				setxPosition(getxPosition() + 1);
+				lastXPosition = getX();
+				setXPosition(getX() + 1);
 				break;
 			case SOUTHEAST:
-				setyPosition(getyPosition() + 1);
-				setxPosition(getxPosition() + 1);
+				lastXPosition = getX();
+				lastYPosition = getY();
+				setYPosition(getY() + 1);
+				setXPosition(getX() + 1);
 				break;
 			case SOUTH:
-				setyPosition(getyPosition() + 1);
+				lastYPosition = getY();
+				setYPosition(getY() + 1);
 				break;
 			case SOUTHWEST:
-				setyPosition(getyPosition() + 1);
-				setxPosition(getxPosition() - 1);
+				lastXPosition = getX();
+				lastYPosition = getY();
+				setYPosition(getY() + 1);
+				setXPosition(getX() - 1);
 				break;
 			case WEST:
-				setxPosition(getxPosition() - 1);
+				lastXPosition = getX();
+				setXPosition(getX() - 1);
 				break;
 			case NORTHWEST:
-				setyPosition(getyPosition() - 1);
-				setxPosition(getxPosition() - 1);
+				lastXPosition = getX();
+				lastYPosition = getY();
+				setYPosition(getY() - 1);
+				setXPosition(getX() - 1);
 				break;
 			default: 
 				System.out.println("Error: Invalid direction");
@@ -127,19 +160,11 @@ public abstract class Entity {
 		this.isAlive = isAlive;
 	}
 
-	public int getxPosition() {
-		return xPosition;
-	}
-
-	public void setxPosition(int xPosition) {
+	public void setXPosition(int xPosition) {
 		this.xPosition = xPosition;
 	}
 
-	public int getyPosition() {
-		return yPosition;
-	}
-
-	public void setyPosition(int yPosition) {
+	public void setYPosition(int yPosition) {
 		this.yPosition = yPosition;
 	}
 }
