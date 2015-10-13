@@ -39,7 +39,7 @@ public class Mho extends Entity {
 				move(Direction.SOUTH);
 			}
 		}
-		else {
+		else if(xDiff > 0){
 			
 		}
 	}
