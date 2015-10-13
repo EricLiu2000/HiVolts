@@ -56,7 +56,7 @@ public class Game extends JFrame {
 	 * Creates the entities
 	 */
 	public Game() {
-		keyboard = new Keyboard();
+		keyboard = new Keyboard(this);
 		
 		width = 12 * Game.SCALE;
 		height = 12 * Game.SCALE;
@@ -192,27 +192,13 @@ public class Game extends JFrame {
 	/**
 	 * Runs the game
 	 */
-	public void run() {
-		while(true) {
-			//Player turn
-			if(player.playerTurn == true) {
-				player.update();
-				//Sets wasTyped to false so that the game waits for player input
-				keyboard.wasTyped = false;
-			}
-			
-			//If not the turn of the player
-			else {
-				System.out.println("not player turn");
-				for(Entity entity : entities) {
-					//Updates all non-player entities
-					if(!(entity instanceof Player)) {
-						entity.update();
-					}	
-				}
-				//After updating all non-player entities, the player takes their turn
-				player.playerTurn = true;
+	public void update() {
+		player.update();
+		for(Entity entity : entities) {
+			if(!(entity instanceof Player)) {
+				entity.update();
 			}
 		}
+		repaint();
 	}	
 }

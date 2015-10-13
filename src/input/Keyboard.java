@@ -3,24 +3,29 @@ package input;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import window.Game;
+
 public class Keyboard implements KeyListener {
 
 	public String key;
 	
 	public boolean wasTyped;
 	
+	public Game game;
+	
+	public Keyboard(Game game) {
+		wasTyped = false;
+		this.game = game;
+	}
 	public boolean getKeyTyped() {
 		return wasTyped;
 	}
 	
-	public Keyboard() {
-		wasTyped = false;
-	}
+	
 
 	//This method is called when a key is pressed
 	@Override
 	public void keyTyped(KeyEvent e) {
-		System.out.println("key typed");
 		wasTyped = true;
 		
 		if(e.getKeyCode() == KeyEvent.VK_Q) {
@@ -50,6 +55,7 @@ public class Keyboard implements KeyListener {
 		if(e.getKeyCode() == KeyEvent.VK_C) {
 			key = "c";
 		}
+		game.update();
 		wasTyped = false;
 	}
 
