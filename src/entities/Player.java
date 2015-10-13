@@ -44,10 +44,10 @@ public class Player extends Entity {
 	@Override
 	public void draw(Graphics g) {
 		
-//		if(Keyboard.updateCycle > 0) {
-//			g.setColor(Color.WHITE);
-//			g.fillRect(getLastX()*Game.SCALE, getLastY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
-//		}
+		if(Keyboard.updateCycle > 0) {
+			g.setColor(Color.WHITE);
+			g.fillRect(getLastX()*Game.SCALE, getLastY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
+		}
 		
 		g.setColor(Color.GREEN);
 		g.fillRect(getX()*Game.SCALE, getY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
@@ -68,6 +68,8 @@ public class Player extends Entity {
 				move(Direction.WEST);
 			}
 			if(Game.keyboard.key == "s") {
+				setLastX(getX());
+				setLastY(getY());
 				this.jump(x);
 			}
 			if(Game.keyboard.key == "d") {
@@ -85,6 +87,10 @@ public class Player extends Entity {
 			
 			System.out.println("X Position: " + getX());
 			System.out.println("Y Position: " + getY());
+			
+			System.out.println("Last X Position: " + getLastX());
+			System.out.println("Last Y Position: " + getLastY());
+			
 			playerTurn = false;
 		
 		return getAlive();
@@ -104,6 +110,8 @@ public class Player extends Entity {
 	 * @return is alive
 	 */
 	public boolean jump(Entity[][] x) {
+		setLastX(getX());
+		setLastY(getY());
 		while(true) {
 			int validJumpX = (int) (1 + ((int)(x.length - 2) * Math.random()));
 			int validJumpY = (int) (1 + ((int)(x[0].length - 2) * Math.random()));
@@ -117,6 +125,7 @@ public class Player extends Entity {
 			else {
 				setXPosition(validJumpX);
 				setYPosition(validJumpY);
+				break;
 			}
 		}
 		return getAlive();

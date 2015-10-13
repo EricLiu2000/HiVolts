@@ -29,10 +29,10 @@ public class Mho extends Entity {
 	@Override
 	public void draw(Graphics g) {
 		
-//		if(Keyboard.updateCycle > 1) {
-//			g.setColor(Color.WHITE);
-//			g.fillRect(getLastX()*Game.SCALE, getLastY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
-//		}
+		if(Keyboard.updateCycle > 0) {
+			g.setColor(Color.WHITE);
+			g.fillRect(getLastX()*Game.SCALE, getLastY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
+		}
 		
 		g.setColor(Color.RED);
 		g.fillRect(getX()*Game.SCALE, getY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);

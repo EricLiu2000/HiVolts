@@ -84,6 +84,14 @@ public abstract class Entity {
 		return lastYPosition;
 	}
 	
+	public void setLastX(int lastX) {
+		lastXPosition = lastX;
+	}
+	
+	public void setLastY(int lastY) {
+		lastYPosition = lastY;
+	}
+	
 	/**
 	 * Gets whether or not the Entity is alive or not
 	 * 
@@ -107,42 +115,46 @@ public abstract class Entity {
 	public void move(Direction direction) {
 		switch(direction) {
 			case NORTH: 
-				lastYPosition = getY();
+				setLastX(getX());
+				setLastY(getY());
 				setYPosition(getY() - 1);
 				break;
 			case NORTHEAST:
-				lastXPosition = getX();
-				lastYPosition = getY();
+				setLastX(getX());
+				setLastY(getY());
 				setYPosition(getY() - 1);
 				setXPosition(getX() + 1);
 				break;
 			case EAST:
-				lastXPosition = getX();
+				setLastX(getX());
+				setLastY(getY());
 				setXPosition(getX() + 1);
 				break;
 			case SOUTHEAST:
-				lastXPosition = getX();
-				lastYPosition = getY();
+				setLastX(getX());
+				setLastY(getY());
 				setYPosition(getY() + 1);
 				setXPosition(getX() + 1);
 				break;
 			case SOUTH:
-				lastYPosition = getY();
+				setLastX(getX());
+				setLastY(getY());
 				setYPosition(getY() + 1);
 				break;
 			case SOUTHWEST:
-				lastXPosition = getX();
-				lastYPosition = getY();
+				setLastX(getX());
+				setLastY(getY());
 				setYPosition(getY() + 1);
 				setXPosition(getX() - 1);
 				break;
 			case WEST:
 				lastXPosition = getX();
+				lastYPosition = getY();
 				setXPosition(getX() - 1);
 				break;
 			case NORTHWEST:
-				lastXPosition = getX();
-				lastYPosition = getY();
+				setLastX(getX());
+				setLastY(getY());
 				setYPosition(getY() - 1);
 				setXPosition(getX() - 1);
 				break;
