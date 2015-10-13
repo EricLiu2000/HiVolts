@@ -115,11 +115,11 @@ public class Player extends Entity {
 		while(true) {
 			int validJumpX = (int) (1 + ((int)(x.length - 2) * Math.random()));
 			int validJumpY = (int) (1 + ((int)(x[0].length - 2) * Math.random()));
-			if(x[validJumpX][validJumpY] instanceof Fence) {
+			if(x[validJumpX][validJumpY] instanceof Mho) {
 				setAlive(false);
 				break;
 			}
-			else if(x[validJumpX][validJumpY] instanceof Mho || x[validJumpX][validJumpY] instanceof Player) {
+			else if(x[validJumpX][validJumpY] instanceof Fence || x[validJumpX][validJumpY] instanceof Player) {
 				continue;
 			}
 			else {
