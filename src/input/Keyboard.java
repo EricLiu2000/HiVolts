@@ -16,16 +16,7 @@ public class Keyboard implements KeyListener {
 	public Keyboard() {
 		wasTyped = false;
 	}
-	
-	public boolean keyWasTyped() {
-		if(wasTyped == true) {
-			wasTyped = false;
-			return true;
-		}
-		
-		else return false;
-	}
-	
+
 	//This method is called when a key is pressed
 	@Override
 	public void keyTyped(KeyEvent e) {
@@ -59,6 +50,7 @@ public class Keyboard implements KeyListener {
 		if(e.getKeyCode() == KeyEvent.VK_C) {
 			key = "c";
 		}
+		wasTyped = false;
 	}
 
 	@Override
