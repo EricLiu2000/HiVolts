@@ -6,6 +6,8 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.imageio.ImageIO;
 import images.*;
 import input.Keyboard;
@@ -90,4 +92,22 @@ public class Player extends Entity {
 		return playerTurn;
 	}
 
+	public boolean jump(Entity[][] x) {
+		while(true) {
+			int foo = (int)((int)x.length * Math.random());
+			int bar = (int)((int)x.length * Math.random());
+			if(x[foo][bar] instanceof Fence) {
+				setAlive(false);
+				break;
+			}
+			else if(x[foo][bar] instanceof Mho || x[foo][bar] instanceof Player) {
+				continue;
+			}
+			else {
+				setxPosition(foo);
+				setyPosition(bar);
+			}
+		}
+		return getAlive();
+	}
 }

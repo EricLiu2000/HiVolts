@@ -78,7 +78,7 @@ public class Game extends JFrame {
 		freeEntities = 33.0;
 		
 		//Creates the 2D array
-		grid = new Entity[12][12];
+		setGrid(new Entity[12][12]);
 		
 		//Randomly creates the types of entities
 		entityType = new ArrayList<Type>(33);
@@ -134,7 +134,7 @@ public class Game extends JFrame {
 						entities.add(new Fence(i, j));
 					}
 					freeEntities--;
-					grid[i][j] = entities.get((int) (33-freeEntities));
+					getGrid()[i][j] = entities.get((int) (33-freeEntities));
 				}
 			}
 			//If finished creating entities, break
@@ -200,5 +200,13 @@ public class Game extends JFrame {
 			}
 		}
 		repaint();
+	}
+	
+	public Entity[][] getGrid() {
+		return grid;
+	}
+	
+	public void setGrid(Entity[][] grid) {
+		this.grid = grid;
 	}	
 }

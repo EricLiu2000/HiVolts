@@ -19,29 +19,10 @@ public class Mho extends Entity {
 	/**
 	 * Move the Mho towards the player
 	 */
-	public void moveMho(Player player) {
+	public void moveMho(Player player, Entity[][] grid) {
 		int xDiff = player.getX() - this.getX();
 		int yDiff = player.getY() - this.getY();
 		
-		if(xDiff == 0) {
-			if(yDiff > 0) {
-				move(Direction.WEST);
-			}
-			else {
-				move(Direction.EAST);
-			}
-		}
-		else if(yDiff == 0)  {
-			if(xDiff > 0) {
-				move(Direction.NORTH);
-			}
-			else {
-				move(Direction.SOUTH);
-			}
-		}
-		else if(xDiff > 0){
-			
-		}
 	}
 	
 	@Override

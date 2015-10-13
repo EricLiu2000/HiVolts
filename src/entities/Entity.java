@@ -30,9 +30,9 @@ public abstract class Entity {
 	 * @param yPosition the x coordinate of the Entity
 	 */
 	public Entity(int xPosition, int yPosition) {
-		this.xPosition = xPosition;
-		this.yPosition = yPosition;
-		isAlive = true;
+		this.setxPosition(xPosition);
+		this.setyPosition(yPosition);
+		setAlive(true);
 	}
 	
 	/**
@@ -52,7 +52,7 @@ public abstract class Entity {
 	 * @return the x coordinate of the entity
 	 */
 	public int getX() {
-		return xPosition;
+		return getxPosition();
 	}
 	
 	/**
@@ -60,7 +60,7 @@ public abstract class Entity {
 	 * @return the y coordinate of the entity
 	 */
 	public int getY() {
-		return yPosition;
+		return getyPosition();
 	}
 	
 	/**
@@ -69,14 +69,14 @@ public abstract class Entity {
 	 * @return if the Entity is alive or not
 	 */
 	public boolean getAlive() {
-		return isAlive;
+		return isAlive();
 	}
 	
 	/**
 	 * Kills the entity
 	 */
 	public void kill() {
-		isAlive = false;
+		setAlive(false);
 	}
 	
 	/**
@@ -86,36 +86,60 @@ public abstract class Entity {
 	public void move(Direction direction) {
 		switch(direction) {
 			case NORTH: 
-				yPosition --;
+				setyPosition(getyPosition() - 1);
 				break;
 			case NORTHEAST:
-				yPosition --;
-				xPosition ++;
+				setyPosition(getyPosition() - 1);
+				setxPosition(getxPosition() + 1);
 				break;
 			case EAST:
-				xPosition ++;
+				setxPosition(getxPosition() + 1);
 				break;
 			case SOUTHEAST:
-				yPosition ++;
-				xPosition ++;
+				setyPosition(getyPosition() + 1);
+				setxPosition(getxPosition() + 1);
 				break;
 			case SOUTH:
-				yPosition ++;
+				setyPosition(getyPosition() + 1);
 				break;
 			case SOUTHWEST:
-				yPosition ++;
-				xPosition --;
+				setyPosition(getyPosition() + 1);
+				setxPosition(getxPosition() - 1);
 				break;
 			case WEST:
-				xPosition --;
+				setxPosition(getxPosition() - 1);
 				break;
 			case NORTHWEST:
-				yPosition --;
-				xPosition --;
+				setyPosition(getyPosition() - 1);
+				setxPosition(getxPosition() - 1);
 				break;
 			default: 
 				System.out.println("Error: Invalid direction");
 				break;
 		}
+	}
+
+	public boolean isAlive() {
+		return isAlive;
+	}
+
+	public void setAlive(boolean isAlive) {
+		this.isAlive = isAlive;
+	}
+
+	public int getxPosition() {
+		return xPosition;
+	}
+
+	public void setxPosition(int xPosition) {
+		this.xPosition = xPosition;
+	}
+
+	public int getyPosition() {
+		return yPosition;
+	}
+
+	public void setyPosition(int yPosition) {
+		this.yPosition = yPosition;
 	}
 }

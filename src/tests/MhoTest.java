@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import entities.*;
+import window.Game;
 
 public class MhoTest extends EntityTest {
 
@@ -19,7 +20,8 @@ public class MhoTest extends EntityTest {
 	public void testMoveMho() {
 		Mho m1 = new Mho(1,1);
 		Player p1 = new Player(3,1);
-		m1.moveMho(p1);
+		Game g1 = new Game();
+		m1.moveMho(p1,g1.getGrid());
 		assertEquals(2,m1.getX());
 	}
 
