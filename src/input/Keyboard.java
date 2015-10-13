@@ -28,31 +28,31 @@ public class Keyboard implements KeyListener {
 	public void keyTyped(KeyEvent e) {
 		wasTyped = true;
 		
-		if(e.getKeyCode() == KeyEvent.VK_Q) {
+		if(e.getKeyChar() == 'q') {
 			key = "q";
 		}
-		if(e.getKeyCode() == KeyEvent.VK_W) {
+		if(e.getKeyChar() == 'w') {
 			key = "w";
 		}
-		if(e.getKeyCode() == KeyEvent.VK_E) {
+		if(e.getKeyChar() == 'e') {
 			key = "e";
 		}
-		if(e.getKeyCode() == KeyEvent.VK_A) {
+		if(e.getKeyChar() == 'a') {
 			key = "a";
 		}
-		if(e.getKeyCode() == KeyEvent.VK_S) {
+		if(e.getKeyChar() == 's') {
 			key = "s";
 		}
-		if(e.getKeyCode() == KeyEvent.VK_D) {
+		if(e.getKeyChar() == 'd') {
 			key = "d";
 		}
-		if(e.getKeyCode() == KeyEvent.VK_Z) {
+		if(e.getKeyChar() == 'z') {
 			key = "z";
 		}
-		if(e.getKeyCode() == KeyEvent.VK_X) {
+		if(e.getKeyChar() == 'x') {
 			key = "x";
 		}
-		if(e.getKeyCode() == KeyEvent.VK_C) {
+		if(e.getKeyChar() == 'c') {
 			key = "c";
 		}
 		game.update();
