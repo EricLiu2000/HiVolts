@@ -26,32 +26,42 @@ public class Keyboard implements KeyListener {
 		
 		if(e.getKeyChar() == 'q') {
 			key = "q";
+			game.update();
 		}
 		if(e.getKeyChar() == 'w') {
 			key = "w";
+			game.update();
 		}
 		if(e.getKeyChar() == 'e') {
 			key = "e";
+			game.update();
 		}
 		if(e.getKeyChar() == 'a') {
 			key = "a";
+			game.update();
 		}
 		if(e.getKeyChar() == 's') {
 			key = "s";
+			game.player.update(game.getGrid());
+			game.repaint();
 		}
 		if(e.getKeyChar() == 'd') {
 			key = "d";
+			game.update();
 		}
 		if(e.getKeyChar() == 'z') {
 			key = "z";
+			game.update();
 		}
 		if(e.getKeyChar() == 'x') {
 			key = "x";
+			game.update();
 		}
 		if(e.getKeyChar() == 'c') {
 			key = "c";
+			game.update();
 		}
-		game.update();
+		
 	}
 
 	@Override

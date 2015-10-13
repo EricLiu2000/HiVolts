@@ -27,7 +27,7 @@ public class Game extends JFrame {
 	
 	private double freeEntities;
 	
-	private Player player;
+	public Player player;
 
 	private int width;
 	
@@ -183,6 +183,8 @@ public class Game extends JFrame {
 			g.drawLine(i*Game.SCALE, 0 + Game.WINDOWBAR, i*Game.SCALE, 12*Game.SCALE + Game.WINDOWBAR);
 			g.drawLine(0, i*Game.SCALE + Game.WINDOWBAR, 12*Game.SCALE, i*Game.SCALE + Game.WINDOWBAR);
 		}
+		
+	
 	}
 	
 	/**
@@ -193,7 +195,9 @@ public class Game extends JFrame {
 		if(pLive == false) {
 			entities.remove(player);
 			grid[player.getX()][player.getY()] = null;
+			repaint();
 		}
+		
 		for(Entity entity : entities) {
 			if(entity instanceof Mho) {
 				boolean mLive = entity.update();

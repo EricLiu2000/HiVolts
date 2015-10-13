@@ -9,14 +9,8 @@ import window.Game;
 
 public class Player extends Entity {
 
-	public boolean playerTurn;
-
-	BufferedImage sprite = null;
-	
 	public Player(int xPosition, int yPosition) {
 		super(xPosition, yPosition);
-	
-		playerTurn = true;
 	}
 
 	@Override
@@ -26,81 +20,67 @@ public class Player extends Entity {
 			g.setColor(Color.WHITE);
 			g.fillRect(getLastX()*Game.SCALE, getLastY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
 		}
-		
-		g.setColor(Color.GREEN);
-		g.fillRect(getX()*Game.SCALE, getY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
+
+		if(getAlive()) {
+			g.setColor(Color.GREEN);
+			g.fillRect(getX()*Game.SCALE, getY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
+		}
 	}
 
 	public boolean update(Entity[][] x) {
 		if(getAlive() == true) {
 			if(Game.keyboard.key == "q") {
 				move(Direction.NORTHWEST);
-				playerTurn = false;
 			}
 			if(Game.keyboard.key == "w") {
 				move(Direction.NORTH);
-				playerTurn = false;
 			}
 			if(Game.keyboard.key == "e") {
 				move(Direction.NORTHEAST);
-				playerTurn = false;
 			}
 			if(Game.keyboard.key == "a") {
 				move(Direction.WEST);
-				playerTurn = false;
 			}
 			if(Game.keyboard.key == "s") {
 				setLastX(getX());
 				setLastY(getY());
 				this.jump(x);
-				playerTurn = true;
 			}
 			if(Game.keyboard.key == "d") {
 				move(Direction.EAST);
-				playerTurn = false;
 			}
 			if(Game.keyboard.key == "z") {
 				move(Direction.SOUTHWEST);
-				playerTurn = false;
 			}
 			if(Game.keyboard.key == "x") {
 				move(Direction.SOUTH);
-				playerTurn = false;
 			}
 			if(Game.keyboard.key == "c") {
 				move(Direction.SOUTHEAST);
-				playerTurn = false;
 			}
 		}
 		
 		return getAlive();
 	}
 	
-	/**
-	 * Gets whether or not it is the player's turn
-	 * @return if it is the turn of the player
-	 */
-	public boolean getPlayerTurn() {
-		return playerTurn;
-	}
 
 	/**
 	 * jumps the player to a random empty space or mho on the board
-	 * @param x the array of game spaces
+	 * @param grid the array of game spaces
 	 * @return is alive
 	 */
-	public boolean jump(Entity[][] x) {
+	public boolean jump(Entity[][] grid) {
 		setLastX(getX());
 		setLastY(getY());
 		while(true) {
-			int validJumpX = (int) (1 + ((int)(x.length - 2) * Math.random()));
-			int validJumpY = (int) (1 + ((int)(x[0].length - 2) * Math.random()));
-			if(x[validJumpX][validJumpY] instanceof Mho) {
+			int validJumpX = (int) (1 + ((int)(grid.length - 2) * Math.random()));
+			int validJumpY = (int) (1 + ((int)(grid[0].length - 2) * Math.random()));
+			if(grid[validJumpX][validJumpY] instanceof Fence) {
 				System.out.println("ur ded");
 				setAlive(false);
 				break;
 			}
-			else if(x[validJumpX][validJumpY] instanceof Fence || x[validJumpX][validJumpY] instanceof Player) {
+			else if(grid[validJumpX][validJumpY] instanceof Mho || grid[validJumpX][validJumpY] instanceof Player) {
 				System.out.println("i hit a fence");
 				continue;
 			}
