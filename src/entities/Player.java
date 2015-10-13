@@ -71,12 +71,6 @@ public class Player extends Entity {
 				move(Direction.SOUTHEAST);
 				playerTurn = false;
 			}
-			
-			System.out.println("X Position: " + getX());
-			System.out.println("Y Position: " + getY());
-			
-			System.out.println("Last X Position: " + getLastX());
-			System.out.println("Last Y Position: " + getLastY());
 		}
 		
 		return getAlive();
@@ -102,15 +96,18 @@ public class Player extends Entity {
 			int validJumpX = (int) (1 + ((int)(x.length - 2) * Math.random()));
 			int validJumpY = (int) (1 + ((int)(x[0].length - 2) * Math.random()));
 			if(x[validJumpX][validJumpY] instanceof Mho) {
+				System.out.println("ur ded");
 				setAlive(false);
 				break;
 			}
 			else if(x[validJumpX][validJumpY] instanceof Fence || x[validJumpX][validJumpY] instanceof Player) {
+				System.out.println("i hit a fence");
 				continue;
 			}
 			else {
 				setXPosition(validJumpX);
 				setYPosition(validJumpY);
+				System.out.println("success jump");
 				break;
 			}
 		}
