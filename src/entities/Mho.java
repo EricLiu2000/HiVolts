@@ -23,7 +23,6 @@ public class Mho extends Entity {
 	public void moveMho(Player player, Entity[][] grid) {
 		int xDiff = player.getX() - this.getX();
 		int yDiff = player.getY() - this.getY();
-		
 	}
 	
 	@Override

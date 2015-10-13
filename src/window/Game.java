@@ -1,17 +1,13 @@
 package window;
 
 import java.awt.Color;
-import java.awt.Dimension;
+
 import java.awt.Graphics;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 import entities.Entity;
-import entities.Entity.Direction;
 import entities.Fence;
 import entities.Mho;
 import entities.Player;

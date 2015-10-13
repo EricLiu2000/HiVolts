@@ -8,29 +8,20 @@ import window.Game;
 public class Keyboard implements KeyListener {
 
 	public String key;
-	
-	public boolean wasTyped;
-	
+
 	public Game game;
 	
 	public static int updateCycle;
 	
 	public Keyboard(Game game) {
-		wasTyped = false;
 		this.game = game;
 		updateCycle = 0;
 	}
-	public boolean getKeyTyped() {
-		return wasTyped;
-	}
-	
-	
 
 	//This method is called when a key is pressed
 	@Override
 	public void keyTyped(KeyEvent e) {
-		wasTyped = true;
-		
+
 		updateCycle ++;
 		
 		if(e.getKeyChar() == 'q') {
@@ -61,7 +52,6 @@ public class Keyboard implements KeyListener {
 			key = "c";
 		}
 		game.update();
-		wasTyped = false;
 	}
 
 	@Override

@@ -2,43 +2,21 @@ package entities;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
-import images.*;
 import input.Keyboard;
-import entities.Entity.Direction;
 import window.Game;
 
 public class Player extends Entity {
 
 	public boolean playerTurn;
-	
-	private File imageFile;
-	
+
 	BufferedImage sprite = null;
 	
 	public Player(int xPosition, int yPosition) {
 		super(xPosition, yPosition);
 	
 		playerTurn = true;
-		
-		imageFile = new File("images/Player.jpg");
-		
-		//Accesses the image and displays an error message if it is not found
-		try{
-			sprite = ImageIO.read(imageFile);
-		} 
-		
-		catch(IOException e) {
-			System.out.println("Image not found");
-		}
-		
-		sprite = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
 	}
 
 	@Override
@@ -54,35 +32,44 @@ public class Player extends Entity {
 	}
 
 	public boolean update(Entity[][] x) {
-		
+		if(getAlive() == true) {
 			if(Game.keyboard.key == "q") {
 				move(Direction.NORTHWEST);
+				playerTurn = false;
 			}
 			if(Game.keyboard.key == "w") {
 				move(Direction.NORTH);
+				playerTurn = false;
 			}
 			if(Game.keyboard.key == "e") {
 				move(Direction.NORTHEAST);
+				playerTurn = false;
 			}
 			if(Game.keyboard.key == "a") {
 				move(Direction.WEST);
+				playerTurn = false;
 			}
 			if(Game.keyboard.key == "s") {
 				setLastX(getX());
 				setLastY(getY());
 				this.jump(x);
+				playerTurn = true;
 			}
 			if(Game.keyboard.key == "d") {
 				move(Direction.EAST);
+				playerTurn = false;
 			}
 			if(Game.keyboard.key == "z") {
 				move(Direction.SOUTHWEST);
+				playerTurn = false;
 			}
 			if(Game.keyboard.key == "x") {
 				move(Direction.SOUTH);
+				playerTurn = false;
 			}
 			if(Game.keyboard.key == "c") {
 				move(Direction.SOUTHEAST);
+				playerTurn = false;
 			}
 			
 			System.out.println("X Position: " + getX());
@@ -90,8 +77,7 @@ public class Player extends Entity {
 			
 			System.out.println("Last X Position: " + getLastX());
 			System.out.println("Last Y Position: " + getLastY());
-			
-			playerTurn = false;
+		}
 		
 		return getAlive();
 	}
