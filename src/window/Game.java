@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import javax.swing.JFrame;
 import entities.Entity;
@@ -204,6 +205,8 @@ public class Game extends JFrame {
 				grid[player.getX()][player.getY()] = null;
 		}
 		
+		 ArrayList<Entity> tooBeRemoved = new ArrayList<Entity>();
+		
 		for(Entity entity : entities) {
 			if(entity instanceof Mho) {
 				//updates the Mho
@@ -212,10 +215,14 @@ public class Game extends JFrame {
 				if(alive == false) {
 					//The paint method is called directly to ensure it is executed immediately
 					paint(this.getGraphics());
-					entities.remove(entity);
+					tooBeRemoved.add(entity); //Problem line
 					grid[entity.getX()][entity.getY()] = null;
 				}
 			}
+			
+			for(int i = 0; i < tooBeRemoved.size(); i++) {
+				//entities.remove(tooBeRemoved.get(i));
+			} 
 			
 			if(entity instanceof Fence) {
 				((Fence) entity).update(grid);
