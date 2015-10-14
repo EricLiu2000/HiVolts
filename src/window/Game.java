@@ -198,18 +198,10 @@ public class Game extends JFrame {
 	public void update() {
 		boolean pLive = player.update(grid);
 		if(pLive == false) {
-			//forces the game to repaint then remove player, it was removing player then repainting for some reason
-			int counter = 0;
-			for(counter = 0; counter < 2; counter++) {
-				repaint();
-				counter++;
-			}
-			
-			if(counter == 1) {
+				//The paint method is called directly to ensure it is executed immediately
+				paint(this.getGraphics());
 				entities.remove(player);
 				grid[player.getX()][player.getY()] = null;
-			}
-				
 		}
 		
 		for(Entity entity : entities) {
@@ -217,7 +209,8 @@ public class Game extends JFrame {
 				boolean alive = entity.update();
 				((Mho) entity).moveMho(player, grid);
 				if(alive == false) {
-					repaint();
+					//The paint method is called directly to ensure it is executed immediately
+					paint(this.getGraphics());
 					entities.remove(entity);
 					grid[entity.getX()][entity.getY()] = null;
 				}
