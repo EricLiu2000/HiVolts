@@ -71,7 +71,7 @@ public class Player extends Entity {
 				setAlive(false);
 			}
 		}
-		
+
 		return getAlive();
 	}
 	
@@ -87,12 +87,12 @@ public class Player extends Entity {
 		while(true) {
 			int validJumpX = (int) (1 + ((int)(grid.length - 2) * Math.random()));
 			int validJumpY = (int) (1 + ((int)(grid[0].length - 2) * Math.random()));
-			if(grid[validJumpX][validJumpY] instanceof Mho) {
+			if(grid[validJumpX][validJumpY] instanceof Fence) {
 				System.out.println("You died");
 				setAlive(false);
 				break;
 			}
-			else if(grid[validJumpX][validJumpY] instanceof Fence || grid[validJumpX][validJumpY] instanceof Player) {
+			else if(grid[validJumpX][validJumpY] instanceof Mho || grid[validJumpX][validJumpY] instanceof Player) {
 				System.out.println("I hit a fence");
 				continue;
 			}

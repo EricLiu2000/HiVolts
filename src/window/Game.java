@@ -17,7 +17,7 @@ public class Game extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
-	private ArrayList<Entity> entities;
+	public ArrayList<Entity> entities;
 	
 	private ArrayList<Entity> boundingFences;
 	
@@ -100,8 +100,6 @@ public class Game extends JFrame {
 		createInternalEntities(entities, entityType);
 
 		repaint();
-
-		//run();
 	}
 	/**
 	 * Creates the entities on the board randomly
@@ -180,11 +178,12 @@ public class Game extends JFrame {
 	 * Draws the current state of the game on the screen
 	 */
 	public void paint(Graphics g) {
+	
 		//Draws all entities
 		for(Entity entity : entities) {
 			entity.draw(g);
 		}
-		
+
 		//Draws the lines 
 		for(int i = 1; i <= 11; i++) {
 			g.setColor(Color.BLACK);
@@ -194,26 +193,38 @@ public class Game extends JFrame {
 	}
 	
 	/**
-	 * Runs the game
+	 * Updates the game every time a key is pressed
 	 */
 	public void update() {
 		boolean pLive = player.update(grid);
 		if(pLive == false) {
-			entities.remove(player);
-			grid[player.getX()][player.getY()] = null;
-			repaint();
+			//forces the game to repaint then remove player, it was removing player then repainting for some reason
+			int counter = 0;
+			for(counter = 0; counter < 2; counter++) {
+				repaint();
+				counter++;
+			}
+			
+			if(counter == 1) {
+				entities.remove(player);
+				grid[player.getX()][player.getY()] = null;
+			}
+				
 		}
 		
 		for(Entity entity : entities) {
 			if(entity instanceof Mho) {
-				boolean mLive = entity.update();
+				boolean alive = entity.update();
 				((Mho) entity).moveMho(player, grid);
-				if(mLive == false) {
+				if(alive == false) {
+					repaint();
 					entities.remove(entity);
 					grid[entity.getX()][entity.getY()] = null;
 				}
 			}
 		}
+		
+		//After all entities have updated, repaint the frame with the new results
 		repaint();
 	}
 	
