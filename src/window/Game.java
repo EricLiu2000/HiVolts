@@ -98,7 +98,7 @@ public class Game extends JFrame {
 		
 		//Creates the internal entities
 		createInternalEntities(entities, entityType);
-		
+
 		repaint();
 
 		//run();
@@ -146,22 +146,30 @@ public class Game extends JFrame {
 	public void createBoundingFences(ArrayList<Entity> boundingFences) {
 		//Creates top row
 		for(int i = 0; i < 12; i++) {
-			boundingFences.add(new Fence(i, 0));
+			Fence fence = new Fence(i, 0);
+			boundingFences.add(fence);
+			getGrid()[i][0] = fence;
 		}
 		
 		//Creates bottom row
 		for(int i = 0; i < 12; i++) {
-			boundingFences.add(new Fence(i, 11));
+			Fence fence = new Fence(i, 11);
+			boundingFences.add(fence);
+			getGrid()[i][11] = fence;
 		}
 		
 		//Creates left column
 		for(int i = 1; i < 11; i++) {
-			boundingFences.add(new Fence(0, i));
+			Fence fence = new Fence(0, i);
+			boundingFences.add(fence);
+			getGrid()[0][i] = fence;
 		}
 		
 		//Creates right column
 		for(int i = 1; i < 11; i++) {
-			boundingFences.add(new Fence(11, i));
+			Fence fence = new Fence(11, i);
+			boundingFences.add(fence);
+			getGrid()[11][i] = fence;
 		}
 		
 		//Adds these bounding fences to the list of entities
@@ -183,8 +191,6 @@ public class Game extends JFrame {
 			g.drawLine(i*Game.SCALE, 0 + Game.WINDOWBAR, i*Game.SCALE, 12*Game.SCALE + Game.WINDOWBAR);
 			g.drawLine(0, i*Game.SCALE + Game.WINDOWBAR, 12*Game.SCALE, i*Game.SCALE + Game.WINDOWBAR);
 		}
-		
-	
 	}
 	
 	/**
