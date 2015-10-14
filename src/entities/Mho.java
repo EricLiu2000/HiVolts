@@ -31,19 +31,31 @@ public class Mho extends Entity {
 		int xDiff = player.getX() - this.getX();
 		int yDiff = player.getY() - this.getY();
 		
-		
-		
 		if(xDiff == 0 && yDiff > 0) {
+			grid[getX()][getY()] = null;
 			move(Direction.SOUTH);
+			grid[getX()][getY()] = this;
 		}
 		else if(xDiff == 0 && yDiff < 0) {
+			grid[getX()][getY()] = null;
 			move(Direction.NORTH);
+			grid[getX()][getY()] = this;
 		}
 		else if(yDiff == 0 && xDiff > 0) {
+			grid[getX()][getY()] = null;
 			move(Direction.SOUTH);
+			grid[getX()][getY()] = this;
 		}
 		else if(yDiff == 0 && xDiff < 0) {
+			grid[getX()][getY()] = null;
 			move(Direction.NORTH);
+			grid[getX()][getY()] = this;
+		}
+		if(grid[getX()][getY()] instanceof Fence) {
+			kill();
+		}
+		if(player.getX() == getX() && player.getY() == getY()) {
+			player.kill();
 		}
 	}
 	
@@ -55,11 +67,21 @@ public class Mho extends Entity {
 			g.fillRect(getLastX()*Game.SCALE, getLastY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
 		}
 		
-		g.setColor(Color.RED);
-		g.fillRect(getX()*Game.SCALE, getY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
+		if(getAlive()) {
+			g.setColor(Color.RED);
+			g.fillRect(getX()*Game.SCALE, getY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
+		}
 	}
 
-	public boolean update() {
+	public boolean update(Player player, Entity[][] grid) {
+		moveMho(player, grid);
 		return getAlive();
+	}
+
+	@Override
+	//Unused update method
+	public boolean update() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

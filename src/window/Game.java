@@ -206,14 +206,19 @@ public class Game extends JFrame {
 		
 		for(Entity entity : entities) {
 			if(entity instanceof Mho) {
-				boolean alive = entity.update();
-				((Mho) entity).moveMho(player, grid);
+				//updates the Mho
+				boolean alive = ((Mho) entity).update(player, grid);
+				
 				if(alive == false) {
 					//The paint method is called directly to ensure it is executed immediately
 					paint(this.getGraphics());
 					entities.remove(entity);
 					grid[entity.getX()][entity.getY()] = null;
 				}
+			}
+			
+			if(entity instanceof Fence) {
+				((Fence) entity).update(grid);
 			}
 		}
 		

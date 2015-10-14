@@ -23,6 +23,10 @@ public class Fence extends Entity {
 		g.fillRect(getX()*Game.SCALE, getY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
 	}
 
+	public void update(Entity[][] grid) {
+		grid[getX()][getY()] = this;
+	}
+	
 	public boolean update() {
 		// TODO Auto-generated method stub
 		return false;
