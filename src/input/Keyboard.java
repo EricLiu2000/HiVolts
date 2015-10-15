@@ -14,6 +14,11 @@ public class Keyboard implements KeyListener {
 	//The number of updates that occured this game
 	public static int updateCycle;
 	
+	/**
+	 * 
+	 * @param game the game that this keyboard is controlling
+	 * Author: Eric Liu
+	 */
 	public Keyboard(Game game) {
 		this.game = game;
 		updateCycle = 0;
@@ -22,6 +27,7 @@ public class Keyboard implements KeyListener {
 	/**
 	 * Called when a key is typed
 	 * calls game update method
+	 * Author: Eric Liu
 	 */
 	@Override
 	public void keyTyped(KeyEvent e) {

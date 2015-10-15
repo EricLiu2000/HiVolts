@@ -7,12 +7,19 @@ import window.Game;
 
 public class Player extends Entity {
 
+	/**
+	 * Creates a player and sets its position to the desired coordinates
+	 * @param xPosition the desired x coordinate
+	 * @param yPosition the desired y coordinate
+	 * Author: Joseph Rumelhart
+	 */
 	public Player(int xPosition, int yPosition) {
 		super(xPosition, yPosition);
 	}
 
 	/**
 	 * Draws the player on the game board
+	 * Author: Eric Liu
 	 */
 	@Override
 	public void draw(Graphics g) {
@@ -33,35 +40,35 @@ public class Player extends Entity {
 	}
 
 	/**
-	 * updates the player
-	 * called when a key is pressed
+	 * Moves the player according to keyboard input
+	 * This method is called when a key is pressed
+	 * Author: Eric Liu
 	 */
 	@Override
 	public boolean update(Entity[][] grid) {
-		int[] foo;
 		if(getAlive() == true) {
 			if(Game.keyboard.key == "q") {
 				grid[getX()][getY()] = null;
-				foo = move(Direction.NORTHWEST);
-				grid[foo[0]][foo[1]] = this;
+				move(Direction.NORTHWEST);
+				grid[getX()][getY()] = this;
 			}
 			
 			if(Game.keyboard.key == "w") {
 				grid[getX()][getY()] = null;
-				foo = move(Direction.NORTH);
-				grid[foo[0]][foo[1]] = this;
+				move(Direction.NORTH);
+				grid[getX()][getY()] = this;
 			}
 			
 			if(Game.keyboard.key == "e") {
 				grid[getX()][getY()] = null;
-				foo = move(Direction.NORTHEAST);
-				grid[foo[0]][foo[1]] = this;
+				move(Direction.NORTHEAST);
+				grid[getX()][getY()] = this;
 			}
 			
 			if(Game.keyboard.key == "a") {
 				grid[getX()][getY()] = null;
-				foo = move(Direction.WEST);
-				grid[foo[0]][foo[1]] = this;
+				move(Direction.WEST);
+				grid[getX()][getY()] = this;
 			}
 			
 			//Jump key, moves the player to a random position that is not a fence
@@ -74,26 +81,26 @@ public class Player extends Entity {
 			
 			if(Game.keyboard.key == "d") {
 				grid[getX()][getY()] = null;
-				foo = move(Direction.EAST);
-				grid[foo[0]][foo[1]] = this;
+				move(Direction.EAST);
+				grid[getX()][getY()] = this;
 			}
 			
 			if(Game.keyboard.key == "z") {
 				grid[getX()][getY()] = null;
-				foo = move(Direction.SOUTHWEST);
-				grid[foo[0]][foo[1]] = this;
+				move(Direction.SOUTHWEST);
+				grid[getX()][getY()] = this;
 			}
 			
 			if(Game.keyboard.key == "x") {
 				grid[getX()][getY()] = null;
-				foo = move(Direction.SOUTH);
-				grid[foo[0]][foo[1]] = this;
+				move(Direction.SOUTH);
+				grid[getX()][getY()] = this;
 			}
 			
 			if(Game.keyboard.key == "c") {
 				grid[getX()][getY()] = null;
-				foo = move(Direction.SOUTHEAST);
-				grid[foo[0]][foo[1]] = this;
+				move(Direction.SOUTHEAST);
+				grid[getX()][getY()] = this;
 			}
 			
 			//Kills the player when it hits an enemy or a fence
@@ -110,6 +117,7 @@ public class Player extends Entity {
 	 * Jumps the player to a random non-fence grid.
 	 * @param grid the array of game spaces
 	 * @return whether or not the player is alive
+	 * Author: Joseph Rumelhart
 	 */
 	public boolean jump(Entity[][] grid) {
 		setLastX(getX());

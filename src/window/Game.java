@@ -5,9 +5,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-
 import javax.swing.JFrame;
 import entities.Entity;
 import entities.Fence;
@@ -108,6 +105,7 @@ public class Game extends JFrame {
 	 * Creates the entities on the board randomly
 	 * @param entities arrayList of all entities on the inside of the board
 	 * @param entityType arrayList storing the type of entity to be created at each position
+	 * Author: Joseph Rumelhart
 	 */
 	public void createInternalEntities(ArrayList<Entity> entities, ArrayList<Type> entityType) {
 		for (int i = 1; i < 11 ; i++) {
@@ -145,6 +143,7 @@ public class Game extends JFrame {
 	/**
 	 * Creates the bounding fences on the edges
 	 * @param boundingFences The arraylist of fences
+	 * Author: Eric Liu
 	 */
 	public void createBoundingFences(ArrayList<Entity> boundingFences) {
 		//Creates top row
@@ -181,6 +180,7 @@ public class Game extends JFrame {
 	
 	/**
 	 * Draws the current state of the game on the screen
+	 * Author: Eric Liu
 	 */
 	public void paint(Graphics g) {
 	
@@ -199,6 +199,7 @@ public class Game extends JFrame {
 	
 	/**
 	 * Updates the game every time a key is pressed
+	 * Authors: Eric Liu and Joseph Rumelhart
 	 */
 	public void update() {
 		boolean pLive = player.update(grid);
@@ -208,19 +209,14 @@ public class Game extends JFrame {
 				entities.remove(player);
 				grid[player.getX()][player.getY()] = null;
 		}
-		
-		//Iterator<Entity> foo = entities.iterator();
-		
+
 		for(Entity entity : entities) {
 			if(entity instanceof Mho) {
 				//updates the Mho
 				boolean alive = ((Mho) entity).update(player, grid);
-				
 				if(alive == false) {
 					//The paint method is called directly to ensure it is executed immediately
-					//foo.next();
 					paint(this.getGraphics());
-					//foo.remove(); //Problem line
 					grid[entity.getX()][entity.getY()] = null;
 				}
 			}
