@@ -26,22 +26,22 @@ public class Mho extends Entity {
 		int xDiff = player.getX() - this.getX();
 		int yDiff = player.getY() - this.getY();
 		
-		if(xDiff == 0 && yDiff > 0) {
+		if(xDiff == 0 && yDiff > 0 && !(grid[getX()][getY() + 1] instanceof Mho)) {
 			grid[getX()][getY()] = null;
 			move(Direction.SOUTH);
 			grid[getX()][getY()] = this;
 		}
-		else if(xDiff == 0 && yDiff < 0) {
+		else if(xDiff == 0 && yDiff < 0 && !(grid[getX()][getY() - 1] instanceof Mho)) {
 			grid[getX()][getY()] = null;
 			move(Direction.NORTH);
 			grid[getX()][getY()] = this;
 		}
-		else if(yDiff == 0 && xDiff > 0) {
+		else if(yDiff == 0 && xDiff > 0 && !(grid[getX() + 1][getY()] instanceof Mho)) {
 			grid[getX()][getY()] = null;
 			move(Direction.SOUTH);
 			grid[getX()][getY()] = this;
 		}
-		else if(yDiff == 0 && xDiff < 0) {
+		else if(yDiff == 0 && xDiff < 0 && !(grid[getX() - 1][getY()] instanceof Mho)) {
 			grid[getX()][getY()] = null;
 			move(Direction.NORTH);
 			grid[getX()][getY()] = this;
@@ -82,7 +82,7 @@ public class Mho extends Entity {
 	 * Author: Eric Liu
 	 */
 	public boolean update(Player player, Entity[][] grid) {
-		//moveMho(player, grid);
+		moveMho(player, grid);
 		return getAlive();
 	}
 
