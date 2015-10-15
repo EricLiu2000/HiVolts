@@ -24,16 +24,22 @@ public class Mho extends Entity {
 	 * Author: Joseph Rumelhart
 	 */
 	public void moveMho(Player player, Entity[][] grid) {
+		if(player.getX() == this.getX() || player.getY() == this.getY()) {
+			moveLinear(player, grid);
+		}
+		
+		else {
+			
+		}
 		
 		if(grid[getX()][getY()] instanceof Fence) {
 			kill();
 		}
 	}
 	
-/*	private [] moveSpaces(Player player, Entity[][] grid) {
-		Type[] t1;
-		return t1;
-	}*/
+	private void moveLinear(Player player, Entity[][] grid) {
+		//Move in the correct direction on the line taking into account the object in the way
+	}
 	
 	/**
 	 * draws the mho on the game board
