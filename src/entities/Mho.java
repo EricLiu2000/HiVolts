@@ -30,10 +30,10 @@ public class Mho extends Entity {
 		}
 	}
 	
-	private Type[] moveSpaces(Player player, Entity[][] grid) {
+/*	private [] moveSpaces(Player player, Entity[][] grid) {
 		Type[] t1;
 		return t1;
-	}
+	}*/
 	
 	/**
 	 * draws the mho on the game board
