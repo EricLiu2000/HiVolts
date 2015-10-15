@@ -32,29 +32,30 @@ public class Player extends Entity {
 	}
 
 	public boolean update(Entity[][] grid) {
+		int[] foo;
 		if(getAlive() == true) {
 			if(Game.keyboard.key == "q") {
 				grid[getX()][getY()] = null;
-				move(Direction.NORTHWEST);
-				grid[getX()][getY()] = this;
+				foo = move(Direction.NORTHWEST);
+				grid[foo[0]][foo[1]] = this;
 			}
 			
 			if(Game.keyboard.key == "w") {
 				grid[getX()][getY()] = null;
-				move(Direction.NORTH);
-				grid[getX()][getY()] = this;
+				foo = move(Direction.NORTH);
+				grid[foo[0]][foo[1]] = this;
 			}
 			
 			if(Game.keyboard.key == "e") {
 				grid[getX()][getY()] = null;
-				move(Direction.NORTHEAST);
-				grid[getX()][getY()] = this;
+				foo = move(Direction.NORTHEAST);
+				grid[foo[0]][foo[1]] = this;
 			}
 			
 			if(Game.keyboard.key == "a") {
 				grid[getX()][getY()] = null;
-				move(Direction.WEST);
-				grid[getX()][getY()] = this;
+				foo = move(Direction.WEST);
+				grid[foo[0]][foo[1]] = this;
 			}
 			
 			if(Game.keyboard.key == "s") {
@@ -66,26 +67,26 @@ public class Player extends Entity {
 			
 			if(Game.keyboard.key == "d") {
 				grid[getX()][getY()] = null;
-				move(Direction.EAST);
-				grid[getX()][getY()] = this;
+				foo = move(Direction.EAST);
+				grid[foo[0]][foo[1]] = this;
 			}
 			
 			if(Game.keyboard.key == "z") {
 				grid[getX()][getY()] = null;
-				move(Direction.SOUTHWEST);
-				grid[getX()][getY()] = this;
+				foo = move(Direction.SOUTHWEST);
+				grid[foo[0]][foo[1]] = this;
 			}
 			
 			if(Game.keyboard.key == "x") {
 				grid[getX()][getY()] = null;
-				move(Direction.SOUTH);
-				grid[getX()][getY()] = this;
+				foo = move(Direction.SOUTH);
+				grid[foo[0]][foo[1]] = this;
 			}
 			
 			if(Game.keyboard.key == "c") {
 				grid[getX()][getY()] = null;
-				move(Direction.SOUTHEAST);
-				grid[getX()][getY()] = this;
+				foo = move(Direction.SOUTHEAST);
+				grid[foo[0]][foo[1]] = this;
 			}
 			
 			if(grid[getX()][getY()] instanceof Mho || grid[getX()][getY()] instanceof Fence ) {

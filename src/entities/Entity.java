@@ -112,7 +112,7 @@ public abstract class Entity {
 	 * Moves the entity in the specified direction
 	 * @param direction the direction to move in
 	 */
-	public void move(Direction direction) {
+	public int[] move(Direction direction) {
 		switch(direction) {
 			case NORTH: 
 				setLastX(getX());
@@ -162,6 +162,8 @@ public abstract class Entity {
 				System.out.println("Error: Invalid direction");
 				break;
 		}
+		int[] foo = {getX(),getY()};
+		return foo;
 	}
 
 	public boolean isAlive() {

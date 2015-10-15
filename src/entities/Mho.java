@@ -8,13 +8,6 @@ import window.Game;
 
 public class Mho extends Entity {
 	
-	private enum nextEntity {
-		MHO,
-		PLAYER,
-		FENCE,
-		EMPTY
-	}
-	
 	/**
 	 * Creates a Mho and sets its position to the given coordinates
 	 * @param xPosition the x coordinate of the Mho
