@@ -16,7 +16,7 @@ public class Player extends Entity {
 	 */
 	@Override
 	public void draw(Graphics g) {
-		
+		//Redraws the previous square to white
 		if(Keyboard.updateCycle > 0) {
 			g.setColor(Color.WHITE);
 			g.fillRect(getLastX()*Game.SCALE, getLastY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
@@ -64,6 +64,7 @@ public class Player extends Entity {
 				grid[foo[0]][foo[1]] = this;
 			}
 			
+			//Jump key, moves the player to a random position that is not a fence
 			if(Game.keyboard.key == "s") {
 				grid[getX()][getY()] = null;
 				setLastX(getX());
@@ -95,6 +96,7 @@ public class Player extends Entity {
 				grid[foo[0]][foo[1]] = this;
 			}
 			
+			//Kills the player when it hits an enemy or a fence
 			if(grid[getX()][getY()] instanceof Mho || grid[getX()][getY()] instanceof Fence ) {
 				kill();
 			}
@@ -115,16 +117,18 @@ public class Player extends Entity {
 		while(true) {
 			int validJumpX = (int) (1 + ((int)(grid.length - 2) * Math.random()));
 			int validJumpY = (int) (1 + ((int)(grid[0].length - 2) * Math.random()));
+			//Occurs when the random position selects a killing position
 			if(grid[validJumpX][validJumpY] instanceof Fence) {
 				System.out.println("You died");
 				kill();
-
 				break;
 			}
+			//Occurs when the random position selects an invalid position
 			else if(grid[validJumpX][validJumpY] instanceof Mho || grid[validJumpX][validJumpY] instanceof Player) {
 				System.out.println("I hit a fence");
 				continue;
 			}
+			//Occurs when the random position selects a valid position
 			else {
 				setXPosition(validJumpX);
 				setYPosition(validJumpY);
