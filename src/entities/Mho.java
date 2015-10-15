@@ -44,9 +44,16 @@ public class Mho extends Entity {
 			move(Direction.NORTH);
 			grid[getX()][getY()] = this;
 		}
+		else {
+			moreMove(player, grid);
+		}
 		if(grid[getX()][getY()] instanceof Fence) {
 			kill();
 		}
+	}
+	
+	private void moreMove(Player player, Entity[][] grid) {
+		
 	}
 	
 	/**
