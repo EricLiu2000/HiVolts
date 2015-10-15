@@ -78,7 +78,7 @@ public class Mho extends Entity {
 	 * @return whether the Mho is dead or alive
 	 */
 	public boolean update(Player player, Entity[][] grid) {
-		moveMho(player, grid);
+		//moveMho(player, grid);
 		return getAlive();
 	}
 

@@ -5,9 +5,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-
 import javax.swing.JFrame;
 import entities.Entity;
 import entities.Fence;
@@ -208,19 +205,14 @@ public class Game extends JFrame {
 				entities.remove(player);
 				grid[player.getX()][player.getY()] = null;
 		}
-		
-		//Iterator<Entity> foo = entities.iterator();
-		
+
 		for(Entity entity : entities) {
 			if(entity instanceof Mho) {
 				//updates the Mho
 				boolean alive = ((Mho) entity).update(player, grid);
-				
 				if(alive == false) {
 					//The paint method is called directly to ensure it is executed immediately
-					//foo.next();
 					paint(this.getGraphics());
-					//foo.remove(); //Problem line
 					grid[entity.getX()][entity.getY()] = null;
 				}
 			}
