@@ -35,6 +35,8 @@ public class Player extends Entity {
 		}
 		
 		if(!getAlive()) {
+			g.setColor(Color.WHITE);
+			g.fillRect(getX()*Game.SCALE, getY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
 			System.out.println("player dead");
 		}
 	}
@@ -49,26 +51,54 @@ public class Player extends Entity {
 		if(getAlive() == true) {
 			if(Game.keyboard.key == "q") {
 				grid[getX()][getY()] = null;
-				move(Direction.NORTHWEST);
-				grid[getX()][getY()] = this;
+				int futureX = getFuturePosition(Direction.NORTHWEST)[0];
+				int futureY = getFuturePosition(Direction.NORTHWEST)[1];
+				if(grid[futureX][futureY] instanceof Fence) {
+					kill();
+				}
+				else {
+					move(Direction.NORTHWEST);
+					grid[getX()][getY()] = this;
+				}
 			}
 			
 			if(Game.keyboard.key == "w") {
 				grid[getX()][getY()] = null;
-				move(Direction.NORTH);
-				grid[getX()][getY()] = this;
+				int futureX = getFuturePosition(Direction.NORTH)[0];
+				int futureY = getFuturePosition(Direction.NORTH)[1];
+				if(grid[futureX][futureY] instanceof Fence) {
+					kill();
+				}
+				else {
+					move(Direction.NORTH);
+					grid[getX()][getY()] = this;
+				}
 			}
 			
 			if(Game.keyboard.key == "e") {
 				grid[getX()][getY()] = null;
-				move(Direction.NORTHEAST);
-				grid[getX()][getY()] = this;
+				int futureX = getFuturePosition(Direction.NORTHEAST)[0];
+				int futureY = getFuturePosition(Direction.NORTHEAST)[1];
+				if(grid[futureX][futureY] instanceof Fence) {
+					kill();
+				}
+				else {
+					move(Direction.NORTHEAST);
+					grid[getX()][getY()] = this;
+				}
 			}
 			
 			if(Game.keyboard.key == "a") {
 				grid[getX()][getY()] = null;
-				move(Direction.WEST);
-				grid[getX()][getY()] = this;
+				int futureX = getFuturePosition(Direction.WEST)[0];
+				int futureY = getFuturePosition(Direction.WEST)[1];
+				if(grid[futureX][futureY] instanceof Fence) {
+					kill();
+				}
+				else {
+					move(Direction.WEST);
+					grid[getX()][getY()] = this;
+				}
 			}
 			
 			//Jump key, moves the player to a random position that is not a fence
@@ -81,31 +111,54 @@ public class Player extends Entity {
 			
 			if(Game.keyboard.key == "d") {
 				grid[getX()][getY()] = null;
-				move(Direction.EAST);
-				grid[getX()][getY()] = this;
+				int futureX = getFuturePosition(Direction.EAST)[0];
+				int futureY = getFuturePosition(Direction.EAST)[1];
+				if(grid[futureX][futureY] instanceof Fence) {
+					kill();
+				}
+				else {
+					move(Direction.EAST);
+					grid[getX()][getY()] = this;
+				}
 			}
 			
 			if(Game.keyboard.key == "z") {
 				grid[getX()][getY()] = null;
-				move(Direction.SOUTHWEST);
-				grid[getX()][getY()] = this;
+				int futureX = getFuturePosition(Direction.SOUTHWEST)[0];
+				int futureY = getFuturePosition(Direction.SOUTHWEST)[1];
+				if(grid[futureX][futureY] instanceof Fence) {
+					kill();
+				}
+				else {
+					move(Direction.SOUTHWEST);
+					grid[getX()][getY()] = this;
+				}
 			}
 			
 			if(Game.keyboard.key == "x") {
 				grid[getX()][getY()] = null;
-				move(Direction.SOUTH);
-				grid[getX()][getY()] = this;
+				int futureX = getFuturePosition(Direction.SOUTH)[0];
+				int futureY = getFuturePosition(Direction.SOUTH)[1];
+				if(grid[futureX][futureY] instanceof Fence) {
+					kill();
+				}
+				else {
+					move(Direction.SOUTH);
+					grid[getX()][getY()] = this;
+				}
 			}
 			
 			if(Game.keyboard.key == "c") {
 				grid[getX()][getY()] = null;
-				move(Direction.SOUTHEAST);
-				grid[getX()][getY()] = this;
-			}
-			
-			//Kills the player when it hits an enemy or a fence
-			if(grid[getX()][getY()] instanceof Mho || grid[getX()][getY()] instanceof Fence ) {
-				kill();
+				int futureX = getFuturePosition(Direction.SOUTHEAST)[0];
+				int futureY = getFuturePosition(Direction.SOUTHEAST)[1];
+				if(grid[futureX][futureY] instanceof Fence) {
+					kill();
+				}
+				else {
+					move(Direction.SOUTHEAST);
+					grid[getX()][getY()] = this;
+				}
 			}
 		}
 
