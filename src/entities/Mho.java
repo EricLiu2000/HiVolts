@@ -38,7 +38,22 @@ public class Mho extends Entity {
 	}
 	
 	private void moveLinear(Player player, Entity[][] grid) {
-		//Move in the correct direction on the line taking into account the object in the way
+		if(player.getX() == this.getX()) {
+			if(player.getY() >= this.getY()){
+				move(Direction.SOUTH);
+			}
+			else {
+				move(Direction.NORTH);
+			}
+		}
+		else {
+			if(player.getX() >= this.getX()){
+				move(Direction.EAST);
+			}
+			else {
+				move(Direction.WEST);
+			}
+		}
 	}
 	
 	/**
