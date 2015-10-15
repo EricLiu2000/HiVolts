@@ -105,6 +105,7 @@ public class Game extends JFrame {
 	 * Creates the entities on the board randomly
 	 * @param entities arrayList of all entities on the inside of the board
 	 * @param entityType arrayList storing the type of entity to be created at each position
+	 * Author: Joseph Rumelhart
 	 */
 	public void createInternalEntities(ArrayList<Entity> entities, ArrayList<Type> entityType) {
 		for (int i = 1; i < 11 ; i++) {
@@ -142,6 +143,7 @@ public class Game extends JFrame {
 	/**
 	 * Creates the bounding fences on the edges
 	 * @param boundingFences The arraylist of fences
+	 * Author: Eric Liu
 	 */
 	public void createBoundingFences(ArrayList<Entity> boundingFences) {
 		//Creates top row
@@ -178,6 +180,7 @@ public class Game extends JFrame {
 	
 	/**
 	 * Draws the current state of the game on the screen
+	 * Author: Eric Liu
 	 */
 	public void paint(Graphics g) {
 	
@@ -196,6 +199,7 @@ public class Game extends JFrame {
 	
 	/**
 	 * Updates the game every time a key is pressed
+	 * Authors: Eric Liu and Joseph Rumelhart
 	 */
 	public void update() {
 		boolean pLive = player.update(grid);

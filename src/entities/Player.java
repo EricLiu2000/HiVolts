@@ -7,6 +7,12 @@ import window.Game;
 
 public class Player extends Entity {
 
+	/**
+	 * Creates a player and sets its position to the desired coordinates
+	 * @param xPosition the desired x coordinate
+	 * @param yPosition the desired y coordinate
+	 * Author: Joseph Rumelhart
+	 */
 	public Player(int xPosition, int yPosition) {
 		super(xPosition, yPosition);
 	}

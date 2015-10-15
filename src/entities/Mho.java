@@ -12,6 +12,7 @@ public class Mho extends Entity {
 	 * Creates a Mho and sets its position to the given coordinates
 	 * @param xPosition the x coordinate of the Mho
 	 * @param yPosition the y coordinate of the Mho
+	 * Author: Joseph Rumelhart
 	 */
 	public Mho(int xPosition, int yPosition) {
 		super(xPosition, yPosition);
@@ -19,6 +20,7 @@ public class Mho extends Entity {
 	
 	/**
 	 * Move the Mho towards the player
+	 * Author: Joseph Rumelhart
 	 */
 	public void moveMho(Player player, Entity[][] grid) {
 		int xDiff = player.getX() - this.getX();
@@ -58,6 +60,7 @@ public class Mho extends Entity {
 	
 	/**
 	 * draws the mho on the game board
+	 * Author: Eric Liu
 	 */
 	@Override
 	public void draw(Graphics g) {
@@ -76,6 +79,7 @@ public class Mho extends Entity {
 	 * @param player the current player
 	 * @param grid the game board
 	 * @return whether the Mho is dead or alive
+	 * Author: Eric Liu
 	 */
 	public boolean update(Player player, Entity[][] grid) {
 		//moveMho(player, grid);

@@ -12,6 +12,7 @@ public class Fence extends Entity {
 	 * Creates a Fence with the given coordinates
 	 * @param xPosition the x coordinate of the Fence
 	 * @param yPosition the y coordinate of the Fence
+	 * Author: Joseph Rumelhart
 	 */
 	public Fence(int xPosition, int yPosition) {
 		super(xPosition, yPosition);
@@ -19,6 +20,7 @@ public class Fence extends Entity {
 
 	/**
 	 * Creates the visible fence on the game board
+	 * Author: Eric Liu
 	 */
 	@Override
 	public void draw(Graphics g) {
@@ -26,6 +28,10 @@ public class Fence extends Entity {
 		g.fillRect(getX()*Game.SCALE, getY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
 	}
 
+	/**
+	 * Updates the fence
+	 * Author: Eric Liu
+	 */
 	@Override
 	public boolean update(Entity[][] grid) {
 		grid[getX()][getY()] = this;
