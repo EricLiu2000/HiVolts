@@ -118,6 +118,7 @@ public class Player extends Entity {
 			if(grid[validJumpX][validJumpY] instanceof Fence) {
 				System.out.println("You died");
 				kill();
+
 				break;
 			}
 			else if(grid[validJumpX][validJumpY] instanceof Mho || grid[validJumpX][validJumpY] instanceof Player) {
