@@ -1,5 +1,13 @@
 # HiVolts
-Project by Eric Liu and Joseph Rumelhart
+Project by Eric Liu and Joseph Rumelhart\
 
-Collaborators: 
+Introduction: 
+
+Specifications:
+
+Current Errors:
+
+Challenges:
+
+Acknowledgements: 
 Ben Cohen-Wang
