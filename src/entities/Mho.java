@@ -5,6 +5,7 @@ import java.awt.Graphics;
 
 import input.Keyboard;
 import window.Game;
+import window.Game.Type;
 
 public class Mho extends Entity {
 	
@@ -23,39 +24,15 @@ public class Mho extends Entity {
 	 * Author: Joseph Rumelhart
 	 */
 	public void moveMho(Player player, Entity[][] grid) {
-		int xDiff = player.getX() - this.getX();
-		int yDiff = player.getY() - this.getY();
 		
-		if(xDiff == 0 && yDiff > 0 && !(grid[getX()][getY() + 1] instanceof Mho)) {
-			grid[getX()][getY()] = null;
-			move(Direction.SOUTH);
-			grid[getX()][getY()] = this;
-		}
-		else if(xDiff == 0 && yDiff < 0 && !(grid[getX()][getY() - 1] instanceof Mho)) {
-			grid[getX()][getY()] = null;
-			move(Direction.NORTH);
-			grid[getX()][getY()] = this;
-		}
-		else if(yDiff == 0 && xDiff > 0 && !(grid[getX() + 1][getY()] instanceof Mho)) {
-			grid[getX()][getY()] = null;
-			move(Direction.SOUTH);
-			grid[getX()][getY()] = this;
-		}
-		else if(yDiff == 0 && xDiff < 0 && !(grid[getX() - 1][getY()] instanceof Mho)) {
-			grid[getX()][getY()] = null;
-			move(Direction.NORTH);
-			grid[getX()][getY()] = this;
-		}
-		else {
-			moreMove(player, grid);
-		}
 		if(grid[getX()][getY()] instanceof Fence) {
 			kill();
 		}
 	}
 	
-	private void moreMove(Player player, Entity[][] grid) {
-		
+	private Type[] moveSpaces(Player player, Entity[][] grid) {
+		Type[] t1;
+		return t1;
 	}
 	
 	/**
