@@ -54,9 +54,6 @@ public class Mho extends Entity {
 		if(grid[getX()][getY()] instanceof Fence) {
 			kill();
 		}
-		if(player.getX() == getX() && player.getY() == getY()) {
-			player.kill();
-		}
 	}
 	
 	@Override

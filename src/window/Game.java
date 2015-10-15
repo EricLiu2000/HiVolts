@@ -206,7 +206,7 @@ public class Game extends JFrame {
 				grid[player.getX()][player.getY()] = null;
 		}
 		
-		Iterator<Entity> foo = entities.iterator();
+		//Iterator<Entity> foo = entities.iterator();
 		
 		for(Entity entity : entities) {
 			if(entity instanceof Mho) {
@@ -215,9 +215,9 @@ public class Game extends JFrame {
 				
 				if(alive == false) {
 					//The paint method is called directly to ensure it is executed immediately
-					foo.next();
+					//foo.next();
 					paint(this.getGraphics());
-					foo.remove(); //Problem line
+					//foo.remove(); //Problem line
 					grid[entity.getX()][entity.getY()] = null;
 				}
 			}
