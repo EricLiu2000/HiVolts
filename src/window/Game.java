@@ -56,14 +56,15 @@ public class Game extends JFrame {
 	public Game() {
 		keyboard = new Keyboard(this);
 		
+		//Creates a window to display the game
 		width = 12 * Game.SCALE;
 		height = 12 * Game.SCALE;
-
 		setSize(width, height + WINDOWBAR);
 		setBackground(Color.WHITE);
 
 		this.getContentPane().setFocusable(true);
 		
+		//Creates a keylistener
 		this.getContentPane().addKeyListener(keyboard);
 		
 		//ArrayList of entities on the board
@@ -130,6 +131,8 @@ public class Game extends JFrame {
 						entities.add(new Fence(i, j));
 					}
 					freeEntities--;
+					
+					//Passes the new entity into the game grid
 					getGrid()[i][j] = entities.get((int) (33-freeEntities));
 				}
 			}
@@ -222,6 +225,7 @@ public class Game extends JFrame {
 				}
 			}
 			
+			//Updates the fence
 			if(entity instanceof Fence) {
 				((Fence) entity).update(grid);
 			}
