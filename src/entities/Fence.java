@@ -17,18 +17,18 @@ public class Fence extends Entity {
 		super(xPosition, yPosition);
 	}
 
+	/**
+	 * Creates the visible fence on the game board
+	 */
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(Color.DARK_GRAY);
 		g.fillRect(getX()*Game.SCALE, getY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
 	}
 
-	public void update(Entity[][] grid) {
+	@Override
+	public boolean update(Entity[][] grid) {
 		grid[getX()][getY()] = this;
-	}
-	
-	public boolean update() {
-		// TODO Auto-generated method stub
-		return false;
+		return getAlive();
 	}
 }

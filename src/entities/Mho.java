@@ -49,28 +49,34 @@ public class Mho extends Entity {
 		}
 	}
 	
+	/**
+	 * draws the mho on the game board
+	 */
 	@Override
 	public void draw(Graphics g) {
-		
 		if(Keyboard.updateCycle > 0) {
 			g.setColor(Color.WHITE);
 			g.fillRect(getLastX()*Game.SCALE, getLastY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
 		}
-		
 		if(getAlive()) {
 			g.setColor(Color.RED);
 			g.fillRect(getX()*Game.SCALE, getY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
 		}
 	}
 
+	/**
+	 * Updates the mho to the current state of the board
+	 * @param player the current player
+	 * @param grid the game board
+	 * @return whether the Mho is dead or alive
+	 */
 	public boolean update(Player player, Entity[][] grid) {
 		moveMho(player, grid);
 		return getAlive();
 	}
 
 	@Override
-	//Unused update method
-	public boolean update() {
+	public boolean update(Entity[][] grid) {
 		// TODO Auto-generated method stub
 		return false;
 	}

@@ -2,8 +2,6 @@ package entities;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import input.Keyboard;
 import window.Game;
 
@@ -13,6 +11,9 @@ public class Player extends Entity {
 		super(xPosition, yPosition);
 	}
 
+	/**
+	 * Draws the player on the game board
+	 */
 	@Override
 	public void draw(Graphics g) {
 		
@@ -31,6 +32,11 @@ public class Player extends Entity {
 		}
 	}
 
+	/**
+	 * updates the player
+	 * called when a key is pressed
+	 */
+	@Override
 	public boolean update(Entity[][] grid) {
 		int[] foo;
 		if(getAlive() == true) {
@@ -127,14 +133,5 @@ public class Player extends Entity {
 			}
 		}
 		return getAlive();
-	}
-	
-	/**
-	 * unused update method
-	 */
-	@Override
-	public boolean update() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 }

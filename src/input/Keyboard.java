@@ -11,6 +11,7 @@ public class Keyboard implements KeyListener {
 
 	public Game game;
 	
+	//The number of updates that occured this game
 	public static int updateCycle;
 	
 	public Keyboard(Game game) {
@@ -18,12 +19,16 @@ public class Keyboard implements KeyListener {
 		updateCycle = 0;
 	}
 
-	//This method is called when a key is pressed
+	/**
+	 * Called when a key is typed
+	 * calls game update method
+	 */
 	@Override
 	public void keyTyped(KeyEvent e) {
 
 		updateCycle ++;
 		
+		//Gets input from the keyboard
 		if(e.getKeyChar() == 'q') {
 			key = "q";
 			game.update();
@@ -65,14 +70,9 @@ public class Keyboard implements KeyListener {
 	}
 
 	@Override
-	public void keyPressed(KeyEvent e) {
-		
-	}
+	public void keyPressed(KeyEvent e) {}
 
 	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void keyReleased(KeyEvent e) {}
 
 }

@@ -12,7 +12,7 @@ public class MhoTest extends EntityTest {
 	@Test
 	public void testUpdate() {
 		Mho m1 = new Mho(1,1);
-		m1.update();
+		//m1.update();
 		fail("Not yet implemented");
 	}
 

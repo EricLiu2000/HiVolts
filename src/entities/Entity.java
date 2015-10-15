@@ -4,10 +4,11 @@ import java.awt.Graphics;
 
 public abstract class Entity {
 	
-	//The values representing the position of the Entity
+	//The values representing the current position of the Entity
 	private int xPosition;
 	private int yPosition;
 	
+	//The values representing the previous position of the Entity
 	private int lastXPosition;
 	private int lastYPosition;
 	
@@ -50,7 +51,7 @@ public abstract class Entity {
 	 * Updates the Entity. Meant to be overridden.
 	 * @return if the Entity is alive
 	 */
-	public abstract boolean update();
+	public abstract boolean update(Entity[][] grid);
 	
 	/**
 	 * Gets the x coordinate of the Entity.
@@ -84,10 +85,17 @@ public abstract class Entity {
 		return lastYPosition;
 	}
 	
+	/**
+	 * Sets the last x coordinate
+	 * @param lastX the last x coordinate
+	 */
 	public void setLastX(int lastX) {
 		lastXPosition = lastX;
 	}
-	
+	/**
+	 * Sets the last y coordinate
+	 * @param lastY the last y coordinate 
+	 */
 	public void setLastY(int lastY) {
 		lastYPosition = lastY;
 	}
@@ -162,14 +170,24 @@ public abstract class Entity {
 				System.out.println("Error: Invalid direction");
 				break;
 		}
-		int[] foo = {getX(),getY()};
-		return foo;
+		
+		//returns the current coordinates of the entity
+		int[] currentCoords = {getX(),getY()};
+		return currentCoords;
 	}
 
+	/**
+	 * Checks whether the entity is alive
+	 * @return entity alive or dead
+	 */
 	public boolean isAlive() {
 		return isAlive;
 	}
 
+	/**
+	 * Sets the entity to be alive or dead
+	 * @param isAlive whether the entity is alive
+	 */
 	public void setAlive(boolean isAlive) {
 		this.isAlive = isAlive;
 	}
@@ -177,7 +195,7 @@ public abstract class Entity {
 	public void setXPosition(int xPosition) {
 		this.xPosition = xPosition;
 	}
-
+	
 	public void setYPosition(int yPosition) {
 		this.yPosition = yPosition;
 	}
