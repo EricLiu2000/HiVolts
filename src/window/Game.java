@@ -2,9 +2,12 @@ package window;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import entities.Entity;
 import entities.Fence;
@@ -40,6 +43,8 @@ public class Game extends JFrame {
 	
 	public static Keyboard keyboard;
 	
+	JButton restart;
+	
 	//Enum that represents the type of entity to be created
 	public enum Type{
 		FENCE,
@@ -61,6 +66,8 @@ public class Game extends JFrame {
 		setSize(width, height + WINDOWBAR);
 		setBackground(Color.WHITE);
 
+		restart = new JButton("Restart?");
+		
 		this.getContentPane().setFocusable(true);
 		
 		//Creates a keylistener
@@ -263,6 +270,7 @@ public class Game extends JFrame {
 				paint(this.getGraphics());
 				entities.remove(player);
 				grid[player.getX()][player.getY()] = null;
+				add(restart);
 		}
 		
 //		for(Mho mho : sortedMhos) {
@@ -271,6 +279,7 @@ public class Game extends JFrame {
 //				//The paint method is called directly to ensure it is executed immediately
 //				paint(this.getGraphics());
 //				grid[mho.getX()][mho.getY()] = null;
+				add(restart);
 //			}
 //		}
 		
@@ -301,5 +310,5 @@ public class Game extends JFrame {
 	
 	public void setGrid(Entity[][] grid) {
 		this.grid = grid;
-	}	
+	}
 }
