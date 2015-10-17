@@ -3,10 +3,9 @@ package entities;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
-
+import java.math.*;
 import input.Keyboard;
 import window.Game;
-import window.Game.Type;
 
 public class Mho extends Entity {
 	
@@ -32,9 +31,9 @@ public class Mho extends Entity {
 			moveComplex(player,grid);
 		}
 		
-		if(grid[getX()][getY()] instanceof Fence) {
-			kill();
-		}
+	//	if(grid[getX()][getY()] instanceof Fence) {
+		//	kill();
+	//	}
 	}
 	
 	/**
@@ -73,41 +72,83 @@ public class Mho extends Entity {
 	 */
 	private void moveComplex(Player player, Entity[][] grid) {
 		ArrayList<Entity> obstacles = new ArrayList<Entity>(3);
+		int numMhos = 0;
+		int numEmpty = 0;
 		Direction d = null;
-		//p1 finished
+		Direction dlat = null;
+		Direction dvert = null;
+		
+		//Determines the relevant squares and directions
 		if(player.getX() >= this.getX() && player.getY() >= this.getY()) {
 			obstacles.add(0, grid[this.getX() + 1][this.getY()]);
 			obstacles.add(1, grid[this.getX() + 1][this.getY() + 1]);
 			obstacles.add(2, grid[this.getX()][this.getY() + 1]);
-			d = Direction.SOUTHWEST;
+			d = Direction.SOUTHEAST;
+			dlat = Direction.EAST;
+			dvert = Direction.SOUTH;
 		}
-		//p2 finished
 		else if(player.getX() >= this.getX() && player.getY() <= this.getY()) {
 			obstacles.add(0, grid[this.getX()][this.getY() - 1 ]);
 			obstacles.add(1, grid[this.getX() + 1][this.getY() - 1]);
 			obstacles.add(2, grid[this.getX() + 1][this.getY()]);
-			d = Direction.NORTHWEST;
+			d = Direction.NORTHEAST;
+			dlat = Direction.EAST;
+			dvert = Direction.NORTH;
 		}
-		//p3 finished
 		else if(player.getX() <= this.getX() && player.getY() <= this.getY()) {
 			obstacles.add(0, grid[this.getX()][this.getY() - 1 ]);
 			obstacles.add(1, grid[this.getX() - 1][this.getY() - 1]);
 			obstacles.add(2, grid[this.getX() - 1][this.getY()]);
-			d = Direction.NORTHEAST;
+			d = Direction.NORTHWEST;
+			dlat = Direction.WEST;
+			dvert = Direction.NORTH;
 		}
-		//p4 finished
 		else if(player.getX() <= this.getX() && player.getY() >= this.getY()) {
 			obstacles.add(0, grid[this.getX() - 1][this.getY()]);
 			obstacles.add(1, grid[this.getX() - 1][this.getY() + 1]);
 			obstacles.add(2, grid[this.getX()][this.getY() + 1]);
-			d = Direction.SOUTHEAST;
+			d = Direction.SOUTHWEST;
+			dlat = Direction.WEST;
+			dvert = Direction.SOUTH;
 		}
 		else {
 			System.out.println("Error: Invalid call");
 		}
 		
-		if(obstacles.get(1) == null) {
-			move(d);
+		//Determines the content of each of the relevant squares
+		for(int i = 0; i < obstacles.size(); i++) {
+			if(obstacles.get(i) instanceof Mho) {
+				numMhos++;
+			}
+			else if(obstacles.get(i) == null) {
+				numEmpty++;
+			}
+		}
+		
+		//Moves in the decided direction
+		//If surrounded by mhos
+		if(numMhos == 3) {
+			System.out.println("Unmoving");
+		}
+		//Moves to an empty space
+		else if (numEmpty > 0) {
+			//Moves diagonally
+			if(obstacles.get(1) == null) {
+				move(d);
+			}
+			//Moves horizontally or vertically
+			else {
+				if(Math.abs(player.getX() - this.getX()) >= Math.abs(player.getY() - this.getY())) {
+					move(dlat);
+				}
+				else {
+					move(dvert);
+				}
+			}
+		}
+		//Moves on fence and dies
+		else {
+			kill();
 		}
 	}
 	
