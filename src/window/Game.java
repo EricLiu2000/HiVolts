@@ -300,6 +300,18 @@ public class Game extends JFrame {
 			}
 		}
 		
+		for(Entity entity : entities) {
+			for(Entity entity2 : entities) {
+				if(entity != entity2 && entity.getX() == entity2.getX() && entity.getY() == entity2.getY()) {
+					if(entity instanceof Player && (entity2 instanceof Fence || entity instanceof Mho)) {
+						entity.kill();
+					}
+					if(entity instanceof Mho && entity2 instanceof Fence) {
+						entity.kill();
+					}
+				}
+			}
+		}
 		//After all entities have updated, repaint the frame with the new results
 		repaint();
 	}

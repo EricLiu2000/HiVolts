@@ -64,41 +64,21 @@ public class Player extends Entity {
 			
 			if(Game.keyboard.key == "w") {
 				grid[getX()][getY()] = null;
-				int futureX = getFuturePosition(Direction.NORTH)[0];
-				int futureY = getFuturePosition(Direction.NORTH)[1];
-				if(grid[futureX][futureY] instanceof Fence) {
-					kill();
-				}
-				else {
-					move(Direction.NORTH);
-					grid[getX()][getY()] = this;
-				}
+				move(Direction.NORTH);
+				grid[getX()][getY()] = this;
+				
 			}
 			
 			if(Game.keyboard.key == "e") {
 				grid[getX()][getY()] = null;
-				int futureX = getFuturePosition(Direction.NORTHEAST)[0];
-				int futureY = getFuturePosition(Direction.NORTHEAST)[1];
-				if(grid[futureX][futureY] instanceof Fence) {
-					kill();
-				}
-				else {
-					move(Direction.NORTHEAST);
-					grid[getX()][getY()] = this;
-				}
+				move(Direction.NORTHEAST);
+				grid[getX()][getY()] = this;
 			}
 			
 			if(Game.keyboard.key == "a") {
 				grid[getX()][getY()] = null;
-				int futureX = getFuturePosition(Direction.WEST)[0];
-				int futureY = getFuturePosition(Direction.WEST)[1];
-				if(grid[futureX][futureY] instanceof Fence) {
-					kill();
-				}
-				else {
-					move(Direction.WEST);
-					grid[getX()][getY()] = this;
-				}
+				move(Direction.WEST);
+				grid[getX()][getY()] = this;
 			}
 			
 			//Jump key, moves the player to a random position that is not a fence
@@ -108,54 +88,26 @@ public class Player extends Entity {
 			
 			if(Game.keyboard.key == "d") {
 				grid[getX()][getY()] = null;
-				int futureX = getFuturePosition(Direction.EAST)[0];
-				int futureY = getFuturePosition(Direction.EAST)[1];
-				if(grid[futureX][futureY] instanceof Fence) {
-					kill();
-				}
-				else {
-					move(Direction.EAST);
-					grid[getX()][getY()] = this;
-				}
+				move(Direction.EAST);
+				grid[getX()][getY()] = this;
 			}
 			
 			if(Game.keyboard.key == "z") {
 				grid[getX()][getY()] = null;
-				int futureX = getFuturePosition(Direction.SOUTHWEST)[0];
-				int futureY = getFuturePosition(Direction.SOUTHWEST)[1];
-				if(grid[futureX][futureY] instanceof Fence) {
-					kill();
-				}
-				else {
-					move(Direction.SOUTHWEST);
-					grid[getX()][getY()] = this;
-				}
+				move(Direction.SOUTHWEST);
+				grid[getX()][getY()] = this;
 			}
 			
 			if(Game.keyboard.key == "x") {
 				grid[getX()][getY()] = null;
-				int futureX = getFuturePosition(Direction.SOUTH)[0];
-				int futureY = getFuturePosition(Direction.SOUTH)[1];
-				if(grid[futureX][futureY] instanceof Fence) {
-					kill();
-				}
-				else {
-					move(Direction.SOUTH);
-					grid[getX()][getY()] = this;
-				}
+				move(Direction.SOUTH);
+				grid[getX()][getY()] = this;
 			}
 			
 			if(Game.keyboard.key == "c") {
 				grid[getX()][getY()] = null;
-				int futureX = getFuturePosition(Direction.SOUTHEAST)[0];
-				int futureY = getFuturePosition(Direction.SOUTHEAST)[1];
-				if(grid[futureX][futureY] instanceof Fence) {
-					kill();
-				}
-				else {
-					move(Direction.SOUTHEAST);
-					grid[getX()][getY()] = this;
-				}
+				move(Direction.SOUTHEAST);
+				grid[getX()][getY()] = this;
 			}
 			
 			//Jumps the player to a random non-fence position
