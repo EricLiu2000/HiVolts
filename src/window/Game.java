@@ -120,7 +120,7 @@ public class Game extends JFrame {
 	 * @param entityType arrayList storing the type of entity to be created at each position
 	 * Author: Joseph Rumelhart
 	 */
-	public void createInternalEntities(ArrayList<Entity> entities, ArrayList<Type> entityType) {
+	private void createInternalEntities(ArrayList<Entity> entities, ArrayList<Type> entityType) {
 		for (int i = 1; i < 11 ; i++) {
 			for (int j = 1; j < 11 ; j++) {
 				double r = Math.random();
@@ -162,7 +162,7 @@ public class Game extends JFrame {
 	 * @param boundingFences The arraylist of fences
 	 * Author: Eric Liu
 	 */
-	public void createBoundingFences(ArrayList<Entity> boundingFences) {
+	 private void createBoundingFences(ArrayList<Entity> boundingFences) {
 		//Creates top row
 		for(int i = 0; i < 12; i++) {
 			Fence fence = new Fence(i, 0);
@@ -317,11 +317,11 @@ public class Game extends JFrame {
 		for(Entity entity : entities) {
 			for(Entity entity2 : entities) {
 				if(entity != entity2 && entity.getX() == entity2.getX() && entity.getY() == entity2.getY()) {
-					if(entity instanceof Player && (entity2 instanceof Fence || entity instanceof Mho)) {
+					
+					if(entity instanceof Player && (entity2 instanceof Fence || entity2 instanceof Mho)) {
 						entity.kill();
 					}
 					if(entity instanceof Mho && entity2 instanceof Fence) {
-						System.out.println("mho killed");
 						entity.kill();
 					}
 				}
