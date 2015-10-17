@@ -51,8 +51,8 @@ public class Keyboard implements KeyListener {
 			key = "a";
 			game.update();
 		}
-		if(e.getKeyChar() == 's') {
-			key = "s";
+		if(e.getKeyChar() == 'j') {
+			key = "j";
 			game.player.update(game.getGrid());
 			game.repaint();
 		}
@@ -70,6 +70,9 @@ public class Keyboard implements KeyListener {
 		}
 		if(e.getKeyChar() == 'c') {
 			key = "c";
+			game.update();
+		}
+		if(e.getKeyChar() == 's') {
 			game.update();
 		}
 		

@@ -86,7 +86,7 @@ public class Mho extends Entity {
 			d = Direction.SOUTHEAST;
 			dlat = Direction.EAST;
 			dvert = Direction.SOUTH;
-		}
+		}  
 		else if(player.getX() >= this.getX() && player.getY() <= this.getY()) {
 			obstacles.add(0, grid[this.getX()][this.getY() - 1 ]);
 			obstacles.add(1, grid[this.getX() + 1][this.getY() - 1]);
