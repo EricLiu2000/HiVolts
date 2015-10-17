@@ -76,30 +76,30 @@ public class Mho extends Entity {
 		Direction d = null;
 		//p1 finished
 		if(player.getX() >= this.getX() && player.getY() >= this.getY()) {
-			obstacles.set(0, grid[this.getX() + 1][this.getY()]);
-			obstacles.set(1, grid[this.getX() + 1][this.getY() + 1]);
-			obstacles.set(2, grid[this.getX()][this.getY() + 1]);
+			obstacles.add(0, grid[this.getX() + 1][this.getY()]);
+			obstacles.add(1, grid[this.getX() + 1][this.getY() + 1]);
+			obstacles.add(2, grid[this.getX()][this.getY() + 1]);
 			d = Direction.SOUTHWEST;
 		}
 		//p2 finished
 		else if(player.getX() >= this.getX() && player.getY() <= this.getY()) {
-			obstacles.set(0, grid[this.getX()][this.getY() - 1 ]);
-			obstacles.set(1, grid[this.getX() + 1][this.getY() - 1]);
-			obstacles.set(2, grid[this.getX() + 1][this.getY()]);
+			obstacles.add(0, grid[this.getX()][this.getY() - 1 ]);
+			obstacles.add(1, grid[this.getX() + 1][this.getY() - 1]);
+			obstacles.add(2, grid[this.getX() + 1][this.getY()]);
 			d = Direction.NORTHWEST;
 		}
 		//p3 finished
 		else if(player.getX() <= this.getX() && player.getY() <= this.getY()) {
-			obstacles.set(0, grid[this.getX()][this.getY() - 1 ]);
-			obstacles.set(1, grid[this.getX() - 1][this.getY() - 1]);
-			obstacles.set(2, grid[this.getX() - 1][this.getY()]);
+			obstacles.add(0, grid[this.getX()][this.getY() - 1 ]);
+			obstacles.add(1, grid[this.getX() - 1][this.getY() - 1]);
+			obstacles.add(2, grid[this.getX() - 1][this.getY()]);
 			d = Direction.NORTHEAST;
 		}
 		//p4 finished
 		else if(player.getX() <= this.getX() && player.getY() >= this.getY()) {
-			obstacles.set(0, grid[this.getX() - 1][this.getY()]);
-			obstacles.set(1, grid[this.getX() - 1][this.getY() + 1]);
-			obstacles.set(2, grid[this.getX()][this.getY() + 1]);
+			obstacles.add(0, grid[this.getX() - 1][this.getY()]);
+			obstacles.add(1, grid[this.getX() - 1][this.getY() + 1]);
+			obstacles.add(2, grid[this.getX()][this.getY() + 1]);
 			d = Direction.SOUTHEAST;
 		}
 		else {
