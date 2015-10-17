@@ -125,19 +125,22 @@ public class Game extends JFrame {
 					if(entityType.get((int) (33 - freeEntities)) == Type.PLAYER) {
 						player = new Player(i, j);
 						entities.add(player);
+						grid[i][j] = player;
 					}
 					//creates a Mho
 					else if(entityType.get((int) (33 - freeEntities)) == Type.MHO) {
-						entities.add(new Mho(i, j));
+						Mho mho = new Mho(i, j);
+						entities.add(mho);
+						grid[i][j] = mho;
+						
 					}
 					//Creates a fence
 					else {
-						entities.add(new Fence(i, j));
+						Fence fence = new Fence(i, j);
+						entities.add(fence);
+						grid[i][j] = fence;
 					}
 					freeEntities--;
-					
-					//Passes the new entity into the game grid
-					getGrid()[i][j] = entities.get((int) (33-freeEntities));
 				}
 			}
 			//If finished creating entities, break

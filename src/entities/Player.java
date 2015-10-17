@@ -184,14 +184,12 @@ public class Player extends Entity {
 			int validJumpX = (int) (1 + ((int)(grid.length - 2) * Math.random()));
 			int validJumpY = (int) (1 + ((int)(grid[0].length - 2) * Math.random()));
 			//Occurs when the random position selects a killing position
-			if(grid[validJumpX][validJumpY] instanceof Fence) {
-				System.out.println("You died");
+			if(grid[validJumpX][validJumpY] instanceof Mho) {
 				kill();
 				break;
 			}
 			//Occurs when the random position selects an invalid position
-			else if(grid[validJumpX][validJumpY] instanceof Mho || grid[validJumpX][validJumpY] instanceof Player) {
-				System.out.println("I hit a fence");
+			else if(grid[validJumpX][validJumpY] instanceof Fence || grid[validJumpX][validJumpY] instanceof Player) {
 				continue;
 			}
 			//Occurs when the random position selects a valid position
@@ -199,7 +197,6 @@ public class Player extends Entity {
 				setXPosition(validJumpX);
 				setYPosition(validJumpY);
 				grid[getX()][getY()] = this;
-				System.out.println("Successful jump");
 				break;
 			}
 		}
