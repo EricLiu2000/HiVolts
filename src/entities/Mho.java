@@ -38,6 +38,8 @@ public class Mho extends Entity {
 			moveComplex(player,grid);
 		}
 		
+		grid[getLastX()][getLastY()] = null;
+
 		if(grid[getX()][getY()] instanceof Fence) {
 			kill();
 		}
