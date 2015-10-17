@@ -2,6 +2,7 @@ package entities;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 import input.Keyboard;
 import window.Game;
@@ -25,11 +26,10 @@ public class Mho extends Entity {
 	 */
 	public void moveMho(Player player, Entity[][] grid) {
 		if(player.getX() == this.getX() || player.getY() == this.getY()) {
-			moveLinear(player, grid);
+			moveSimple(player, grid);
 		}
-		
 		else {
-			
+			moveComplex(player,grid);
 		}
 		
 		if(grid[getX()][getY()] instanceof Fence) {
@@ -37,7 +37,13 @@ public class Mho extends Entity {
 		}
 	}
 	
-	private void moveLinear(Player player, Entity[][] grid) {
+	/**
+	 * Simple movement; activates when on a direct line to the player
+	 * @param player
+	 * @param grid
+	 * Author: Joseph Rumelhart
+	 */
+	private void moveSimple(Player player, Entity[][] grid) {
 		if(player.getX() == this.getX()) {
 			if(player.getY() >= this.getY()){
 				move(Direction.SOUTH);
@@ -46,13 +52,62 @@ public class Mho extends Entity {
 				move(Direction.NORTH);
 			}
 		}
-		else {
+		else if(player.getY() == this.getY()) {
 			if(player.getX() >= this.getX()){
 				move(Direction.EAST);
 			}
 			else {
 				move(Direction.WEST);
 			}
+		}
+		else {
+			System.out.println("Error: Invalid call");
+		}
+	}
+	
+	/**
+	 * Complex movement; activates when not on a direct line to the player
+	 * @param player
+	 * @param grid
+	 * Author: Joseph Rumelhart
+	 */
+	private void moveComplex(Player player, Entity[][] grid) {
+		ArrayList<Entity> obstacles = new ArrayList<Entity>(3);
+		Direction d = null;
+		//p1 finished
+		if(player.getX() >= this.getX() && player.getY() >= this.getY()) {
+			obstacles.set(0, grid[this.getX() + 1][this.getY()]);
+			obstacles.set(1, grid[this.getX() + 1][this.getY() + 1]);
+			obstacles.set(2, grid[this.getX()][this.getY() + 1]);
+			d = Direction.SOUTHWEST;
+		}
+		//p2 finished
+		else if(player.getX() >= this.getX() && player.getY() <= this.getY()) {
+			obstacles.set(0, grid[this.getX()][this.getY() - 1 ]);
+			obstacles.set(1, grid[this.getX() + 1][this.getY() - 1]);
+			obstacles.set(2, grid[this.getX() + 1][this.getY()]);
+			d = Direction.NORTHWEST;
+		}
+		//p3 finished
+		else if(player.getX() <= this.getX() && player.getY() <= this.getY()) {
+			obstacles.set(0, grid[this.getX()][this.getY() - 1 ]);
+			obstacles.set(1, grid[this.getX() - 1][this.getY() - 1]);
+			obstacles.set(2, grid[this.getX() - 1][this.getY()]);
+			d = Direction.NORTHEAST;
+		}
+		//p4 finished
+		else if(player.getX() <= this.getX() && player.getY() >= this.getY()) {
+			obstacles.set(0, grid[this.getX() - 1][this.getY()]);
+			obstacles.set(1, grid[this.getX() - 1][this.getY() + 1]);
+			obstacles.set(2, grid[this.getX()][this.getY() + 1]);
+			d = Direction.SOUTHEAST;
+		}
+		else {
+			System.out.println("Error: Invalid call");
+		}
+		
+		if(obstacles.get(1) == null) {
+			move(d);
 		}
 	}
 	
