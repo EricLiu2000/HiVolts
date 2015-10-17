@@ -245,9 +245,23 @@ public class Game extends JFrame {
 	 */
 	public void paint(Graphics g) {
 	
-		//Draws all entities
+		//Mhos have no priority
 		for(Entity entity : entities) {
-			entity.draw(g);
+			if(entity instanceof Mho) {
+				entity.draw(g);
+			}
+		}
+		//Player has priority over Mhos
+		for(Entity entity : entities) {
+			if(entity instanceof Player) {
+				entity.draw(g);
+			}
+		}
+		//Fences have priority over everything
+		for(Entity entity : entities) {
+			if(entity instanceof Fence) {
+				entity.draw(g);
+			}
 		}
 
 		//Draws the lines 
@@ -307,6 +321,7 @@ public class Game extends JFrame {
 						entity.kill();
 					}
 					if(entity instanceof Mho && entity2 instanceof Fence) {
+						System.out.println("mho killed");
 						entity.kill();
 					}
 				}
