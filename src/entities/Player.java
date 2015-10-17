@@ -103,10 +103,7 @@ public class Player extends Entity {
 			
 			//Jump key, moves the player to a random position that is not a fence
 			if(Game.keyboard.key == "s") {
-				grid[getX()][getY()] = null;
-				setLastX(getX());
-				setLastY(getY());
-				this.jump(grid);
+				//sit and do nothing
 			}
 			
 			if(Game.keyboard.key == "d") {
@@ -159,6 +156,14 @@ public class Player extends Entity {
 					move(Direction.SOUTHEAST);
 					grid[getX()][getY()] = this;
 				}
+			}
+			
+			//Jumps the player to a random non-fence position
+			if(Game.keyboard.key == "j") {
+				grid[getX()][getY()] = null;
+				setLastX(getX());
+				setLastY(getY());
+				this.jump(grid);
 			}
 		}
 

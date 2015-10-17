@@ -3,7 +3,6 @@ package entities;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
-import java.math.*;
 import input.Keyboard;
 import window.Game;
 
@@ -19,6 +18,14 @@ public class Mho extends Entity {
 		super(xPosition, yPosition);
 	}
 	
+	public int getDistance(Player player) {
+		int xDistance = (player.getX() - getX());
+		int yDistance = (player.getY() - getY());
+		//no need to square root, we just want to sort by order of distance from player.
+		int distance = xDistance * xDistance + yDistance * yDistance;
+		return distance;
+	}
+	
 	/**
 	 * Move the Mho towards the player
 	 * Author: Joseph Rumelhart
@@ -31,9 +38,9 @@ public class Mho extends Entity {
 			moveComplex(player,grid);
 		}
 		
-	//	if(grid[getX()][getY()] instanceof Fence) {
-		//	kill();
-	//	}
+		if(grid[getX()][getY()] instanceof Fence) {
+			kill();
+		}
 	}
 	
 	/**

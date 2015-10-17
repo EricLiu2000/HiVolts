@@ -73,6 +73,7 @@ public class Keyboard implements KeyListener {
 			game.update();
 		}
 		if(e.getKeyChar() == 's') {
+			key = "s";
 			game.update();
 		}
 		
