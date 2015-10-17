@@ -22,7 +22,7 @@ public class Game extends JFrame {
 	
 	private ArrayList<Type> entityType;
 	
-	private ArrayList<Mho> sortedMhos;
+	//private ArrayList<Mho> sortedMhos;
 	
 	private Entity[][] grid;
 	
@@ -72,7 +72,7 @@ public class Game extends JFrame {
 		//ArrayList of the outer fences
 		boundingFences = new ArrayList<Entity>(44);
 		
-		sortedMhos = new ArrayList<Mho>();
+		//sortedMhos = new ArrayList<Mho>();
 		
 		//Sets the number of internal entities that still need to be created
 		freeEntities = 33.0;
@@ -103,7 +103,7 @@ public class Game extends JFrame {
 		//Creates the internal entities
 		createInternalEntities(entities, entityType);
 		
-		sortMhos();
+		//sortMhos();
 
 		repaint();
 	}
@@ -185,6 +185,7 @@ public class Game extends JFrame {
 		entities.addAll(boundingFences);
 	}
 	
+	/**
 	public void sortMhos() {
 		int[] distances;
 		distances = new int[12];
@@ -220,12 +221,13 @@ public class Game extends JFrame {
 				}
 				//problem line, concurrent modification
 				//we want to remove old mhos from entites
-				entities.remove(entity);
+				//entities.remove(entity);
 			}
 		}
 		//merges this arraylist with entities
 		entities.addAll(sortedMhos);
 	}
+	**/
 	
 	/**
 	 * Draws the current state of the game on the screen
@@ -251,7 +253,7 @@ public class Game extends JFrame {
 	 * Authors: Eric Liu and Joseph Rumelhart
 	 */
 	public void update() {
-		sortMhos();
+		//sortMhos();
 		boolean pLive = player.update(grid);
 		if(pLive == false) {
 				//The paint method is called directly to ensure it is executed immediately
@@ -260,25 +262,25 @@ public class Game extends JFrame {
 				grid[player.getX()][player.getY()] = null;
 		}
 		
-		for(Mho mho : sortedMhos) {
-			boolean alive = mho.update(player, grid);
-			if(alive == false) {
-				//The paint method is called directly to ensure it is executed immediately
-				paint(this.getGraphics());
-				grid[mho.getX()][mho.getY()] = null;
-			}
-		}
+//		for(Mho mho : sortedMhos) {
+//			boolean alive = mho.update(player, grid);
+//			if(alive == false) {
+//				//The paint method is called directly to ensure it is executed immediately
+//				paint(this.getGraphics());
+//				grid[mho.getX()][mho.getY()] = null;
+//			}
+//		}
 		
 		for(Entity entity : entities) {
-//			if(entity instanceof Mho) {
-//				//updates the Mho
-//				boolean alive = ((Mho) entity).update(player, grid);
-//				if(alive == false) {
-//					//The paint method is called directly to ensure it is executed immediately
-//					paint(this.getGraphics());
-//					grid[entity.getX()][entity.getY()] = null;
-//				}
-//			}
+			if(entity instanceof Mho) {
+				//updates the Mho
+				boolean alive = ((Mho) entity).update(player, grid);
+				if(alive == false) {
+					//The paint method is called directly to ensure it is executed immediately
+					paint(this.getGraphics());
+					grid[entity.getX()][entity.getY()] = null;
+				}
+			}
 			
 			//Updates the fence
 			if(entity instanceof Fence) {
