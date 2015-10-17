@@ -30,4 +30,11 @@ public class MhoTest extends EntityTest {
 		Mho m1 = new Mho(1,1);
 		assertTrue("Mho is alive", m1.getAlive());
 	}
+	
+	@Test
+	public void testMhoType() {
+		Entity m1 = new Mho(1, 1);
+		assertTrue("Mho is a Mho", m1 instanceof Mho);
+		assertFalse("Mho is a Fence", m1 instanceof Fence);
+	}
 }
