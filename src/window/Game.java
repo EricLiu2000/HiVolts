@@ -310,6 +310,7 @@ public class Game extends JFrame implements ActionListener {
 					//The paint method is called directly to ensure it is executed immediately
 					paint(this.getGraphics());
 					grid[entity.getX()][entity.getY()] = null;
+					System.out.println("Mho dead");
 				}
 			}
 			
