@@ -104,7 +104,7 @@ public class Game extends JFrame {
 		//Shuffles the collection to prepare for random generation and prevents player generation bug
 		while(true) {
 			Collections.shuffle(entityType);
-			if(!(entityType.get(32) == Type.PLAYER || entityType.get(31) == Type.PLAYER)) {
+			if(!(entityType.get(32) == Type.PLAYER || entityType.get(31) == Type.PLAYER || entityType.get(30) == Type.PLAYER)) {
 				break;
 			}
 		}
