@@ -53,7 +53,10 @@ public class Mho extends Entity {
 	 * Author: Joseph Rumelhart
 	 */
 	private void moveSimple(Player player, Entity[][] grid) {
-		if(player.getX() == this.getX()) {
+		if(player.getX() == this.getX() && player.getY() == this.getY()) {
+			//sit
+		}
+		else if(player.getX() == this.getX()) {
 			if(player.getY() >= this.getY()){
 				move(Direction.SOUTH);
 			}
