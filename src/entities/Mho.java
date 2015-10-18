@@ -38,8 +38,8 @@ public class Mho extends Entity {
 			moveComplex(player,grid);
 		}
 		
-		grid[getLastX()][getLastY()] = null;
 		grid[getX()][getY()] = this;
+		grid[getLastX()][getLastY()] = null;
 
 		if(grid[getX()][getY()] instanceof Fence) {
 			kill();
@@ -120,7 +120,7 @@ public class Mho extends Entity {
 		}
 
 		//Determines the content of each of the relevant squares
-		for(int i = 0; i < obstacles.size(); i++) {
+		for(int i = 0; i < 3; i++) {
 			if(obstacles.get(i) instanceof Mho) {
 				numMhos++;
 			}
