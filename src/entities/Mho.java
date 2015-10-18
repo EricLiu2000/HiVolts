@@ -130,17 +130,6 @@ public class Mho extends Entity {
 			dlat = Direction.WEST;
 			dvert = Direction.SOUTH;
 		}
-		
-		//Moves directly on to a player if it is directly adjacent
-		if(obstacles.get(0) instanceof Player) {
-			move(dlat);
-		}
-		else if(obstacles.get(1) instanceof Player) {
-			move(d);
-		}
-		else if(obstacles.get(2) instanceof Player) {
-			move(dvert);
-		}
 
 		//Determines the content of each of the relevant squares
 		for(int i = 0; i < 3; i++) {
@@ -154,10 +143,19 @@ public class Mho extends Entity {
 		
 		//Moves in the decided direction
 		//If surrounded by mhos
-		if(numMhos == 3) {
+		if(obstacles.get(0) instanceof Player) {
+			move(dlat);
+		}
+		else if(obstacles.get(1) instanceof Player) {
+			move(d);
+		}
+		else if(obstacles.get(2) instanceof Player) {
+			move(dvert);
+		}
+		else if(numMhos == 3) {
 			//sit
 		}
-		//Moves to an empty space
+		//Moves to an empty space 
 		else if (numEmpty > 0) {
 			//Moves diagonally
 			if(obstacles.get(1) == null) {
