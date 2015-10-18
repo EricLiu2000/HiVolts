@@ -200,7 +200,6 @@ public class Mho extends Entity {
 			g.drawImage(image, getX() * Game.SCALE, getY() * Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE, null);
 		}
 		if(!getAlive()) {
-			System.out.println("undrawing a mho");
 			g.setColor(Color.WHITE);
 			g.fillRect(getX()*Game.SCALE, getY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
 		}
