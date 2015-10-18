@@ -75,6 +75,11 @@ public class Keyboard implements KeyListener {
 			key = "s";
 			game.update();
 		}
+		//FOR TESTING
+		if(e.getKeyChar() == 'k') {
+			game.killMhos();
+			game.update();
+		}
 		if(!game.player.getAlive()) {
 			game.update();
 		}

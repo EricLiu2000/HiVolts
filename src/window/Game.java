@@ -264,7 +264,8 @@ public class Game extends JFrame implements ActionListener {
 		}
 		
 		if(state == GameState.MHOS_DEAD) {
-			JTextField text = new JTextField("You Lost!");
+			System.out.println("hey");
+			JTextField text = new JTextField("You Win!");
 			
 			JButton restart = new JButton("Play again");
 			JButton quit = new JButton("Quit");
@@ -272,8 +273,8 @@ public class Game extends JFrame implements ActionListener {
 			restart.addActionListener(this);
 			quit.addActionListener(this);
 			
-			restart.setBounds(50, 50, 100, 100);
-			quit.setBounds(300, 50, 100, 100);
+			restart.setBounds(50, 200, 100, 100);
+			quit.setBounds(300, 200, 100, 100);
 			text.setBounds(50, 50, 100, 100);
 			
 			text.setFocusable(false);
@@ -351,6 +352,7 @@ public class Game extends JFrame implements ActionListener {
 		}
 		
 		if(mhoCount == 0) {
+			System.out.println("all mhos dead");
 			endGame(GameState.MHOS_DEAD);
 		}
 			
@@ -373,6 +375,14 @@ public class Game extends JFrame implements ActionListener {
 	
 	private void endGame(GameState end) {
 		state = end;
+	}
+	
+	public void killMhos() {
+		for(Entity entity : entities) {
+			if(entity instanceof Mho) {
+				entity.kill();
+			}
+		}
 	}
 	
 	@Override
