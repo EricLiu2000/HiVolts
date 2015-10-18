@@ -174,6 +174,7 @@ public class Mho extends Entity {
 			g.fillRect(getX()*Game.SCALE, getY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
 		}
 		if(!getAlive()) {
+			System.out.println("undrawing a mho");
 			g.setColor(Color.WHITE);
 			g.fillRect(getX()*Game.SCALE, getY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
 		}
