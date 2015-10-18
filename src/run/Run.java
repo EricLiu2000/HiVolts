@@ -11,7 +11,10 @@ public class Run {
 	 * Author: Eric Liu
 	 */
 	public static void main(String[] args) {
-		//Constructs a new Game, which runs it.
+		runGame();
+	}
+	
+	public static void runGame() {
 		Game game = new Game();
 		game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		game.setVisible(true);

@@ -389,9 +389,8 @@ public class Game extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(((JButton)e.getSource()).getText() == "Play again") {
-//			Run run = new Run();
-//			String[] args = {};
-//			run.main(args);
+			Run.runGame();
+			this.dispose();
 		}
 		
 		if(((JButton)e.getSource()).getText() == "Quit") {
