@@ -17,6 +17,7 @@ import entities.Fence;
 import entities.Mho;
 import entities.Player;
 import input.Keyboard;
+import run.Run;
 
 public class Game extends JFrame implements ActionListener {
 
@@ -388,11 +389,13 @@ public class Game extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(((JButton)e.getSource()).getText() == "Play again") {
-			System.out.println("i wanna play again");
+//			Run run = new Run();
+//			String[] args = {};
+//			run.main(args);
 		}
 		
 		if(((JButton)e.getSource()).getText() == "Quit") {
-			System.out.println("i quit");
+			System.exit(DISPOSE_ON_CLOSE);
 		}
 	}
 }

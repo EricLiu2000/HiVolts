@@ -16,5 +16,4 @@ public class Run {
 		game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		game.setVisible(true);
 	}
-
 }
