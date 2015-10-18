@@ -3,11 +3,18 @@ package entities;
 import java.awt.Color;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import window.Game;
 
 public class Fence extends Entity {
 
+	private BufferedImage image = null;
+	
 	/**
 	 * Creates a Fence with the given coordinates
 	 * @param xPosition the x coordinate of the Fence
@@ -16,6 +23,13 @@ public class Fence extends Entity {
 	 */
 	public Fence(int xPosition, int yPosition) {
 		super(xPosition, yPosition);
+		
+		try{
+			image = ImageIO.read(new File("images/fence.jpg"));
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -24,8 +38,7 @@ public class Fence extends Entity {
 	 */
 	@Override
 	public void draw(Graphics g) {
-		g.setColor(Color.DARK_GRAY);
-		g.fillRect(getX()*Game.SCALE, getY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
+		g.drawImage(image, getX() * Game.SCALE, getY() * Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE, null);
 	}
 
 	/**

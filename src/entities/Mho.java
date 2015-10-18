@@ -2,11 +2,18 @@ package entities;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
+
 import input.Keyboard;
 import window.Game;
 
 public class Mho extends Entity {
+	private BufferedImage image = null;
 	
 	/**
 	 * Creates a Mho and sets its position to the given coordinates
@@ -16,6 +23,12 @@ public class Mho extends Entity {
 	 */
 	public Mho(int xPosition, int yPosition) {
 		super(xPosition, yPosition);
+		try{
+			image = ImageIO.read(new File("images/mho.jpg"));
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
 	}
 	
 	public int getDistance(Player player) {
@@ -184,8 +197,7 @@ public class Mho extends Entity {
 			g.fillRect(getLastX()*Game.SCALE, getLastY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
 		}
 		if(getAlive()) {
-			g.setColor(Color.RED);
-			g.fillRect(getX()*Game.SCALE, getY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
+			g.drawImage(image, getX() * Game.SCALE, getY() * Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE, null);
 		}
 		if(!getAlive()) {
 			System.out.println("undrawing a mho");
