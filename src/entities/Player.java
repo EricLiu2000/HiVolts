@@ -6,15 +6,17 @@ import input.Keyboard;
 import window.Game;
 
 public class Player extends Entity {
-
+	private Game game;
+	
 	/**
 	 * Creates a player and sets its position to the desired coordinates
 	 * @param xPosition the desired x coordinate
 	 * @param yPosition the desired y coordinate
 	 * Author: Joseph Rumelhart
 	 */
-	public Player(int xPosition, int yPosition) {
+	public Player(int xPosition, int yPosition, Game game) {
 		super(xPosition, yPosition);
+		this.game = game;
 	}
 
 	/**
@@ -37,7 +39,6 @@ public class Player extends Entity {
 		if(!getAlive()) {
 			g.setColor(Color.WHITE);
 			g.fillRect(getX()*Game.SCALE, getY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
-			System.out.println("player dead");
 		}
 	}
 
@@ -49,7 +50,6 @@ public class Player extends Entity {
 	@Override
 	public boolean update(Entity[][] grid) {
 		if(getAlive() == true) {
-			System.out.println("player is alive");
 			if(Game.keyboard.key == "q") {
 				grid[getX()][getY()] = null;
 				move(Direction.NORTHWEST);
@@ -129,9 +129,8 @@ public class Player extends Entity {
 			int validJumpY = (int) (1 + ((int)(grid[0].length - 2) * Math.random()));
 			//Occurs when the random position selects a killing position
 			if(grid[validJumpX][validJumpY] instanceof Mho) {
-				System.out.println("x: " + validJumpX);
-				System.out.println("y: " + validJumpY);
 				kill();
+				game.update();
 				break;
 			}
 			//Occurs when the random position selects an invalid position

@@ -69,9 +69,6 @@ public class Mho extends Entity {
 				move(Direction.WEST);
 			}
 		}
-		else {
-			System.out.println("Error: Invalid call");
-		}
 	}
 	
 	/**
@@ -121,10 +118,7 @@ public class Mho extends Entity {
 			dlat = Direction.WEST;
 			dvert = Direction.SOUTH;
 		}
-		else {
-			System.out.println("Error: Invalid call");
-		}
-		
+
 		//Determines the content of each of the relevant squares
 		for(int i = 0; i < obstacles.size(); i++) {
 			if(obstacles.get(i) instanceof Mho) {
@@ -138,7 +132,7 @@ public class Mho extends Entity {
 		//Moves in the decided direction
 		//If surrounded by mhos
 		if(numMhos == 3) {
-			System.out.println("Unmoving");
+			//sit
 		}
 		//Moves to an empty space
 		else if (numEmpty > 0) {

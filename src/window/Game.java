@@ -2,8 +2,13 @@ package window;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import entities.Entity;
 import entities.Fence;
@@ -11,7 +16,7 @@ import entities.Mho;
 import entities.Player;
 import input.Keyboard;
 
-public class Game extends JFrame {
+public class Game extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -20,9 +25,7 @@ public class Game extends JFrame {
 	private ArrayList<Entity> boundingFences;
 	
 	private ArrayList<Type> entityType;
-	
-	//private ArrayList<Mho> sortedMhos;
-	
+
 	private Entity[][] grid;
 	
 	private double freeEntities;
@@ -38,6 +41,10 @@ public class Game extends JFrame {
 	public static int SCALE = 50;
 	
 	public static Keyboard keyboard;
+	
+	public JButton restart;
+	
+	public JButton quit;
 
 	//Enum that represents the type of entity to be created
 	public enum Type{
@@ -47,11 +54,12 @@ public class Game extends JFrame {
 	}
 	Type type;
 	
-	public enum EndState{
+	public enum GameState{
 		PLAYER_DEAD,
-		MHOS_DEAD
+		MHOS_DEAD,
+		ONGOING
 	}
-	EndState end;
+	GameState state = GameState.ONGOING;
 	
 	/**
 	 * Game constructor
@@ -76,9 +84,7 @@ public class Game extends JFrame {
 		
 		//ArrayList of the outer fences
 		boundingFences = new ArrayList<Entity>(44);
-		
-		//sortedMhos = new ArrayList<Mho>();
-		
+
 		//Sets the number of internal entities that still need to be created
 		freeEntities = 33.0;
 		
@@ -92,12 +98,12 @@ public class Game extends JFrame {
 		//Adds the Mhos
 		for(int i = 1; i < 13; i++) {
 			entityType.add(Type.MHO);
-			}
+		}
 		
 		//Adds the fences
 		for(int i = 13; i < 33; i++) {
 			entityType.add(Type.FENCE);
-			}
+		}
 		
 		//Shuffles the collection to prepare for random generation and prevents player generation bug
 		while(true) {
@@ -106,13 +112,12 @@ public class Game extends JFrame {
 				break;
 			}
 		}
+		
 		//Creates the bounding fences
 		createBoundingFences(boundingFences);
 		
 		//Creates the internal entities
 		createInternalEntities(entities, entityType);
-		
-		//sortMhos();
 
 		repaint();
 	}
@@ -132,17 +137,18 @@ public class Game extends JFrame {
 				if(r < threshold) {
 					//Creates a player
 					if(entityType.get((int) (33 - freeEntities)) == Type.PLAYER) {
-						player = new Player(i, j);
+						player = new Player(i, j, this);
 						entities.add(player);
 						grid[i][j] = player;
 					}
+					
 					//creates a Mho
 					else if(entityType.get((int) (33 - freeEntities)) == Type.MHO) {
 						Mho mho = new Mho(i, j);
 						entities.add(mho);
 						grid[i][j] = mho;
-						
 					}
+					
 					//Creates a fence
 					else {
 						Fence fence = new Fence(i, j);
@@ -196,81 +202,69 @@ public class Game extends JFrame {
 		//Adds these bounding fences to the list of entities
 		entities.addAll(boundingFences);
 	}
-	
-	/**
-	public void sortMhos() {
-		int[] distances;
-		distances = new int[12];
-		int counter = 0;
-		
-		
-		for(Entity entity : entities) {
-			if(entity instanceof Mho) {
-				//sets each spot in distances to the distances of the mhos
-				distances[counter] = ((Mho) entity).getDistance(player);
-				//adds empty spaces in sortedmhos so we can use the set() method without nullpointer errors
-				sortedMhos.add(counter, null);
-				counter ++;
-			}
-		}
-		
-		//Sorts distances in ascending order
-		Arrays.sort(distances);
-		
-		for(Entity entity : entities) {
-			if(entity instanceof Mho) {
-				//Cycles thru the sorted array of distances and if there is a match, set the spot in sortedMhos 
-				//to the spot in distances. 
-				for(int counter1 = 0; counter1 < 11; counter1 ++) {
-					if(((Mho) entity).getDistance(player) == distances[counter1]) {
-						//this essentially takes it out of the array without removing, which would decrease array size
-						distances[counter1] = 0;
-						//puts the mho in the same place in sortedMhos as it is in the sorted array of distances
-						sortedMhos.set(counter1, (Mho) entity);
-						//breaks out of this inner for loop only?
-						break;
-					}
-				}
-				//problem line, concurrent modification
-				//we want to remove old mhos from entites
-				//entities.remove(entity);
-			}
-		}
-		//merges this arraylist with entities
-		entities.addAll(sortedMhos);
-	}
-	**/
-	
+
 	/**
 	 * Draws the current state of the game on the screen
 	 * Author: Eric Liu
 	 */
 	public void paint(Graphics g) {
+		if(state == GameState.ONGOING) {
+			
+			//Player has least priority for drawing
+			for(Entity entity : entities) {
+				if(entity instanceof Player) {
+					entity.draw(g);
+				}
+			}
+			
+			//Mhos have priotity over player
+			for(Entity entity : entities) {
+				if(entity instanceof Mho) {
+					entity.draw(g);
+				}
+			}
+			
+			//Fences have priority over everything
+			for(Entity entity : entities) {
+				if(entity instanceof Fence) {
+					entity.draw(g);
+				}
+			}
 	
-		//Mhos have no priority
-		for(Entity entity : entities) {
-			if(entity instanceof Mho) {
-				entity.draw(g);
+			//Draws the lines 
+			for(int i = 1; i <= 11; i++) {
+				g.setColor(Color.BLACK);
+				g.drawLine(i*Game.SCALE, 0 + Game.WINDOWBAR, i*Game.SCALE, 12*Game.SCALE + Game.WINDOWBAR);
+				g.drawLine(0, i*Game.SCALE + Game.WINDOWBAR, 12*Game.SCALE, i*Game.SCALE + Game.WINDOWBAR);
 			}
 		}
-		//Player has priority over Mhos
-		for(Entity entity : entities) {
-			if(entity instanceof Player) {
-				entity.draw(g);
-			}
-		}
-		//Fences have priority over everything
-		for(Entity entity : entities) {
-			if(entity instanceof Fence) {
-				entity.draw(g);
-			}
-		}
-
-		//Draws the lines 
-		for(int i = 1; i <= 11; i++) {
+		
+		if(state == GameState.PLAYER_DEAD) {
 			g.setColor(Color.BLACK);
-			g.drawLine(i*Game.SCALE, 0 + Game.WINDOWBAR, i*Game.SCALE, 12*Game.SCALE + Game.WINDOWBAR);
-			g.drawLine(0, i*Game.SCALE + Game.WINDOWBAR, 12*Game.SCALE, i*Game.SCALE + Game.WINDOWBAR);
+			g.fillRect(0, Game.WINDOWBAR, 12*Game.SCALE, 12*Game.SCALE);
+			
+			JButton restart = new JButton("Play again");
+			JButton quit = new JButton("Quit");
+			
+			restart.setVisible(true);
+			quit.setVisible(true);
+			
+			restart.addActionListener(this);
+			quit.addActionListener(this);
+		}
+		
+		if(state == GameState.MHOS_DEAD) {
+			g.setColor(Color.BLACK);
+			g.fillRect(0, Game.WINDOWBAR, 12*Game.SCALE, 12*Game.SCALE);
+			
+			JButton restart = new JButton("Play again");
+			JButton quit = new JButton("Quit");
+			
+			restart.addActionListener(this);
+			quit.addActionListener(this);
+			
+			restart.setVisible(true);
+			quit.setVisible(true);
 		}
 	}
 	
@@ -291,15 +285,6 @@ public class Game extends JFrame {
 				grid[player.getX()][player.getY()] = null;
 		}
 		
-//		for(Mho mho : sortedMhos) {
-//			boolean alive = mho.update(player, grid);
-//			if(alive == false) {
-//				//The paint method is called directly to ensure it is executed immediately
-//				paint(this.getGraphics());
-//				grid[mho.getX()][mho.getY()] = null;
-//			}
-//		}
-		
 		for(Entity entity : entities) {
 			if(entity instanceof Mho) {
 				//updates the Mho
@@ -318,7 +303,6 @@ public class Game extends JFrame {
 		}
 		
 		for(Entity entity : entities) {
-			
 			for(Entity entity2 : entities) {
 				if(entity2 instanceof Player) {
 					playerCount ++;
@@ -332,21 +316,31 @@ public class Game extends JFrame {
 						entity.kill();
 					}
 					if(entity instanceof Mho && entity2 instanceof Fence) {
-						System.out.println("mho killed");
 						entity.kill();
 					}
 				}
 			}
-			
-			
 		}
+		
+		//Iterates through entities and removes the dead ones
+		for (Iterator<Entity> iterator = entities.iterator(); iterator.hasNext();) {
+		    Entity entity = iterator.next();
+		    if (!entity.getAlive()) {
+		        // Remove the current element from the iterator and the list.
+		    	grid[entity.getX()][entity.getX()] = null;
+		        iterator.remove();
+		    }
+		}
+		
 		if(mhoCount == 0) {
-			endGame(EndState.MHOS_DEAD);
+			endGame(GameState.MHOS_DEAD);
 		}
 			
 		if(playerCount == 0) {
-			endGame(EndState.PLAYER_DEAD);
+			System.out.println("player dead");
+			endGame(GameState.PLAYER_DEAD);
 		}
+		
 		//After all entities have updated, repaint the frame with the new results
 		repaint();
 	}
@@ -359,13 +353,19 @@ public class Game extends JFrame {
 		this.grid = grid;
 	}
 	
-	private void endGame(EndState end) {
-		if(end == EndState.PLAYER_DEAD) {
-			
+	private void endGame(GameState end) {
+		if(end == GameState.PLAYER_DEAD) {
+			state = GameState.PLAYER_DEAD;
 		}
 		
-		if(end == EndState.MHOS_DEAD) {
-			
+		if(end == GameState.MHOS_DEAD) {
+			state = GameState.MHOS_DEAD;
 		}
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object button = e.getSource();
+		
 	}
 }

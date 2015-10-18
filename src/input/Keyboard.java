@@ -76,7 +76,9 @@ public class Keyboard implements KeyListener {
 			key = "s";
 			game.update();
 		}
-		
+		if(!game.player.getAlive()) {
+			game.update();
+		}
 	}
 
 	@Override

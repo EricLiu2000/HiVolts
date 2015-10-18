@@ -19,8 +19,8 @@ public class MhoTest extends EntityTest {
 	@Test
 	public void testMoveMho() {
 		Mho m1 = new Mho(1,1);
-		Player p1 = new Player(3,1);
 		Game g1 = new Game();
+		Player p1 = new Player(3,1, g1);
 		m1.moveMho(p1,g1.getGrid());
 		assertEquals(2,m1.getX());
 	}
