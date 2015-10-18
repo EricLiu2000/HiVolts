@@ -10,6 +10,8 @@ import java.util.Iterator;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JTextField;
+
 import entities.Entity;
 import entities.Fence;
 import entities.Mho;
@@ -240,22 +242,29 @@ public class Game extends JFrame implements ActionListener {
 		}
 		
 		if(state == GameState.PLAYER_DEAD) {
-			g.setColor(Color.BLACK);
-			g.fillRect(0, Game.WINDOWBAR, 12*Game.SCALE, 12*Game.SCALE);
+			JTextField text = new JTextField("You Lost!");
 			
 			JButton restart = new JButton("Play again");
 			JButton quit = new JButton("Quit");
 			
-			restart.setVisible(true);
-			quit.setVisible(true);
-			
 			restart.addActionListener(this);
 			quit.addActionListener(this);
+			
+			restart.setBounds(50, 200, 100, 100);
+			quit.setBounds(300, 200, 100, 100);
+			text.setBounds(50, 50, 100, 100);
+			
+			text.setFocusable(false);
+			
+			this.getContentPane().add(restart);
+			this.getContentPane().add(quit);
+			this.getContentPane().add(text);
+			
+			this.getContentPane().repaint();
 		}
 		
 		if(state == GameState.MHOS_DEAD) {
-			g.setColor(Color.BLACK);
-			g.fillRect(0, Game.WINDOWBAR, 12*Game.SCALE, 12*Game.SCALE);
+			JTextField text = new JTextField("You Lost!");
 			
 			JButton restart = new JButton("Play again");
 			JButton quit = new JButton("Quit");
@@ -263,8 +272,17 @@ public class Game extends JFrame implements ActionListener {
 			restart.addActionListener(this);
 			quit.addActionListener(this);
 			
-			restart.setVisible(true);
-			quit.setVisible(true);
+			restart.setBounds(50, 50, 100, 100);
+			quit.setBounds(300, 50, 100, 100);
+			text.setBounds(50, 50, 100, 100);
+			
+			text.setFocusable(false);
+			
+			this.getContentPane().add(restart);
+			this.getContentPane().add(quit);
+			this.getContentPane().add(text);
+			
+			this.getContentPane().repaint();
 		}
 	}
 	
@@ -275,8 +293,7 @@ public class Game extends JFrame implements ActionListener {
 	public void update() {
 		int playerCount = 0;
 		int mhoCount = 0;
-		
-		//sortMhos();
+
 		boolean pLive = player.update(grid);
 		if(pLive == false) {
 				//The paint method is called directly to ensure it is executed immediately
@@ -354,18 +371,17 @@ public class Game extends JFrame implements ActionListener {
 	}
 	
 	private void endGame(GameState end) {
-		if(end == GameState.PLAYER_DEAD) {
-			state = GameState.PLAYER_DEAD;
-		}
-		
-		if(end == GameState.MHOS_DEAD) {
-			state = GameState.MHOS_DEAD;
-		}
+		state = end;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Object button = e.getSource();
+		if(((JButton)e.getSource()).getText() == "Play again") {
+			System.out.println("i wanna play again");
+		}
 		
+		if(((JButton)e.getSource()).getText() == "Quit") {
+			System.out.println("i quit");
+		}
 	}
 }
