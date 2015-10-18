@@ -39,6 +39,7 @@ public class Mho extends Entity {
 		}
 		
 		grid[getLastX()][getLastY()] = null;
+		grid[getX()][getY()] = this;
 
 		if(grid[getX()][getY()] instanceof Fence) {
 			kill();

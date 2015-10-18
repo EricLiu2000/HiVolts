@@ -2,12 +2,8 @@ package window;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import entities.Entity;
 import entities.Fence;
@@ -42,9 +38,7 @@ public class Game extends JFrame {
 	public static int SCALE = 50;
 	
 	public static Keyboard keyboard;
-	
-	JButton restart;
-	
+
 	//Enum that represents the type of entity to be created
 	public enum Type{
 		FENCE,
@@ -52,6 +46,12 @@ public class Game extends JFrame {
 		PLAYER
 	}
 	Type type;
+	
+	public enum EndState{
+		PLAYER_DEAD,
+		MHOS_DEAD
+	}
+	EndState end;
 	
 	/**
 	 * Game constructor
@@ -66,8 +66,6 @@ public class Game extends JFrame {
 		setSize(width, height + WINDOWBAR);
 		setBackground(Color.WHITE);
 
-		restart = new JButton("Restart?");
-		
 		this.getContentPane().setFocusable(true);
 		
 		//Creates a keylistener
@@ -281,6 +279,9 @@ public class Game extends JFrame {
 	 * Authors: Eric Liu and Joseph Rumelhart
 	 */
 	public void update() {
+		int playerCount = 0;
+		int mhoCount = 0;
+		
 		//sortMhos();
 		boolean pLive = player.update(grid);
 		if(pLive == false) {
@@ -288,7 +289,6 @@ public class Game extends JFrame {
 				paint(this.getGraphics());
 				entities.remove(player);
 				grid[player.getX()][player.getY()] = null;
-				add(restart);
 		}
 		
 //		for(Mho mho : sortedMhos) {
@@ -297,7 +297,6 @@ public class Game extends JFrame {
 //				//The paint method is called directly to ensure it is executed immediately
 //				paint(this.getGraphics());
 //				grid[mho.getX()][mho.getY()] = null;
-				add(restart);
 //			}
 //		}
 		
@@ -319,17 +318,34 @@ public class Game extends JFrame {
 		}
 		
 		for(Entity entity : entities) {
+			
 			for(Entity entity2 : entities) {
+				if(entity2 instanceof Player) {
+					playerCount ++;
+				}
+				if(entity2 instanceof Mho) {
+					mhoCount ++;
+				}
 				if(entity != entity2 && entity.getX() == entity2.getX() && entity.getY() == entity2.getY()) {
 					
 					if(entity instanceof Player && (entity2 instanceof Fence || entity2 instanceof Mho)) {
 						entity.kill();
 					}
 					if(entity instanceof Mho && entity2 instanceof Fence) {
+						System.out.println("mho killed");
 						entity.kill();
 					}
 				}
 			}
+			
+			
+		}
+		if(mhoCount == 0) {
+			endGame(EndState.MHOS_DEAD);
+		}
+			
+		if(playerCount == 0) {
+			endGame(EndState.PLAYER_DEAD);
 		}
 		//After all entities have updated, repaint the frame with the new results
 		repaint();
@@ -341,5 +357,15 @@ public class Game extends JFrame {
 	
 	public void setGrid(Entity[][] grid) {
 		this.grid = grid;
+	}
+	
+	private void endGame(EndState end) {
+		if(end == EndState.PLAYER_DEAD) {
+			
+		}
+		
+		if(end == EndState.MHOS_DEAD) {
+			
+		}
 	}
 }

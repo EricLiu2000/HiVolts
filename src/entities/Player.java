@@ -49,17 +49,11 @@ public class Player extends Entity {
 	@Override
 	public boolean update(Entity[][] grid) {
 		if(getAlive() == true) {
+			System.out.println("player is alive");
 			if(Game.keyboard.key == "q") {
 				grid[getX()][getY()] = null;
-				int futureX = getFuturePosition(Direction.NORTHWEST)[0];
-				int futureY = getFuturePosition(Direction.NORTHWEST)[1];
-				if(grid[futureX][futureY] instanceof Fence) {
-					kill();
-				}
-				else {
-					move(Direction.NORTHWEST);
-					grid[getX()][getY()] = this;
-				}
+				move(Direction.NORTHWEST);
+				grid[getX()][getY()] = this;
 			}
 			
 			if(Game.keyboard.key == "w") {
@@ -81,7 +75,6 @@ public class Player extends Entity {
 				grid[getX()][getY()] = this;
 			}
 			
-			//Jump key, moves the player to a random position that is not a fence
 			if(Game.keyboard.key == "s") {
 				//sit and do nothing
 			}
@@ -118,7 +111,6 @@ public class Player extends Entity {
 				this.jump(grid);
 			}
 		}
-
 		return getAlive();
 	}
 	
@@ -137,6 +129,8 @@ public class Player extends Entity {
 			int validJumpY = (int) (1 + ((int)(grid[0].length - 2) * Math.random()));
 			//Occurs when the random position selects a killing position
 			if(grid[validJumpX][validJumpY] instanceof Mho) {
+				System.out.println("x: " + validJumpX);
+				System.out.println("y: " + validJumpY);
 				kill();
 				break;
 			}
