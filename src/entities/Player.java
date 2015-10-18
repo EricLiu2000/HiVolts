@@ -40,6 +40,12 @@ public class Player extends Entity {
 			g.setColor(Color.WHITE);
 			g.fillRect(getX()*Game.SCALE, getY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
 		}
+		
+		for(int i = 1; i <= 11; i++) {
+			g.setColor(Color.BLACK);
+			g.drawLine(i*Game.SCALE, 0 + Game.WINDOWBAR, i*Game.SCALE, 12*Game.SCALE + Game.WINDOWBAR);
+			g.drawLine(0, i*Game.SCALE + Game.WINDOWBAR, 12*Game.SCALE, i*Game.SCALE + Game.WINDOWBAR);
+		}
 	}
 
 	/**
@@ -106,8 +112,6 @@ public class Player extends Entity {
 			//Jumps the player to a random non-fence position
 			if(Game.keyboard.key == "j") {
 				grid[getX()][getY()] = null;
-				setLastX(getX());
-				setLastY(getY());
 				this.jump(grid);
 			}
 		}
@@ -142,6 +146,7 @@ public class Player extends Entity {
 				setXPosition(validJumpX);
 				setYPosition(validJumpY);
 				grid[getX()][getY()] = this;
+				draw(game.getGraphics());
 				break;
 			}
 		}
