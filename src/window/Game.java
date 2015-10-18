@@ -101,9 +101,13 @@ public class Game extends JFrame {
 			entityType.add(Type.FENCE);
 			}
 		
-		//Shuffles the collection to prepare for random generation
-		Collections.shuffle(entityType);
-		
+		//Shuffles the collection to prepare for random generation and prevents player generation bug
+		while(true) {
+			Collections.shuffle(entityType);
+			if(!(entityType.get(32) == Type.PLAYER || entityType.get(31) == Type.PLAYER)) {
+				break;
+			}
+		}
 		//Creates the bounding fences
 		createBoundingFences(boundingFences);
 		

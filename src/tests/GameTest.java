@@ -12,7 +12,7 @@ public class GameTest {
 	@Test
 	public void test() {
 		boolean hasPlayer = false;
-		int runLength = 500;
+		int runLength = 5000;
 		for(int m = 0; m < runLength; m++) {
 			Game g1 = new Game();
 			hasPlayer = false;
