@@ -145,11 +145,14 @@ public class Mho extends Entity {
 			}
 			//Moves horizontally or vertically
 			else {
-				if(Math.abs(player.getX() - this.getX()) >= Math.abs(player.getY() - this.getY())) {
+				if(Math.abs(player.getX() - this.getX()) > Math.abs(player.getY() - this.getY())) {
 					move(dlat);
 				}
-				else {
+				if(Math.abs(player.getX() - this.getX()) < Math.abs(player.getY() - this.getY())) {
 					move(dvert);
+				}
+				else{
+					move(d);
 				}
 			}
 		}
