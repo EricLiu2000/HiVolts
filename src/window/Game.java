@@ -398,6 +398,7 @@ public class Game extends JFrame implements ActionListener {
 		    Entity entity = iterator.next();
 		    if (!entity.getAlive()) {
 		        // Remove the current element from the iterator and the list.
+		    	entity.draw(getGraphics());
 		    	grid[entity.getX()][entity.getX()] = null;
 		        iterator.remove();
 		    }

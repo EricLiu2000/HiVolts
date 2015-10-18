@@ -50,13 +50,9 @@ public class Mho extends Entity {
 		else {
 			moveComplex(player,grid);
 		}
-		
-		grid[getX()][getY()] = this;
 		grid[getLastX()][getLastY()] = null;
-
-		if(grid[getX()][getY()] instanceof Fence) {
-			kill();
-		}
+		grid[getX()][getY()] = this;
+		
 	}
 	
 	/**
@@ -169,20 +165,13 @@ public class Mho extends Entity {
 			}
 			//Moves horizontally or vertically
 			else {
-				if(Math.abs(player.getX() - this.getX()) > Math.abs(player.getY() - this.getY())) {
+				if(Math.abs(player.getX() - this.getX()) >= Math.abs(player.getY() - this.getY())) {
 					move(dlat);
 				}
-				if(Math.abs(player.getX() - this.getX()) < Math.abs(player.getY() - this.getY())) {
+				else{
 					move(dvert);
 				}
-				else{
-					move(d);
-				}
 			}
-		}
-		//Moves on fence and dies
-		else {
-			kill();
 		}
 	}
 	
