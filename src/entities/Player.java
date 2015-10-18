@@ -2,12 +2,20 @@ package entities;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 import input.Keyboard;
 import window.Game;
 import window.Game.GameState;
 
 public class Player extends Entity {
 	private Game game;
+	
+	BufferedImage image = null;
 	
 	/**
 	 * Creates a player and sets its position to the desired coordinates
@@ -16,8 +24,15 @@ public class Player extends Entity {
 	 * Author: Joseph Rumelhart
 	 */
 	public Player(int xPosition, int yPosition, Game game) {
+		
 		super(xPosition, yPosition);
 		this.game = game;
+		try{
+			image = ImageIO.read(new File("images/player.png"));
+		}
+		catch(IOException e){
+			System.out.println("IMAGE NOT WORKING");
+		}
 	}
 
 	/**
@@ -32,15 +47,18 @@ public class Player extends Entity {
 			g.fillRect(getLastX()*Game.SCALE, getLastY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
 		}
 
-		if(getAlive()) {
-			g.setColor(Color.GREEN);
-			g.fillRect(getX()*Game.SCALE, getY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
-		}
+//		if(getAlive()) {
+//			g.setColor(Color.GREEN);
+//			g.fillRect(getX()*Game.SCALE, getY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
+//		}
+//		
+//		if(!getAlive()) {
+//			g.setColor(Color.WHITE);
+//			g.fillRect(getX()*Game.SCALE, getY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
+//		}
 		
-		if(!getAlive()) {
-			g.setColor(Color.WHITE);
-			g.fillRect(getX()*Game.SCALE, getY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
-		}
+		//g.drawImage(image, getX()*Game.SCALE, getY()*Game.SCALE, null);
+		g.drawImage(image, getX() * Game.SCALE, getY() * Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE, null);
 		
 		for(int i = 1; i <= 11; i++) {
 			g.setColor(Color.BLACK);
