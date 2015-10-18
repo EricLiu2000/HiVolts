@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import input.Keyboard;
 import window.Game;
+import window.Game.GameState;
 
 public class Player extends Entity {
 	private Game game;
@@ -134,7 +135,8 @@ public class Player extends Entity {
 			//Occurs when the random position selects a killing position
 			if(grid[validJumpX][validJumpY] instanceof Mho) {
 				kill();
-				game.update();
+				game.endGame(GameState.JUMPED_ON_MHO);
+				game.repaint();
 				break;
 			}
 			//Occurs when the random position selects an invalid position

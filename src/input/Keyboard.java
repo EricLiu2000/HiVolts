@@ -33,55 +33,56 @@ public class Keyboard implements KeyListener {
 	public void keyTyped(KeyEvent e) {
 
 		updateCycle ++;
-		
-		//Gets input from the keyboard
-		if(e.getKeyChar() == 'q') {
-			key = "q";
-			game.update();
-		}
-		if(e.getKeyChar() == 'w') {
-			key = "w";
-			game.update();
-		}
-		if(e.getKeyChar() == 'e') {
-			key = "e";
-			game.update();
-		}
-		if(e.getKeyChar() == 'a') {
-			key = "a";
-			game.update();
-		}
-		if(e.getKeyChar() == 'j') {
-			key = "j";
-			game.player.update(game.getGrid());
-		}
-		if(e.getKeyChar() == 'd') {
-			key = "d";
-			game.update();
-		}
-		if(e.getKeyChar() == 'z') {
-			key = "z";
-			game.update();
-		}
-		if(e.getKeyChar() == 'x') {
-			key = "x";
-			game.update();
-		}
-		if(e.getKeyChar() == 'c') {
-			key = "c";
-			game.update();
-		}
-		if(e.getKeyChar() == 's') {
-			key = "s";
-			game.update();
-		}
-		//FOR TESTING
-		if(e.getKeyChar() == 'k') {
-			game.killMhos();
-			game.update();
-		}
-		if(!game.player.getAlive()) {
-			game.update();
+		if(game.player.getAlive()) {
+			//Gets input from the keyboard
+			if(e.getKeyChar() == 'q') {
+				key = "q";
+				game.update();
+			}
+			if(e.getKeyChar() == 'w') {
+				key = "w";
+				game.update();
+			}
+			if(e.getKeyChar() == 'e') {
+				key = "e";
+				game.update();
+			}
+			if(e.getKeyChar() == 'a') {
+				key = "a";
+				game.update();
+			}
+			if(e.getKeyChar() == 'j') {
+				key = "j";
+				game.player.update(game.getGrid());
+			}
+			if(e.getKeyChar() == 'd') {
+				key = "d";
+				game.update();
+			}
+			if(e.getKeyChar() == 'z') {
+				key = "z";
+				game.update();
+			}
+			if(e.getKeyChar() == 'x') {
+				key = "x";
+				game.update();
+			}
+			if(e.getKeyChar() == 'c') {
+				key = "c";
+				game.update();
+			}
+			if(e.getKeyChar() == 's') {
+				key = "s";
+				game.update();
+			}
+			//FOR TESTING
+			if(e.getKeyChar() == 'k') {
+				game.killMhos();
+				game.update();
+			}
+			if(!game.player.getAlive()) {
+				game.update();
+			}
 		}
 	}
 

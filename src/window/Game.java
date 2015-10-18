@@ -48,6 +48,8 @@ public class Game extends JFrame implements ActionListener {
 	public JButton restart;
 	
 	public JButton quit;
+	
+	public JTextField test;
 
 	//Enum that represents the type of entity to be created
 	public enum Type{
@@ -58,7 +60,9 @@ public class Game extends JFrame implements ActionListener {
 	Type type;
 	
 	public enum GameState{
-		PLAYER_DEAD,
+		KILLED_BY_MHO,
+		JUMPED_ON_MHO,
+		RAN_INTO_WALL,
 		MHOS_DEAD,
 		ONGOING
 	}
@@ -211,80 +215,130 @@ public class Game extends JFrame implements ActionListener {
 	 * Author: Eric Liu
 	 */
 	public void paint(Graphics g) {
-		if(state == GameState.ONGOING) {
-			
-			//Player has least priority for drawing
-			for(Entity entity : entities) {
-				if(entity instanceof Player) {
-					entity.draw(g);
-				}
-			}
-			
-			//Mhos have priotity over player
-			for(Entity entity : entities) {
-				if(entity instanceof Mho) {
-					entity.draw(g);
-				}
-			}
-			
-			//Fences have priority over everything
-			for(Entity entity : entities) {
-				if(entity instanceof Fence) {
-					entity.draw(g);
-				}
-			}
-	
-			//Draws the lines 
-			for(int i = 1; i <= 11; i++) {
-				g.setColor(Color.BLACK);
-				g.drawLine(i*Game.SCALE, 0 + Game.WINDOWBAR, i*Game.SCALE, 12*Game.SCALE + Game.WINDOWBAR);
-				g.drawLine(0, i*Game.SCALE + Game.WINDOWBAR, 12*Game.SCALE, i*Game.SCALE + Game.WINDOWBAR);
-			}
-		}
 		
-		if(state == GameState.PLAYER_DEAD) {
-			JTextField text = new JTextField("You Lost!");
-			
-			JButton restart = new JButton("Play again");
-			JButton quit = new JButton("Quit");
-			
-			restart.addActionListener(this);
-			quit.addActionListener(this);
-			
-			restart.setBounds(50, 200, 100, 100);
-			quit.setBounds(300, 200, 100, 100);
-			text.setBounds(50, 50, 100, 100);
-			
-			text.setFocusable(false);
-			
-			this.getContentPane().add(restart);
-			this.getContentPane().add(quit);
-			this.getContentPane().add(text);
-			
-			this.getContentPane().repaint();
-		}
+		switch(state) {
+			case ONGOING: 
+				//Player has least priority for drawing
+				for(Entity entity : entities) {
+					if(entity instanceof Player) {
+						entity.draw(g);
+					}
+				}
+				
+				//Mhos have priotity over player
+				for(Entity entity : entities) {
+					if(entity instanceof Mho) {
+						entity.draw(g);
+					}
+				}
+				
+				//Fences have priority over everything
+				for(Entity entity : entities) {
+					if(entity instanceof Fence) {
+						entity.draw(g);
+					}
+				}
 		
-		if(state == GameState.MHOS_DEAD) {
-			System.out.println("hey");
-			JTextField text = new JTextField("You Win!");
-			
-			JButton restart = new JButton("Play again");
-			JButton quit = new JButton("Quit");
-			
-			restart.addActionListener(this);
-			quit.addActionListener(this);
-			
-			restart.setBounds(50, 200, 100, 100);
-			quit.setBounds(300, 200, 100, 100);
-			text.setBounds(50, 50, 100, 100);
-			
-			text.setFocusable(false);
-			
-			this.getContentPane().add(restart);
-			this.getContentPane().add(quit);
-			this.getContentPane().add(text);
-			
-			this.getContentPane().repaint();
+				//Draws the lines 
+				for(int i = 1; i <= 11; i++) {
+					g.setColor(Color.BLACK);
+					g.drawLine(i*Game.SCALE, 0 + Game.WINDOWBAR, i*Game.SCALE, 12*Game.SCALE + Game.WINDOWBAR);
+					g.drawLine(0, i*Game.SCALE + Game.WINDOWBAR, 12*Game.SCALE, i*Game.SCALE + Game.WINDOWBAR);
+				}
+				
+				break;
+				
+			case RAN_INTO_WALL:
+				JTextField text = new JTextField("You Ran Into A Wall");
+				
+				JButton restart = new JButton("Play again");
+				JButton quit = new JButton("Quit");
+				
+				restart.addActionListener(this);
+				quit.addActionListener(this);
+				
+				restart.setBounds(50, 200, 100, 100);
+				quit.setBounds(300, 200, 100, 100);
+				text.setBounds(50, 50, 200, 100);
+				
+				text.setFocusable(false);
+				
+				this.getContentPane().add(restart);
+				this.getContentPane().add(quit);
+				this.getContentPane().add(text);
+				
+				this.getContentPane().repaint();
+				
+				break;
+				
+			case KILLED_BY_MHO:
+				text = new JTextField("A Mho Ate You");
+				
+				restart = new JButton("Play again");
+				quit = new JButton("Quit");
+				
+				restart.addActionListener(this);
+				quit.addActionListener(this);
+				
+				restart.setBounds(50, 200, 100, 100);
+				quit.setBounds(300, 200, 100, 100);
+				text.setBounds(50, 50, 200, 100);
+				
+				text.setFocusable(false);
+				
+				this.getContentPane().add(restart);
+				this.getContentPane().add(quit);
+				this.getContentPane().add(text);
+				
+				this.getContentPane().repaint();
+				
+				break;
+				
+			case MHOS_DEAD: 
+				text = new JTextField("You Win!");
+				
+				restart = new JButton("Play again");
+				quit = new JButton("Quit");
+				
+				restart.addActionListener(this);
+				quit.addActionListener(this);
+				
+				restart.setBounds(50, 200, 100, 100);
+				quit.setBounds(300, 200, 100, 100);
+				text.setBounds(50, 50, 100, 100);
+				
+				text.setFocusable(false);
+				
+				this.getContentPane().add(restart);
+				this.getContentPane().add(quit);
+				this.getContentPane().add(text);
+				
+				this.getContentPane().repaint();
+				
+				break;
+				
+			case JUMPED_ON_MHO:
+				text = new JTextField("You Jumped On A Mho");
+				
+				restart = new JButton("Play again");
+				quit = new JButton("Quit");
+				
+				restart.addActionListener(this);
+				quit.addActionListener(this);
+				
+				restart.setBounds(50, 200, 100, 100);
+				quit.setBounds(300, 200, 100, 100);
+				text.setBounds(50, 50, 200, 100);
+				
+				text.setFocusable(false);
+				
+				this.getContentPane().add(restart);
+				this.getContentPane().add(quit);
+				this.getContentPane().add(text);
+				
+				this.getContentPane().repaint();
+				
+				break;
 		}
 	}
 	
@@ -293,7 +347,6 @@ public class Game extends JFrame implements ActionListener {
 	 * Authors: Eric Liu and Joseph Rumelhart
 	 */
 	public void update() {
-		int playerCount = 0;
 		int mhoCount = 0;
 
 		boolean pLive = player.update(grid);
@@ -324,16 +377,15 @@ public class Game extends JFrame implements ActionListener {
 		
 		for(Entity entity : entities) {
 			for(Entity entity2 : entities) {
-				if(entity2 instanceof Player) {
-					playerCount ++;
-				}
 				if(entity2 instanceof Mho) {
 					mhoCount ++;
 				}
 				if(entity != entity2 && entity.getX() == entity2.getX() && entity.getY() == entity2.getY()) {
-					
-					if(entity instanceof Player && (entity2 instanceof Fence || entity2 instanceof Mho)) {
-						entity.kill();
+					if(entity instanceof Player && entity2 instanceof Fence) {
+						endGame(GameState.RAN_INTO_WALL);
+					}
+					if(entity instanceof Player && entity2 instanceof Mho) {
+						endGame(GameState.KILLED_BY_MHO);
 					}
 					if(entity instanceof Mho && entity2 instanceof Fence) {
 						entity.kill();
@@ -353,13 +405,7 @@ public class Game extends JFrame implements ActionListener {
 		}
 		
 		if(mhoCount == 0) {
-			System.out.println("all mhos dead");
 			endGame(GameState.MHOS_DEAD);
-		}
-			
-		if(playerCount == 0) {
-			System.out.println("player dead");
-			endGame(GameState.PLAYER_DEAD);
 		}
 		
 		//After all entities have updated, repaint the frame with the new results
@@ -374,7 +420,7 @@ public class Game extends JFrame implements ActionListener {
 		this.grid = grid;
 	}
 	
-	private void endGame(GameState end) {
+	public void endGame(GameState end) {
 		state = end;
 	}
 	
