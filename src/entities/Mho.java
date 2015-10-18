@@ -122,6 +122,7 @@ public class Mho extends Entity {
 			dvert = Direction.SOUTH;
 		}
 		
+		//Moves directly on to a player if it is directly adjacent
 		if(obstacles.get(0) instanceof Player) {
 			move(dlat);
 		}
