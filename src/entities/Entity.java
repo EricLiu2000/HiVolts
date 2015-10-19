@@ -30,8 +30,10 @@ public abstract class Entity {
 	
 	/**
 	 * Creates an Entity with the given coordinates
+	 * 
 	 * @param xPosition the x coordinate of the Entity
 	 * @param yPosition the x coordinate of the Entity
+	 * 
 	 * Author: Eric Liu
 	 */
 	public Entity(int xPosition, int yPosition) {
@@ -44,21 +46,27 @@ public abstract class Entity {
 	
 	/**
 	 * Draws the Entity. Meant to be overridden.
+	 * 
 	 * @param g the graphics object to be used
+	 * 
 	 * Author: Eric Liu
 	 */
 	public abstract void draw(Graphics g);
 	
 	/**
 	 * Updates the Entity. Meant to be overridden.
+	 * 
 	 * @return if the Entity is alive
+	 * 
 	 * Author: Joseph Rumelhart
 	 */
 	public abstract boolean update(Entity[][] grid);
 	
 	/**
 	 * Gets the x coordinate of the Entity.
+	 * 
 	 * @return the x coordinate of the entity
+	 * 
 	 * Author: Joseph Rumelhart
 	 */
 	public int getX() {
@@ -67,7 +75,9 @@ public abstract class Entity {
 	
 	/**
 	 * Gets the y coordinate of the Entity.
+	 * 
 	 * @return the y coordinate of the entity
+	 * 
 	 * Author: Joseph Rumelhart
 	 */
 	public int getY() {
@@ -76,7 +86,9 @@ public abstract class Entity {
 	
 	/**
 	 * Gets the last x coordinate of the Entity.
+	 * 
 	 * @return the last x coordinate of the entity
+	 * 
 	 * Author: Eric Liu
 	 */
 	public int getLastX() {
@@ -85,7 +97,9 @@ public abstract class Entity {
 	
 	/**
 	 * Gets the last y coordinate of the Entity
+	 * 
 	 * @return the last y coordinate of the entity
+	 * 
 	 * Author: Eric Liu
 	 */
 	public int getLastY() {
@@ -94,7 +108,9 @@ public abstract class Entity {
 	
 	/**
 	 * Sets the last x coordinate
+	 * 
 	 * @param lastX the last x coordinate
+	 * 
 	 * Author: Eric Liu
 	 */
 	public void setLastX(int lastX) {
@@ -102,7 +118,9 @@ public abstract class Entity {
 	}
 	/**
 	 * Sets the last y coordinate
+	 * 
 	 * @param lastY the last y coordinate 
+	 * 
 	 * Author: Eric Liu
 	 */
 	public void setLastY(int lastY) {
@@ -111,7 +129,9 @@ public abstract class Entity {
 	
 	/**
 	 * Gets whether or not the Entity is alive or not
+	 * 
 	 * @return if the Entity is alive or not
+	 * 
 	 * Author: Joseph Rumelhart
 	 */
 	public boolean getAlive() {
@@ -120,6 +140,7 @@ public abstract class Entity {
 	
 	/**
 	 * Kills the entity
+	 * 
 	 * Author: Eric Liu
 	 */
 	public void kill() {
@@ -128,7 +149,9 @@ public abstract class Entity {
 	
 	/**
 	 * Moves the entity in the specified direction
+	 * 
 	 * @param direction the direction to move in
+	 * 
 	 * Author: Joseph Rumelhart and Eric Liu
 	 */
 	public int[] move(Direction direction) {
@@ -182,66 +205,17 @@ public abstract class Entity {
 				break;
 		}
 		
-		//returns the current coordinates of the entity
+		//returns the current coordinates of the entity as an array
 		int[] currentCoords = {getX(),getY()};
 		return currentCoords;
 	}
 	
 	/**
-	 * Moves the entity in the specified direction
-	 * @param direction the direction to move in
-	 * Author: Eric Liu
-	 */
-	public int[] getFuturePosition(Direction direction) {
-		int futureX = 0;
-		int futureY = 0;
-		switch(direction) {
-			case NORTH: 
-				futureX = getX();
-				futureY = getY() - 1;
-				break;
-			case NORTHEAST:
-				futureX = getX() + 1;
-				futureY = getY() -1;
-				break;
-			case EAST:
-				futureX = getX() + 1;
-				futureY = getY();
-				break;
-			case SOUTHEAST:
-				futureX = getX() + 1;
-				futureY = getY() + 1;
-				break;
-			case SOUTH:
-				futureX = getX();
-				futureY = getY() + 1;
-				break;
-			case SOUTHWEST:
-				futureX = getX() - 1;
-				futureY = getY() + 1;
-				break;
-			case WEST:
-				futureX = getX() - 1;
-				futureY = getY();
-				break;
-			case NORTHWEST:
-				futureX = getX() - 1;
-				futureY = getY() - 1;
-				break;
-			default: 
-				System.out.println("Error: Invalid direction");
-				break;
-		}
-		
-		//returns the current coordinates of the entity
-		int[] currentCoords = {futureX, futureY};
-		return currentCoords;
-	}
-
-	/**
 	 * Checks whether the entity is alive
+	 * 
 	 * @return entity alive or dead
 	 * Author: Joseph Rumelhart
+	 * 
 	 */
 	public boolean isAlive() {
 		return isAlive;
@@ -249,7 +223,9 @@ public abstract class Entity {
 
 	/**
 	 * Sets the entity to be alive or dead
+	 * 
 	 * @param isAlive whether the entity is alive
+	 * 
 	 * Author: Eric Liu
 	 */
 	public void setAlive(boolean isAlive) {
@@ -258,7 +234,9 @@ public abstract class Entity {
 
 	/**
 	 * Sets the x coordinate to the desired x coordinate
+	 * 
 	 * @param xPosition the desired x coordinate
+	 * 
 	 * Author: Joseph Rumelhart
 	 */
 	public void setXPosition(int xPosition) {
@@ -267,7 +245,9 @@ public abstract class Entity {
 	
 	/**
 	 * Sets the y coordinate to the desired y coordinate
+	 * 
 	 * @param yPosition the desired y coordinate
+	 * 
 	 * Author: Joseph Rumelhart
 	 */
 	public void setYPosition(int yPosition) {
