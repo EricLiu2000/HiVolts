@@ -58,18 +58,18 @@ public class Player extends Entity {
 		//Erases the player's previous position
 		if(Keyboard.updateCycle > 0) {
 			g.setColor(Color.WHITE);
-			g.fillRect(getLastX()*Game.SCALE, getLastY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
+			g.fillRect(getLastX()*Game.CELL_SIZE, getLastY()*Game.CELL_SIZE + Game.WINDOW_BAR, Game.CELL_SIZE, Game.CELL_SIZE);
 		}
 
 		//Draws the player at its position
-		g.drawImage(image, getX() * Game.SCALE, getY() * Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE, null);
+		g.drawImage(image, getX() * Game.CELL_SIZE, getY() * Game.CELL_SIZE + Game.WINDOW_BAR, Game.CELL_SIZE, Game.CELL_SIZE, null);
 		
 		//Redraws the lines of the game.
 		//This is necessary for the lines to remain intact after the player jumps
 		for(int i = 1; i <= 11; i++) {
 			g.setColor(Color.BLACK);
-			g.drawLine(i*Game.SCALE, 0 + Game.WINDOWBAR, i*Game.SCALE, 12*Game.SCALE + Game.WINDOWBAR);
-			g.drawLine(0, i*Game.SCALE + Game.WINDOWBAR, 12*Game.SCALE, i*Game.SCALE + Game.WINDOWBAR);
+			g.drawLine(i*Game.CELL_SIZE, 0 + Game.WINDOW_BAR, i*Game.CELL_SIZE, 12*Game.CELL_SIZE + Game.WINDOW_BAR);
+			g.drawLine(0, i*Game.CELL_SIZE + Game.WINDOW_BAR, 12*Game.CELL_SIZE, i*Game.CELL_SIZE + Game.WINDOW_BAR);
 		}
 	}
 

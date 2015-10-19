@@ -31,6 +31,8 @@ public class Keyboard implements KeyListener {
 	 * This method is called when a key is typed
 	 * It calls the update method of game
 	 * 
+	 * @param e the event that is fired when a key is typed
+	 * 
 	 * Author: Eric Liu
 	 */
 	@Override

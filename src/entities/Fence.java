@@ -44,7 +44,7 @@ public class Fence extends Entity {
 	 */
 	@Override
 	public void draw(Graphics g) {
-		g.drawImage(image, getX() * Game.SCALE, getY() * Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE, null);
+		g.drawImage(image, getX() * Game.CELL_SIZE, getY() * Game.CELL_SIZE + Game.WINDOW_BAR, Game.CELL_SIZE, Game.CELL_SIZE, null);
 	}
 
 	/**
