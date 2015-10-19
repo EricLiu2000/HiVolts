@@ -302,7 +302,7 @@ public class Game extends JFrame implements ActionListener {
 				//Sets the sizes of the buttons and text field
 				restart.setBounds(50, 500, 100, 50);
 				quit.setBounds(450, 500, 100, 50);
-				text.setBounds(225, 25, 130, 25);
+				text.setBounds(225, 25, 135, 25);
 				
 				//You can't edit or click the text box
 				text.setFocusable(false);
@@ -312,6 +312,7 @@ public class Game extends JFrame implements ActionListener {
 				this.getContentPane().add(quit);
 				this.getContentPane().add(text);
 				
+				//Sets the background color
 				this.getContentPane().setBackground(Color.BLUE);
 				
 				//Repaints the game
@@ -345,6 +346,9 @@ public class Game extends JFrame implements ActionListener {
 				this.getContentPane().add(quit);
 				this.getContentPane().add(text);
 				
+				//Sets the background color
+				this.getContentPane().setBackground(Color.BLACK);
+				
 				//Repaints the game
 				this.getContentPane().repaint();
 				
@@ -366,7 +370,7 @@ public class Game extends JFrame implements ActionListener {
 				//Sets the sizes of the buttons and text field
 				restart.setBounds(50, 500, 100, 50);
 				quit.setBounds(450, 500, 100, 50);
-				text.setBounds(225, 25, 130, 25);
+				text.setBounds(260, 25, 90, 25);
 				
 				//You can't edit or click the text box
 				text.setFocusable(false);
@@ -375,6 +379,9 @@ public class Game extends JFrame implements ActionListener {
 				this.getContentPane().add(restart);
 				this.getContentPane().add(quit);
 				this.getContentPane().add(text);
+				
+				//Sets the background color
+				this.getContentPane().setBackground(Color.WHITE);
 				
 				//Repaints the game
 				this.getContentPane().repaint();
@@ -407,6 +414,7 @@ public class Game extends JFrame implements ActionListener {
 				this.getContentPane().add(quit);
 				this.getContentPane().add(text);
 				
+				//Sets the background color
 				this.getContentPane().setBackground(Color.BLACK);
 				
 				//Repaints the game
@@ -531,7 +539,7 @@ public class Game extends JFrame implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(((JButton)e.getSource()).getText() == "Play again") {
+		if(((JButton)e.getSource()).getText() == "Play Again") {
 			//Create a new game and dispose of the old one
 			Run.runGame();
 			this.dispose();
