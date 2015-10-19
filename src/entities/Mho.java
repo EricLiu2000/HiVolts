@@ -13,13 +13,18 @@ import input.Keyboard;
 import window.Game;
 
 public class Mho extends Entity {
+	
+	//The image of the mho
 	private BufferedImage image = null;
 	
 	/**
 	 * Creates a Mho and sets its position to the given coordinates
+	 * Sets the Mho's image to a devil
+	 * 
 	 * @param xPosition the x coordinate of the Mho
 	 * @param yPosition the y coordinate of the Mho
-	 * Author: Joseph Rumelhart
+	 * 
+	 * Author: Joseph Rumelhart and Eric Liu
 	 */
 	public Mho(int xPosition, int yPosition) {
 		super(xPosition, yPosition);
@@ -31,16 +36,12 @@ public class Mho extends Entity {
 		}
 	}
 	
-	public int getDistance(Player player) {
-		int xDistance = (player.getX() - getX());
-		int yDistance = (player.getY() - getY());
-		//no need to square root, we just want to sort by order of distance from player.
-		int distance = xDistance * xDistance + yDistance * yDistance;
-		return distance;
-	}
-	
 	/**
 	 * Move the Mho towards the player
+	 * 
+	 * @param player the player of the game
+	 * @param grid the grid of the game
+	 * 
 	 * Author: Joseph Rumelhart
 	 */
 	public void moveMho(Player player, Entity[][] grid) {
@@ -57,8 +58,10 @@ public class Mho extends Entity {
 	
 	/**
 	 * Simple movement; activates when on a direct line to the player
-	 * @param player
-	 * @param grid
+	 * 
+	 * @param player the player of the game
+	 * @param grid the grid of the game
+	 * 
 	 * Author: Joseph Rumelhart
 	 */
 	private void moveSimple(Player player, Entity[][] grid) {
@@ -85,9 +88,11 @@ public class Mho extends Entity {
 	
 	/**
 	 * Complex movement; activates when not on a direct line to the player
-	 * @param player
-	 * @param grid
+	 * 
+	 * @param player the player of the game
+	 * @param grid the grid of the game
 	 * Author: Joseph Rumelhart
+	 * 
 	 */
 	private void moveComplex(Player player, Entity[][] grid) {
 		ArrayList<Entity> obstacles = new ArrayList<Entity>(3);
@@ -177,18 +182,27 @@ public class Mho extends Entity {
 	}
 	
 	/**
-	 * draws the mho on the game board
+	 * Draws the mho on the game board
+	 * 
+	 * @param g the graphics object to be used
+	 * 
 	 * Author: Eric Liu
 	 */
 	@Override
 	public void draw(Graphics g) {
+		
+		//Erase the last position of the mho
 		if(Keyboard.updateCycle > 0) {
 			g.setColor(Color.WHITE);
 			g.fillRect(getLastX()*Game.CELL_SIZE, getLastY()*Game.CELL_SIZE + Game.WINDOW_BAR, Game.CELL_SIZE, Game.CELL_SIZE);
 		}
+		
+		//Draw the mho if it is alive
 		if(getAlive()) {
 			g.drawImage(image, getX() * Game.CELL_SIZE, getY() * Game.CELL_SIZE + Game.WINDOW_BAR, Game.CELL_SIZE, Game.CELL_SIZE, null);
 		}
+		
+		//If dead, erase this mho
 		if(!getAlive()) {
 			g.setColor(Color.WHITE);
 			g.fillRect(getX()*Game.CELL_SIZE, getY()*Game.CELL_SIZE + Game.WINDOW_BAR, Game.CELL_SIZE, Game.CELL_SIZE);
@@ -197,9 +211,11 @@ public class Mho extends Entity {
 
 	/**
 	 * Updates the mho to the current state of the board
+	 * 
 	 * @param player the current player
 	 * @param grid the game board
-	 * @return whether the Mho is dead or alive
+	 * @return whether or not the mho is alive
+	 * 
 	 * Author: Eric Liu
 	 */
 	public boolean update(Player player, Entity[][] grid) {
@@ -207,6 +223,7 @@ public class Mho extends Entity {
 		return getAlive();
 	}
 
+	//Unused update method inherited from Entity
 	@Override
 	public boolean update(Entity[][] grid) {
 		// TODO Auto-generated method stub
