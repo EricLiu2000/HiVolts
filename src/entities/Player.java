@@ -13,21 +13,30 @@ import window.Game;
 import window.Game.GameState;
 
 public class Player extends Entity {
+	
+	//The game that the player is in
 	private Game game;
 	
+	//The image of the player
 	private BufferedImage image = null;
 	
 	/**
-	 * Creates a player and sets its position to the desired coordinates
+	 * Creates a player and sets its position to the desired coordinates.
+	 * Sets the player's image to an angel
+	 * 
 	 * @param xPosition the desired x coordinate
 	 * @param yPosition the desired y coordinate
-	 * Author: Joseph Rumelhart
+	 * 
+	 * Author: Joseph Rumelhart and Eric Liu
 	 */
 	public Player(int xPosition, int yPosition, Game game) {
-		
+		//Invokes superclass constructor
 		super(xPosition, yPosition);
+		
+		//Sets the game that this player is in to the specified game
 		this.game = game;
 		
+		//Creates the player image
 		try{
 			image = ImageIO.read(new File("images/player.jpg"));
 		}
@@ -38,18 +47,25 @@ public class Player extends Entity {
 
 	/**
 	 * Draws the player on the game board
+	 * 
+	 * @param g The graphics object to be used for drawing
+	 * 
 	 * Author: Eric Liu
 	 */
 	@Override
 	public void draw(Graphics g) {
-		//Redraws the previous square to white
+		
+		//Erases the player's previous position
 		if(Keyboard.updateCycle > 0) {
 			g.setColor(Color.WHITE);
 			g.fillRect(getLastX()*Game.SCALE, getLastY()*Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE);
 		}
 
+		//Draws the player at its position
 		g.drawImage(image, getX() * Game.SCALE, getY() * Game.SCALE + Game.WINDOWBAR, Game.SCALE, Game.SCALE, null);
 		
+		//Redraws the lines of the game.
+		//This is necessary for the lines to remain intact after the player jumps
 		for(int i = 1; i <= 11; i++) {
 			g.setColor(Color.BLACK);
 			g.drawLine(i*Game.SCALE, 0 + Game.WINDOWBAR, i*Game.SCALE, 12*Game.SCALE + Game.WINDOWBAR);
@@ -60,11 +76,14 @@ public class Player extends Entity {
 	/**
 	 * Moves the player according to keyboard input
 	 * This method is called when a key is pressed
+	 * 
 	 * Author: Eric Liu
 	 */
 	@Override
 	public boolean update(Entity[][] grid) {
 		if(getAlive() == true) {
+			//When the player moves, its previous position in the grid is set to null
+			//Its new position is now accurately represented in the grid
 			if(Game.keyboard.key == "q") {
 				grid[getX()][getY()] = null;
 				move(Direction.NORTHWEST);
@@ -90,8 +109,8 @@ public class Player extends Entity {
 				grid[getX()][getY()] = this;
 			}
 			
+			//The player passes turn by sitting
 			if(Game.keyboard.key == "s") {
-				//sit and do nothing
 			}
 			
 			if(Game.keyboard.key == "d") {
@@ -127,34 +146,43 @@ public class Player extends Entity {
 		return getAlive();
 	}
 	
-
 	/**
-	 * Jumps the player to a random non-fence grid.
+	 * Jumps the player to a random non-fence position
+	 * 
 	 * @param grid the array of game spaces
 	 * @return whether or not the player is alive
+	 * 
 	 * Author: Joseph Rumelhart
 	 */
 	public boolean jump(Entity[][] grid) {
+		//Before jumping, set last position
 		setLastX(getX());
 		setLastY(getY());
+		
+		//Keep cycling through until jump resolves
 		while(true) {
-			int validJumpX = (int) (1 + ((int)(grid.length - 2) * Math.random()));
-			int validJumpY = (int) (1 + ((int)(grid[0].length - 2) * Math.random()));
-			//Occurs when the random position selects a killing position
-			if(grid[validJumpX][validJumpY] instanceof Mho) {
+			
+			//The potential coordinates to jump to
+			int jumpXCoordinate = (int) (1 + ((int)(grid.length - 2) * Math.random()));
+			int jumpYCoordinate = (int) (1 + ((int)(grid[0].length - 2) * Math.random()));
+			
+			//When the jump coordinates are on top of a mho
+			if(grid[jumpXCoordinate][jumpYCoordinate] instanceof Mho) {
 				kill();
 				game.endGame(GameState.JUMPED_ON_MHO);
 				game.repaint();
 				break;
 			}
-			//Occurs when the random position selects an invalid position
-			else if(grid[validJumpX][validJumpY] instanceof Fence || grid[validJumpX][validJumpY] instanceof Player) {
+			
+			//When the jump coordinates are invalid(on a fence)
+			else if(grid[jumpXCoordinate][jumpYCoordinate] instanceof Fence || grid[jumpXCoordinate][jumpYCoordinate] instanceof Player) {
 				continue;
 			}
-			//Occurs when the random position selects a valid position
+			
+			//When the jump coordinates are valid
 			else {
-				setXPosition(validJumpX);
-				setYPosition(validJumpY);
+				setXPosition(jumpXCoordinate);
+				setYPosition(jumpYCoordinate);
 				grid[getX()][getY()] = this;
 				draw(game.getGraphics());
 				break;
