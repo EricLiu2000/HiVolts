@@ -171,6 +171,9 @@ public class Mho extends Entity {
 				}
 			}
 		}
+		else {
+			kill();
+		}
 	}
 	
 	/**
