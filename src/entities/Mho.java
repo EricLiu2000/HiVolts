@@ -153,7 +153,6 @@ public class Mho extends Entity {
 		}
 		
 		//Moves in the decided direction
-		//If surrounded by mhos
 		if(obstacles.get(0) instanceof Player) {
 			move(dlat);
 		}
@@ -163,6 +162,7 @@ public class Mho extends Entity {
 		else if(obstacles.get(2) instanceof Player) {
 			move(dvert);
 		}
+		//If surrounded by mhos
 		else if(numMhos == 3) {
 			//sit
 		}
@@ -174,10 +174,10 @@ public class Mho extends Entity {
 			}
 			//Moves horizontally or vertically
 			else {
-				if(Math.abs(player.getX() - this.getX()) >= Math.abs(player.getY() - this.getY())) {
+				if(Math.abs(player.getX() - this.getX()) >= Math.abs(player.getY() - this.getY()) && obstacles.get(0) == null) {
 					move(dlat);
 				}
-				else{
+				else if(obstacles.get(2) == null) {
 					move(dvert);
 				}
 			}
