@@ -4,10 +4,14 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
@@ -285,10 +289,10 @@ public class Game extends JFrame implements ActionListener {
 			//If you died by running into a fence
 			case RAN_INTO_WALL:
 				//Sets the text to indicate what killed you
-				JTextField text = new JTextField("You ran into a fire");
+				JTextField text = new JTextField("You Ran Into a Fire");
 				
 				//Creates the buttons
-				JButton restart = new JButton("Play again");
+				JButton restart = new JButton("Play Again");
 				JButton quit = new JButton("Quit");
 				
 				//Adds action listeners to the buttons
@@ -296,9 +300,9 @@ public class Game extends JFrame implements ActionListener {
 				quit.addActionListener(this);
 				
 				//Sets the sizes of the buttons and text field
-				restart.setBounds(50, 200, 100, 100);
-				quit.setBounds(300, 200, 100, 100);
-				text.setBounds(50, 50, 200, 100);
+				restart.setBounds(50, 500, 100, 50);
+				quit.setBounds(450, 500, 100, 50);
+				text.setBounds(225, 25, 130, 25);
 				
 				//You can't edit or click the text box
 				text.setFocusable(false);
@@ -307,6 +311,8 @@ public class Game extends JFrame implements ActionListener {
 				this.getContentPane().add(restart);
 				this.getContentPane().add(quit);
 				this.getContentPane().add(text);
+				
+				this.getContentPane().setBackground(Color.BLUE);
 				
 				//Repaints the game
 				this.getContentPane().repaint();
@@ -319,7 +325,7 @@ public class Game extends JFrame implements ActionListener {
 				text = new JTextField("A Mho Ate You");
 				
 				//Creates the buttons
-				restart = new JButton("Play again");
+				restart = new JButton("Play Again");
 				quit = new JButton("Quit");
 				
 				//Adds action listeners to the buttons
@@ -327,9 +333,9 @@ public class Game extends JFrame implements ActionListener {
 				quit.addActionListener(this);
 				
 				//Sets the sizes of the buttons and text field
-				restart.setBounds(50, 200, 100, 100);
-				quit.setBounds(300, 200, 100, 100);
-				text.setBounds(50, 50, 200, 100);
+				restart.setBounds(50, 500, 100, 50);
+				quit.setBounds(450, 500, 100, 50);
+				text.setBounds(225, 25, 130, 25);
 				
 				//You can't edit or click the text box
 				text.setFocusable(false);
@@ -358,9 +364,9 @@ public class Game extends JFrame implements ActionListener {
 				quit.addActionListener(this);
 				
 				//Sets the sizes of the buttons and text field
-				restart.setBounds(50, 200, 100, 100);
-				quit.setBounds(300, 200, 100, 100);
-				text.setBounds(50, 50, 100, 100);
+				restart.setBounds(50, 500, 100, 50);
+				quit.setBounds(450, 500, 100, 50);
+				text.setBounds(225, 25, 130, 25);
 				
 				//You can't edit or click the text box
 				text.setFocusable(false);
@@ -381,7 +387,7 @@ public class Game extends JFrame implements ActionListener {
 				text = new JTextField("You Jumped On A Mho");
 				
 				//Creates the buttons
-				restart = new JButton("Play again");
+				restart = new JButton("Play Again");
 				quit = new JButton("Quit");
 				
 				//Adds action listeners to the buttons
@@ -389,9 +395,9 @@ public class Game extends JFrame implements ActionListener {
 				quit.addActionListener(this);
 				
 				//Sets the sizes of the buttons and text field
-				restart.setBounds(50, 200, 100, 100);
-				quit.setBounds(300, 200, 100, 100);
-				text.setBounds(50, 50, 200, 100);
+				restart.setBounds(50, 500, 100, 50);
+				quit.setBounds(450, 500, 100, 50);
+				text.setBounds(200, 25, 160, 25);
 				
 				//You can't edit or click the text box
 				text.setFocusable(false);
@@ -400,6 +406,8 @@ public class Game extends JFrame implements ActionListener {
 				this.getContentPane().add(restart);
 				this.getContentPane().add(quit);
 				this.getContentPane().add(text);
+				
+				this.getContentPane().setBackground(Color.BLACK);
 				
 				//Repaints the game
 				this.getContentPane().repaint();
