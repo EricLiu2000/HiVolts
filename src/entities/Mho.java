@@ -28,6 +28,7 @@ public class Mho extends Entity {
 	 */
 	public Mho(int xPosition, int yPosition) {
 		super(xPosition, yPosition);
+		//Looks for the image to display
 		try{
 			image = ImageIO.read(new File("images/mho.jpg"));
 		}
@@ -65,9 +66,11 @@ public class Mho extends Entity {
 	 * Author: Joseph Rumelhart
 	 */
 	private void moveSimple(Player player, Entity[][] grid) {
+		//Occurs when the mho is on top of the player
 		if(player.getX() == this.getX() && player.getY() == this.getY()) {
 			//sit
 		}
+		//On a vertical line to player
 		else if(player.getX() == this.getX()) {
 			if(player.getY() >= this.getY()){
 				move(Direction.SOUTH);
@@ -76,6 +79,7 @@ public class Mho extends Entity {
 				move(Direction.NORTH);
 			}
 		}
+		//Horizontal line to player
 		else if(player.getY() == this.getY()) {
 			if(player.getX() >= this.getX()){
 				move(Direction.EAST);
@@ -95,9 +99,11 @@ public class Mho extends Entity {
 	 * 
 	 */
 	private void moveComplex(Player player, Entity[][] grid) {
+		//ArrayList of the entities between the mho and the player
 		ArrayList<Entity> obstacles = new ArrayList<Entity>(3);
 		int numMhos = 0;
 		int numEmpty = 0;
+		//The possible directions the mho could go in
 		Direction d = null;
 		Direction dlat = null;
 		Direction dvert = null;
