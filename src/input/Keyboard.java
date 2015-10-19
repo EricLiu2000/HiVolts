@@ -7,14 +7,17 @@ import window.Game;
 
 public class Keyboard implements KeyListener {
 
+	//The key that was pressed
 	public String key;
 
+	//The game that this keyboard belongs to
 	public Game game;
 	
-	//The number of updates that occured this game
+	//The number of updates that occurred this game
 	public static int updateCycle;
 	
 	/**
+	 * Creates a keyboard with its number of updates set to 0
 	 * 
 	 * @param game the game that this keyboard is controlling
 	 * Author: Eric Liu
@@ -25,14 +28,18 @@ public class Keyboard implements KeyListener {
 	}
 
 	/**
-	 * Called when a key is typed
-	 * calls game update method
+	 * This method is called when a key is typed
+	 * It calls the update method of game
+	 * 
 	 * Author: Eric Liu
 	 */
 	@Override
 	public void keyTyped(KeyEvent e) {
-
+		
+		//Increases the number of updates by one
 		updateCycle ++;
+		
+		//Only updates if the player is alive
 		if(game.player.getAlive()) {
 			//Gets input from the keyboard
 			if(e.getKeyChar() == 'q') {
@@ -53,6 +60,7 @@ public class Keyboard implements KeyListener {
 			}
 			if(e.getKeyChar() == 'j') {
 				key = "j";
+				//In order to maintain the player turn, only the player updates
 				game.player.update(game.getGrid());
 			}
 			if(e.getKeyChar() == 'd') {
@@ -75,20 +83,14 @@ public class Keyboard implements KeyListener {
 				key = "s";
 				game.update();
 			}
-			//FOR TESTING
-			if(e.getKeyChar() == 'k') {
-				game.killMhos();
-				game.update();
-			}
-			if(!game.player.getAlive()) {
-				game.update();
-			}
 		}
 	}
 
+	//Unused KeyListener method
 	@Override
 	public void keyPressed(KeyEvent e) {}
 
+	//Unused KeyListener method
 	@Override
 	public void keyReleased(KeyEvent e) {}
 
