@@ -13,17 +13,22 @@ import window.Game;
 
 public class Fence extends Entity {
 
+	//The image of the fence
 	private BufferedImage image = null;
 	
 	/**
-	 * Creates a Fence with the given coordinates
+	 * Creates a fence with the given coordinates
+	 * Sets the fence's image to a blue flame
+	 * 
 	 * @param xPosition the x coordinate of the Fence
 	 * @param yPosition the y coordinate of the Fence
+	 * 
 	 * Author: Joseph Rumelhart
 	 */
 	public Fence(int xPosition, int yPosition) {
 		super(xPosition, yPosition);
 		
+		//Creates the image of the fence
 		try{
 			image = ImageIO.read(new File("images/fence.jpg"));
 		}
@@ -33,7 +38,8 @@ public class Fence extends Entity {
 	}
 
 	/**
-	 * Creates the visible fence on the game board
+	 * Draws the fence on the game board
+	 * 
 	 * Author: Eric Liu
 	 */
 	@Override
@@ -43,6 +49,7 @@ public class Fence extends Entity {
 
 	/**
 	 * Updates the fence
+	 * 
 	 * Author: Eric Liu
 	 */
 	@Override
