@@ -209,62 +209,7 @@ public abstract class Entity {
 		int[] currentCoords = {getX(),getY()};
 		return currentCoords;
 	}
-	
-	/**
-	 * Returns the future position of the entity.
-	 * Used in MoveMho() to prevent stacking Mhos.
-	 * 
-	 * @param direction the direction to move in
-	 * 
-	 * Author: Eric Liu
-	 */
-	public int[] futurePosition(Direction direction) {
-		//The future coordinates of the entity
-		int futureX = 0;
-		int futureY = 0;
-		
-		switch(direction) {
-			case NORTH: 
-				futureX = getX();
-				futureY = getY() - 1;
-				break;
-			case NORTHEAST:
-				futureX = getX() + 1;
-				futureY = getY() - 1;
-				break;
-			case EAST:
-				futureX = getX() + 1;
-				futureY = getY();
-				break;
-			case SOUTHEAST:
-				futureX = getX() + 1;
-				futureY = getY() + 1;
-				break;
-			case SOUTH:
-				futureX = getX();
-				futureY = getY() + 1;
-				break;
-			case SOUTHWEST:
-				futureX = getX() - 1;
-				futureY = getY() + 1;
-				break;
-			case WEST:
-				futureX = getX() - 1;
-				futureY = getY();
-				break;
-			case NORTHWEST:
-				futureX = getX() - 1;
-				futureY = getY() - 1;
-				break;
-			default: 
-				System.out.println("Error: Invalid direction");
-				break;
-		}
-		
-		//Returns the future coordinates as an array
-		int[] futureCoords = {futureX, futureY};
-		return futureCoords;
-	}
+
 	/**
 	 * Checks whether the entity is alive
 	 * 
