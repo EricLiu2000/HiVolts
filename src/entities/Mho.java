@@ -162,9 +162,10 @@ public class Mho extends Entity {
 			move(dvert);
 		}
 		//If surrounded by mhos
-//		else if(numMhos >= 3) {
-//			//sit
-//		}
+		else if(numMhos >= 3) {
+			//sit
+		}
+		
 		//Moves to an empty space 
 		else if (numEmpty > 0) {
 			//Moves diagonally
