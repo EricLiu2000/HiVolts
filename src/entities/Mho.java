@@ -151,7 +151,6 @@ public class Mho extends Entity {
 				numEmpty++;
 			}
 		}
-		
 		//Moves in the decided direction
 		if(obstacles.get(0) instanceof Player) {
 				move(dlat);
