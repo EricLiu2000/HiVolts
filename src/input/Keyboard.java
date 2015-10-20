@@ -42,7 +42,7 @@ public class Keyboard implements KeyListener {
 		updateCycle ++;
 		
 		//Only updates if the player is alive
-		if(game.player.getAlive()) {
+		if(!game.gameOver()) {
 			//Gets input from the keyboard
 			if(e.getKeyChar() == 'q') {
 				key = "q";

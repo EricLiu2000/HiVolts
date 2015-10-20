@@ -73,19 +73,27 @@ public class Mho extends Entity {
 		//On a vertical line to player
 		else if(player.getX() == this.getX()) {
 			if(player.getY() >= this.getY()){
-				move(Direction.SOUTH);
+				if(!(grid[futurePosition(Direction.SOUTH)[0]][futurePosition(Direction.SOUTH)[1]] instanceof Mho)) {
+					move(Direction.SOUTH);
+				}
 			}
 			else {
-				move(Direction.NORTH);
+				if(!(grid[futurePosition(Direction.NORTH)[0]][futurePosition(Direction.NORTH)[1]] instanceof Mho)) {
+					move(Direction.NORTH);
+				}
 			}
 		}
 		//Horizontal line to player
 		else if(player.getY() == this.getY()) {
 			if(player.getX() >= this.getX()){
-				move(Direction.EAST);
+				if(!(grid[futurePosition(Direction.EAST)[0]][futurePosition(Direction.EAST)[1]] instanceof Mho)) {
+					move(Direction.EAST);
+				}
 			}
 			else {
-				move(Direction.WEST);
+				if(!(grid[futurePosition(Direction.WEST)[0]][futurePosition(Direction.WEST)[1]] instanceof Mho)) {
+					move(Direction.WEST);
+				}
 			}
 		}
 	}
@@ -154,13 +162,22 @@ public class Mho extends Entity {
 		
 		//Moves in the decided direction
 		if(obstacles.get(0) instanceof Player) {
-			move(dlat);
+				//Only moves if there is not a Mho in the way
+				if(!(grid[futurePosition(dlat)[0]][futurePosition(dlat)[1]] instanceof Mho)) {
+					move(dlat);
+				}
 		}
 		else if(obstacles.get(1) instanceof Player) {
-			move(d);
+			//Only moves if there is not a Mho in the way
+			if(!(grid[futurePosition(d)[0]][futurePosition(d)[1]] instanceof Mho)) {
+				move(d);
+			}
 		}
 		else if(obstacles.get(2) instanceof Player) {
-			move(dvert);
+			//Only moves if there is not a Mho in the way
+			if(!(grid[futurePosition(dvert)[0]][futurePosition(dvert)[1]] instanceof Mho)) {
+				move(dvert);
+			}
 		}
 		//If surrounded by mhos
 		else if(numMhos >= 3) {
@@ -170,15 +187,21 @@ public class Mho extends Entity {
 		else if (numEmpty > 0) {
 			//Moves diagonally
 			if(obstacles.get(1) == null) {
-				move(d);
+				if(!(grid[futurePosition(d)[0]][futurePosition(d)[1]] instanceof Mho)) {
+					move(d);
+				}
 			}
 			//Moves horizontally or vertically
 			else {
-				if(Math.abs(player.getX() - this.getX()) >= Math.abs(player.getY() - this.getY())) {
-					move(dlat);
+				if(Math.abs(player.getX() - this.getX()) >= Math.abs(player.getY() - this.getY()) && obstacles.get(0) == null) {
+					if(!(grid[futurePosition(dlat)[0]][futurePosition(dlat)[1]] instanceof Mho)) {
+						move(dlat);
+					}
 				}
-				else {
-					move(dvert);
+				else if(obstacles.get(2) == null) {
+					if(!(grid[futurePosition(dvert)[0]][futurePosition(dvert)[1]] instanceof Mho)) {
+						move(dvert);
+					}
 				}
 			}
 		}

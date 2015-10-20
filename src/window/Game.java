@@ -84,7 +84,7 @@ public class Game extends JFrame implements ActionListener {
 		MHOS_DEAD,
 		ONGOING
 	}
-	GameState state = GameState.ONGOING;
+	GameState state;
 	
 	/**
 	 * Creates everything needed for the game.
@@ -94,6 +94,9 @@ public class Game extends JFrame implements ActionListener {
 	public Game() {
 		//Creates the keyboard
 		keyboard = new Keyboard(this);
+		
+		//Sets the state to ongoing
+		state = GameState.ONGOING;
 		
 		//Creates a window to display the game and sets the background color to white
 		width = 12 * Game.CELL_SIZE;
@@ -242,7 +245,7 @@ public class Game extends JFrame implements ActionListener {
 		//Adds these bounding fences to the list of entities
 		entities.addAll(boundingFences);
 	}
-
+	 
 	/**
 	 * Draws the current state of the game on the screen
 	 * 
@@ -425,6 +428,20 @@ public class Game extends JFrame implements ActionListener {
 	}
 	
 	/**
+	 * Gets whether or not the game is over
+	 * 
+	 * @return whether or not the gamem is over
+	 * 
+	 * Author: Eric Liu
+	 */
+	public boolean gameOver() {
+		if(state == GameState.ONGOING) {
+			return false;
+		}
+		else return true;
+	}
+	
+	/**
 	 * Updates the game every time a key is pressed
 	 * 
 	 * Authors: Eric Liu and Joseph Rumelhart
@@ -465,6 +482,10 @@ public class Game extends JFrame implements ActionListener {
 					//Mhos die if they walk over a fence
 					if(entity instanceof Mho && entity2 instanceof Fence) {
 						entity.kill();
+					}
+					//Last minute patch for stacking Mhos issue
+					if(entity instanceof Mho && entity2 instanceof Mho) {
+						entity2.kill();
 					}
 				}
 			}
