@@ -21,7 +21,9 @@ The game is divided into four main packages: Entities, Input, Run, and Window, w
 
 Entities contains the base class Entity, from which the game entities Fence, Mho, and Player all inherit their primary methods. Fence contains very little code, as it does not require movement or death logic. In contrast, Player and Mho are large objects, whose primary difference is in their means of movement. While Player requires input from a human, Mho may move on its own towards the Player. The largest method in Entity is the movement method, which takes a Direction enum of the cardinal directions and moves the entity to that direction.
 
-Player's primary method is its update, which responds to the key input from Keyboard and moves in the direction indicated. The other primary method within Player is jump, which moves it to a random empty space or Mho on the board. 
+Player's primary method is its update, which responds to the key input from Keyboard and moves in the direction indicated. The other primary method within Player is jump, which moves it to a random empty space or Mho on the board. This represents a gamble on the player's part to get out of a risky situation. Finally, the last method used within Player is the draw method, which draws its avatar on the screen.
+
+Mho is very similar to Player, having both move and draw methods. However, the moveMho method requires the use of two subsidary methods, moveSimple and moveComplex. Each of these methods takes a Player object and the game grid, a representation of the game stored in a 2D array.
 
 The Input package contains Keyboard, which is responsible for taking input from a human and translating it into instructions usable by the Player. The primary method within Keyboard is keyTyped, which recieves input from the physical keyboard stores them in the String "key," which is public and thus available to all classes and methods. 
 
