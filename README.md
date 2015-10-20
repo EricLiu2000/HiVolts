@@ -8,7 +8,7 @@ The HiVolts Project is an updated version of a old PLATO system video game by th
 Specifications:
 The project specified that the game would be primarily copy of the original, with the same board layout of one player, 12 Mhos, and 20 internal Fences, with an outer border of Fences that always appear. The controls are also the same, with the keys around "S" being used for the cardinal directions, with "S" being sit in place and "J" being jump, which moves the player to a random position on the board that is not a fence. Finally, the Mhos must move towards the player according to a fixed set of rules, and the player must be able to quit or restart the game if they are killed or victorious. The main difference between the current project and the original is the graphics, with the updated version requiring much more advanced graphics. 
 
-Our project meets these requirements in nearly all ways. The graphics are far improved from the 1970's version, but all controls and logic remain the same. For example, when the jump method is called, it provides for the option to land on a Mho, but not a Fence, and die due to this. A video has been included to demonstrate the different states of the program, and the opportunities for victory and loss. The primary problems lie in the movement logic for the Mhos.
+Our project meets these requirements in nearly all ways. The graphics are far improved from the 1970's version, but all controls and logic remain the same. For example, when the jump method is called, it provides for the option to land on a Mho, but not a Fence, and die due to this. A video has been included to demonstrate the different states of the program, and the opportunities for victory and loss. The primary problems lie in the movement logic for the Mhos, as detailed in the Current Errors section.
 
 Current Errors:
 While the project does meet the specification, there are several minor errors that are still unresolved. One observed bug has been the game starting without a player. However, under testing this has occurred only once out of a million times. In addition, the Mho behavior has problems when interacting with other Mhos, occasionally exhibiting behavior not outlined in the rules.
@@ -41,4 +41,4 @@ Ben Cohen-Wang for aid on general program design and the entity generation algor
 Chris Kuszmaul for help on the generation algorithm and general guidance.
 Jonathan Zwiebel for assistance on the image display.
 
-Primary resources included the Java documentation files and the JUnit documentation.
+Primary resources included the Java and JUnit documentation files.
