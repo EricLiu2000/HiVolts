@@ -313,7 +313,7 @@ public class Game extends JFrame implements ActionListener {
 				this.getContentPane().add(text);
 				
 				//Sets the background color
-				this.getContentPane().setBackground(Color.BLUE);
+				this.getContentPane().setBackground(Color.BLACK);
 				
 				//Repaints the game
 				this.getContentPane().repaint();
@@ -360,7 +360,7 @@ public class Game extends JFrame implements ActionListener {
 				text = new JTextField("You Win!");
 				
 				//Creates the buttons
-				restart = new JButton("Play again");
+				restart = new JButton("Play Again");
 				quit = new JButton("Quit");
 				
 				//Adds action listeners to the buttons
@@ -381,7 +381,7 @@ public class Game extends JFrame implements ActionListener {
 				this.getContentPane().add(text);
 				
 				//Sets the background color
-				this.getContentPane().setBackground(Color.WHITE);
+				this.getContentPane().setBackground(Color.BLUE);
 				
 				//Repaints the game
 				this.getContentPane().repaint();
