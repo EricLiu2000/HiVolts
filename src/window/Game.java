@@ -483,9 +483,9 @@ public class Game extends JFrame implements ActionListener {
 					if(entity instanceof Mho && entity2 instanceof Fence) {
 						entity.kill();
 					}
+					//Last minute patch for stacking Mhos issue
 					if(entity instanceof Mho && entity2 instanceof Mho) {
-						System.out.println("x: " + entity.getX());
-						System.out.println("y: " + entity.getY());
+						entity2.kill();
 					}
 				}
 			}
