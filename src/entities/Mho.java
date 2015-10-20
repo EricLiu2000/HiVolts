@@ -162,9 +162,9 @@ public class Mho extends Entity {
 			move(dvert);
 		}
 		//If surrounded by mhos
-//		else if(numMhos >= 3) {
-//			//sit
-//		}
+		else if(numMhos >= 3) {
+			//sit
+		}
 		//Moves to an empty space 
 		else if (numEmpty > 0) {
 			//Moves diagonally
@@ -183,7 +183,7 @@ public class Mho extends Entity {
 					}
 				}
 				
-				if(Math.abs(player.getX() - this.getX()) < Math.abs(player.getY() - this.getY())) {
+				else if(Math.abs(player.getX() - this.getX()) < Math.abs(player.getY() - this.getY())) {
 					if(obstacles.get(2) == null) {
 						move(dvert);
 					}
