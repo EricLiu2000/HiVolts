@@ -173,36 +173,26 @@ public class Mho extends Entity {
 			}
 			//Moves horizontally or vertically
 			else {
-//				if(Math.abs(player.getX() - this.getX()) >= Math.abs(player.getY() - this.getY())) {
-//					if(obstacles.get(0) == null) {
-//						move(dlat);
-//					}
-//					else if (obstacles.get(2) == null) {
-//						move(dvert);
-//					}
-//				}
-//				
-//				if(Math.abs(player.getX() - this.getX()) < Math.abs(player.getY() - this.getY())) {
-//					if(obstacles.get(2) == null) {
-//						move(dvert);
-//					}
-//					else if (obstacles.get(0) == null) {
-//						move(dlat);
-//					}
-//				}
 				if(Math.abs(player.getX() - this.getX()) >= Math.abs(player.getY() - this.getY())) {
 					if(obstacles.get(0) == null) {
 						move(dlat);
 					}
 					
-				}
-				else if (obstacles.get(2) == null) {
+					else if (obstacles.get(2) == null) {
 						move(dvert);
+					}
+				}
+				
+				if (Math.abs(player.getX() - this.getX()) < Math.abs(player.getY() - this.getY())) {
+					if(obstacles.get(2) == null) {
+						move(dvert);
+					}
+					
+					else if (obstacles.get(0) == null) {
+						move(dlat);
+					}
 				}
 			}
-		}
-		else {
-			kill();
 		}
 	}
 	
