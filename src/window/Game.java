@@ -484,10 +484,9 @@ public class Game extends JFrame implements ActionListener {
 						entity.kill();
 					}
 					//Last minute patch for stacking Mhos issue
-//					if(entity instanceof Mho && entity2 instanceof Mho) {
-//						System.out.println("something wrong");
-//						entity2.kill();
-//					}
+					if(entity instanceof Mho && entity2 instanceof Mho) {
+						entity2.kill();
+					}
 				}
 			}
 		}
